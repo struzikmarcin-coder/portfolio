@@ -132,10 +132,6 @@
   .btn-light{padding:15px 30px;border-radius:100px;background:#f4f5f6;color:#08090a;font-size:15px;font-weight:600;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
   .btn-outline{padding:15px 30px;border-radius:100px;border:1px solid rgba(255,255,255,.14);color:#f4f5f6;font-size:15px;font-weight:500;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
   .btn-outline:hover{background:rgba(255,255,255,.06)}
-  #hero-strip{position:relative;width:min(1080px,100%);margin-top:clamp(40px,7vw,66px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px;mask-image:linear-gradient(#000 45%,transparent)}
-  .hero-thumb{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#101113}
-  .hero-thumb img{width:100%;height:100%;object-fit:cover;opacity:.62}
-  @media (max-width:520px){#hero-strip{grid-template-columns:1fr 1fr}}
 
   .logos-wrap{padding:14px 0 70px}
   .logos-label{text-align:center;margin:0 0 26px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6a7078}
@@ -220,18 +216,27 @@
 
 
 
-  #notes{padding:clamp(70px,11vw,100px) 20px;max-width:1240px;margin:0 auto}
-  .notes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
-  .note-card{display:flex;flex-direction:column;gap:14px;padding:26px 24px 24px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
-  .note-card:hover{border-color:rgba(107,138,253,.45);transform:translateY(-3px)}
-  .note-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b8afd}
-  .note-card h3{margin:0;font-size:21px;line-height:1.2;letter-spacing:-.025em;font-weight:700}
-  .note-card p{margin:0;font-size:15px;line-height:1.65;color:#9aa0a8}
-  .note-draft{align-self:flex-start;padding:4px 9px;border-radius:999px;border:1px dashed rgba(255,255,255,.2);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a9099}
-  .note-more{margin-top:auto;padding-top:6px;font-size:14px;font-weight:600;color:#c9d2e8;text-decoration:none}
+  #notes{padding:clamp(70px,11vw,100px) 20px 0;max-width:1240px;margin:0 auto}
+  .notes-list{display:flex;flex-direction:column;gap:18px}
+  .note{position:relative;display:grid;grid-template-columns:minmax(90px,170px) 1fr;gap:clamp(18px,4vw,48px);padding:clamp(26px,4vw,44px);border-radius:22px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(160deg,#111318,#0b0c0e 62%);overflow:hidden;transition:border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+  .note::after{content:"";position:absolute;inset:auto -10% -55% 40%;height:70%;background:radial-gradient(ellipse at center,rgba(107,138,253,.16),transparent 65%);opacity:0;transition:opacity .45s;pointer-events:none}
+  .note:hover{border-color:rgba(107,138,253,.5);transform:translateY(-3px)}
+  .note:hover::after{opacity:1}
+  .note-num{font-size:clamp(76px,11vw,150px);line-height:.85;letter-spacing:-.06em;font-weight:800;color:transparent;-webkit-text-stroke:1.5px rgba(142,166,255,.55);background:linear-gradient(180deg,rgba(142,166,255,.5),transparent 85%);-webkit-background-clip:text;background-clip:text}
+  .note-body{position:relative;z-index:1;min-width:0}
+  .note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px}
+  .note-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b8afd}
+  .note-draft{padding:3px 9px;border-radius:999px;border:1px dashed rgba(255,255,255,.22);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a9099}
+  .note h3{margin:0 0 20px;max-width:22ch;font-size:clamp(26px,3.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700}
+  .note-quote{margin:0 0 22px;padding:2px 0 2px 18px;border-left:3px solid #6b8afd;max-width:46ch;font-size:clamp(17px,2vw,21px);line-height:1.4;letter-spacing:-.015em;font-weight:600;color:#dfe5f5}
+  .note-text{display:grid;gap:14px;max-width:62ch}
+  .note-text p{margin:0;font-size:16px;line-height:1.7;color:#9aa0a8}
+  .note-take{display:inline-block;margin:24px 0 0;padding:9px 16px;border-radius:999px;background:rgba(141,251,161,.09);border:1px solid rgba(141,251,161,.28);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;color:#8dfba1}
+  .note-more{display:block;margin-top:20px;font-size:14.5px;font-weight:600;color:#c9d2e8;text-decoration:none}
   .note-more:hover{color:#fff}
-  .notes-foot{margin:28px 0 0;font-size:14.5px;color:#8a9099}
+  .notes-foot{margin:26px 0 0;font-size:14.5px;color:#8a9099}
   .notes-foot a{color:#c9d2e8}
+  @media (max-width:720px){.note{grid-template-columns:1fr;gap:6px}.note-num{font-size:72px}}
   #about{padding:clamp(70px,11vw,100px) 20px;max-width:1240px;margin:0 auto}
   .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(34px,5vw,56px);align-items:center}
   .about-photo{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#101113}
@@ -284,8 +289,8 @@
   <nav>
     <a href="#top" class="brand">imstruzik<span>.com</span></a>
     <div id="nav-links">
-      <a href="#work">Work</a>
       <a href="#notes">Notes</a>
+      <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -300,8 +305,8 @@
 
 <div id="mobile-menu">
   <button id="menu-close" aria-label="Close menu">×</button>
-  <a href="#work">Work</a>
   <a href="#notes">Notes</a>
+  <a href="#work">Work</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
   <a class="mobile-cta" href="#newsletter">
@@ -342,21 +347,71 @@
 
   <div id="hero-ctas" data-r>
     <a class="btn-light" href="#newsletter">Get the newsletter</a>
-    <a class="btn-outline" href="#work">See selected work</a>
+    <a class="btn-outline" href="#notes">Read the notes</a>
   </div>
 
-  <div id="hero-strip" data-r>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/H2gr8Xuzo_s/maxresdefault.jpg" alt="" loading="lazy"></div>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/x8IydBbk6lg/maxresdefault.jpg" alt="" loading="lazy"></div>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/ogk_iq_8Jx8/maxresdefault.jpg" alt="" loading="lazy"></div>
-  </div>
 </section>
 
+
+<section id="notes">
+  <div class="section-head" data-r>
+    <div>
+      <p class="eyebrow">01 — Notes</p>
+      <h2 class="section-title">How I work with AI</h2>
+    </div>
+    <p>Honest notes from using AI in video every day: what saves time, what wastes it, and what stays human.</p>
+  </div>
+  <div class="notes-list">
+    <article class="note" data-r>
+      <div class="note-num" aria-hidden="true">01</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">Scripting</span><span class="note-draft">Rough draft</span></div>
+        <h3>Writing a feature video script with AI, and the part I never hand over</h3>
+        <p class="note-quote">&ldquo;AI can give me a structure in minutes. It cannot tell me what the viewer should feel.&rdquo;</p>
+        <div class="note-text">
+        <p>A feature brief usually arrives as a pile: release notes, a handful of screenshots and three different opinions on what matters most. This is where AI earns its keep for me. I drop the mess in, ask for the same story told several different ways, and look for the shape that survives. Getting to a first structure stops being the slow part.</p>
+        <p>What I never hand over is the decision about what the video is for. Which one thing should the viewer remember, what can be cut, what the voiceover should leave to the screen. That comes from understanding the product and the person watching, and no prompt has replaced it.</p>
+        </div>
+        <span class="note-take">AI drafts the options. I make the call.</span>
+        <a class="note-more" href="#newsletter">Get the next notes by email &rarr;</a>
+      </div>
+    </article>
+    <article class="note" data-r>
+      <div class="note-num" aria-hidden="true">02</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">Motion &amp; editing</span><span class="note-draft">Rough draft</span></div>
+        <h3>Where AI really speeds up motion design, and where it only pretends to</h3>
+        <p class="note-quote">&ldquo;It speeds up the boring 80%. It makes the last 20% harder to see.&rdquo;</p>
+        <div class="note-text">
+        <p>AI helps most where the work is repetitive: rough cuts, cleaning up audio, drafting captions, producing variations, resizing one video into five formats. Those are hours I am happy to give back, and I do not miss them.</p>
+        <p>It pretends wherever timing and taste matter. UI animation that has to match exactly what is on screen, easing that feels right, a transition that says &ldquo;this is the important part&rdquo;. The result looks plausible at first glance, and then fixing it takes longer than building it would have.</p>
+        </div>
+        <span class="note-take">Use it for the volume. Keep your hands on the feel.</span>
+        <a class="note-more" href="#newsletter">Get the next notes by email &rarr;</a>
+      </div>
+    </article>
+    <article class="note" data-r>
+      <div class="note-num" aria-hidden="true">03</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">Tools</span><span class="note-draft">Rough draft</span></div>
+        <h3>My AI toolkit: what stayed and what I dropped</h3>
+        <p class="note-quote">&ldquo;A tool earns its place when I stop thinking about it.&rdquo;</p>
+        <div class="note-text">
+        <p>Every few weeks a new tool promises to change how video is made. I try most of them once, on real work and not on a demo, because a demo hides exactly the things that make a tool annoying.</p>
+        <p>The test I use is simple: does it remove a step, or does it add one more place to check? The ones that stay become invisible. The ones that go leave a tab open for a month and then quietly close. In the newsletter I will share the current list and why each tool made the cut.</p>
+        </div>
+        <span class="note-take">Fewer tools, used on purpose.</span>
+        <a class="note-more" href="#newsletter">Get the next notes by email &rarr;</a>
+      </div>
+    </article>
+  </div>
+  <p class="notes-foot" data-r>New notes go out by email. <a href="#newsletter">Subscribe below</a> to get them first.</p>
+</section>
 
 <section id="work">
   <div class="section-head" data-r>
     <div>
-      <p class="eyebrow">01 — Selected work</p>
+      <p class="eyebrow">02 — Selected work</p>
       <h2 class="section-title">Things I have made</h2>
     </div>
     <p>Feature launches, product updates and campaign videos from my work in SaaS. Press play on any of them.</p>
@@ -424,7 +479,7 @@
 <section id="testimonials">
   <div class="testi-inner">
     <div data-r style="margin-bottom:40px">
-      <p class="eyebrow">02 — What people say</p>
+      <p class="eyebrow">03 — What people say</p>
       <h2 class="section-title">Words from people I have worked with</h2>
     </div>
     <div class="testi-columns" id="testi-columns">
@@ -458,40 +513,6 @@
 
 
 
-<section id="notes">
-  <div class="section-head" data-r>
-    <div>
-      <p class="eyebrow">03 — Notes</p>
-      <h2 class="section-title">How I work with AI</h2>
-    </div>
-    <p>Short, honest notes from using AI in video every day: what saves time, what wastes it, and what stays human.</p>
-  </div>
-
-  <div class="notes-grid">
-    <article class="note-card" data-r>
-      <span class="note-draft">Draft — to be filled in</span>
-      <span class="note-tag">Scripting</span>
-      <h3>Writing a feature video script with AI, and the part I never hand over</h3>
-      <p>Where AI helps me get from a messy feature brief to a first structure, and where the story still has to come from a person who understands the product.</p>
-      <a class="note-more" href="#newsletter">Read the full note in the newsletter →</a>
-    </article>
-    <article class="note-card" data-r>
-      <span class="note-draft">Draft — to be filled in</span>
-      <span class="note-tag">Motion &amp; editing</span>
-      <h3>Where AI really speeds up motion design, and where it only pretends to</h3>
-      <p>A practical look at which steps of editing, animation and UI motion got faster for me, and which ones got slower once I had to fix the output.</p>
-      <a class="note-more" href="#newsletter">Read the full note in the newsletter →</a>
-    </article>
-    <article class="note-card" data-r>
-      <span class="note-draft">Draft — to be filled in</span>
-      <span class="note-tag">Tools</span>
-      <h3>My AI toolkit after a year: what stayed and what I dropped</h3>
-      <p>The tools that earned a permanent place in my workflow, the ones I stopped opening, and the simple rule I use to decide.</p>
-      <a class="note-more" href="#newsletter">Read the full note in the newsletter →</a>
-    </article>
-  </div>
-  <p class="notes-foot" data-r>New notes go out by email. <a href="#newsletter">Subscribe below</a> to get them first.</p>
-</section>
 
 <section id="about">
   <div class="about-grid">
