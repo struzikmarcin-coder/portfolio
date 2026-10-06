@@ -227,6 +227,7 @@
 
 
   #notes{padding:clamp(70px,11vw,100px) 20px 0;max-width:1240px;margin:0 auto}
+  .notes-lead{margin:0 0 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6d737b}
   .notes-list{display:flex;flex-direction:column;gap:18px}
   .note{position:relative;display:grid;grid-template-columns:minmax(90px,170px) 1fr;gap:clamp(18px,4vw,48px);padding:clamp(26px,4vw,44px);border-radius:22px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(160deg,#111318,#0b0c0e 62%);overflow:hidden;transition:border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
   .note::after{content:"";position:absolute;inset:auto -10% -55% 40%;height:70%;background:radial-gradient(ellipse at center,rgba(107,138,253,.16),transparent 65%);opacity:0;transition:opacity .45s;pointer-events:none}
@@ -373,6 +374,7 @@
     </div>
     <p>Free tools and resources, plus practical notes on AI video scripts, AI video editing and the tools that earn their place. What saves time, what wastes it, and what stays human.</p>
   </div>
+  <p class="notes-lead" data-r>Start with whatever you are stuck on right now:</p>
   <div class="notes-list">
     <article class="note" id="free-ai-video-tools" data-r>
       <div class="note-num" aria-hidden="true">01</div>
