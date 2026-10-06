@@ -101,6 +101,13 @@
   .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.1);vertical-align:top}
   .tbl td{color:#c9ced6}
   .tbl th{color:#9aa0a8;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+  .mid-cta{position:relative;margin:36px 0 38px;padding:30px 28px;border-radius:20px;border:1px solid rgba(107,138,253,.4);background:linear-gradient(155deg,rgba(107,138,253,.16),rgba(107,138,253,.02) 70%);text-align:center;overflow:hidden}
+  .mid-cta::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:340px;height:220px;background:radial-gradient(ellipse at center,rgba(107,138,253,.3),transparent 70%);pointer-events:none}
+  .mid-cta-badge{position:relative;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:5px 13px;border-radius:999px;background:rgba(141,251,161,.1);border:1px solid rgba(141,251,161,.3);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8dfba1}
+  .mid-cta h3{position:relative;margin:0 0 10px;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.02em;font-weight:700;color:#f4f5f6}
+  .mid-cta p{position:relative;margin:0 auto 22px;max-width:46ch;font-size:15px;line-height:1.65;color:#c9ced6}
+  .mid-cta-btn{position:relative;display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;background:#3b5bdb;color:#fff;font-size:14.5px;font-weight:600;box-shadow:0 12px 32px rgba(59,91,219,.45);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+  .mid-cta-btn:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 38px rgba(59,91,219,.55)}
 </style>
 </head>
 <body>
@@ -135,6 +142,13 @@
 
       <h2>Mockups &amp; UI assets</h2>
       <p>When the feature being advertised is not built yet, or the screenshots are not launch-ready, free mockup tools fill the gap. <strong>Figma Community</strong> has hundreds of free device-frame and UI-kit files that can be duplicated and edited directly. <strong>Screely</strong> turns a raw screenshot into a clean browser-frame image for free, in one click, which is often all a slide or thumbnail needs.</p>
+
+      <div class="mid-cta">
+        <span class="mid-cta-badge">★ Subscriber bonus</span>
+        <h3>Want the AI skills I actually built for myself?</h3>
+        <p>Subscribe and the first email you get from me is not a welcome message &mdash; it is the actual set of AI skills and setups I built to solve problems in my own work. Not a generic list. The ones I use.</p>
+        <a class="mid-cta-btn" href="/#newsletter">Get the newsletter &rarr;</a>
+      </div>
 
       <h2>The one-page shortlist</h2>
       <div class="tbl-wrap">
