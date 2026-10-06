@@ -139,6 +139,10 @@
   .caret{display:inline-block;width:.07em;height:.78em;background:#6b8afd;animation:caret 1s step-end infinite}
   .hero-sub{position:relative;margin:26px 0 0;max-width:64ch;font-size:clamp(15px,1.4vw,18.5px);line-height:1.6;color:#9aa0a8}
   #hero-ctas{position:relative;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:38px}
+  #hero-strip{position:relative;width:min(1080px,100%);margin-top:clamp(40px,7vw,66px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px;mask-image:linear-gradient(#000 45%,transparent)}
+  .hero-thumb{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#101113}
+  .hero-thumb img{width:100%;height:100%;object-fit:cover;opacity:.62}
+  @media (max-width:520px){#hero-strip{grid-template-columns:1fr 1fr}}
   .btn-light{padding:15px 30px;border-radius:100px;background:#f4f5f6;color:#08090a;font-size:15px;font-weight:600;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
   .btn-outline{padding:15px 30px;border-radius:100px;border:1px solid rgba(255,255,255,.14);color:#f4f5f6;font-size:15px;font-weight:500;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
   .btn-outline:hover{background:rgba(255,255,255,.06)}
@@ -370,6 +374,12 @@
   <div id="hero-ctas" data-r>
     <a class="btn-light" href="#newsletter">Get the newsletter</a>
     <a class="btn-outline" href="#notes">Read the notes</a>
+  </div>
+
+  <div id="hero-strip" data-r>
+    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/H2gr8Xuzo_s/maxresdefault.jpg" alt="" loading="lazy"></div>
+    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/x8IydBbk6lg/maxresdefault.jpg" alt="" loading="lazy"></div>
+    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/ogk_iq_8Jx8/maxresdefault.jpg" alt="" loading="lazy"></div>
   </div>
 
 </section>
