@@ -220,6 +220,18 @@
 
 
 
+  #notes{padding:clamp(70px,11vw,100px) 20px;max-width:1240px;margin:0 auto}
+  .notes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
+  .note-card{display:flex;flex-direction:column;gap:14px;padding:26px 24px 24px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+  .note-card:hover{border-color:rgba(107,138,253,.45);transform:translateY(-3px)}
+  .note-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b8afd}
+  .note-card h3{margin:0;font-size:21px;line-height:1.2;letter-spacing:-.025em;font-weight:700}
+  .note-card p{margin:0;font-size:15px;line-height:1.65;color:#9aa0a8}
+  .note-draft{align-self:flex-start;padding:4px 9px;border-radius:999px;border:1px dashed rgba(255,255,255,.2);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a9099}
+  .note-more{margin-top:auto;padding-top:6px;font-size:14px;font-weight:600;color:#c9d2e8;text-decoration:none}
+  .note-more:hover{color:#fff}
+  .notes-foot{margin:28px 0 0;font-size:14.5px;color:#8a9099}
+  .notes-foot a{color:#c9d2e8}
   #about{padding:clamp(70px,11vw,100px) 20px;max-width:1240px;margin:0 auto}
   .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(34px,5vw,56px);align-items:center}
   .about-photo{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#101113}
@@ -273,6 +285,7 @@
     <a href="#top" class="brand">imstruzik<span>.com</span></a>
     <div id="nav-links">
       <a href="#work">Work</a>
+      <a href="#notes">Notes</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -288,6 +301,7 @@
 <div id="mobile-menu">
   <button id="menu-close" aria-label="Close menu">×</button>
   <a href="#work">Work</a>
+  <a href="#notes">Notes</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
   <a class="mobile-cta" href="#newsletter">
@@ -444,13 +458,48 @@
 
 
 
+<section id="notes">
+  <div class="section-head" data-r>
+    <div>
+      <p class="eyebrow">03 — Notes</p>
+      <h2 class="section-title">How I work with AI</h2>
+    </div>
+    <p>Short, honest notes from using AI in video every day: what saves time, what wastes it, and what stays human.</p>
+  </div>
+
+  <div class="notes-grid">
+    <article class="note-card" data-r>
+      <span class="note-draft">Draft — to be filled in</span>
+      <span class="note-tag">Scripting</span>
+      <h3>Writing a feature video script with AI, and the part I never hand over</h3>
+      <p>Where AI helps me get from a messy feature brief to a first structure, and where the story still has to come from a person who understands the product.</p>
+      <a class="note-more" href="#newsletter">Read the full note in the newsletter →</a>
+    </article>
+    <article class="note-card" data-r>
+      <span class="note-draft">Draft — to be filled in</span>
+      <span class="note-tag">Motion &amp; editing</span>
+      <h3>Where AI really speeds up motion design, and where it only pretends to</h3>
+      <p>A practical look at which steps of editing, animation and UI motion got faster for me, and which ones got slower once I had to fix the output.</p>
+      <a class="note-more" href="#newsletter">Read the full note in the newsletter →</a>
+    </article>
+    <article class="note-card" data-r>
+      <span class="note-draft">Draft — to be filled in</span>
+      <span class="note-tag">Tools</span>
+      <h3>My AI toolkit after a year: what stayed and what I dropped</h3>
+      <p>The tools that earned a permanent place in my workflow, the ones I stopped opening, and the simple rule I use to decide.</p>
+      <a class="note-more" href="#newsletter">Read the full note in the newsletter →</a>
+    </article>
+  </div>
+  <p class="notes-foot" data-r>New notes go out by email. <a href="#newsletter">Subscribe below</a> to get them first.</p>
+</section>
+
 <section id="about">
   <div class="about-grid">
     <div data-r class="about-photo">
       <img src="assets/portrait-marcin.webp" alt="Marcin Struzik, product marketing video producer and motion designer" loading="lazy">
     </div>
     <div data-r>
-      <p class="eyebrow">03 — About</p>
+      <p class="eyebrow">04 — About</p>
       <h2>Marcin Struzik</h2>
       <p class="lead-p">I&rsquo;ve spent the past 13+ years working in SaaS marketing, turning feature releases into videos people actually watch. I bring scripting, video editing, motion design and UI animation together in one workflow.</p>
       <p class="sub-p">Most of what I know came from shipping the same thing over and over: a feature, a story, a deadline. I write about that in the newsletter — what works on screen, what does not, and why the script matters more than the software.</p>
@@ -466,7 +515,7 @@
 
 <section id="newsletter">
   <div class="news-inner" data-r>
-    <p class="eyebrow">04 — Newsletter</p>
+    <p class="eyebrow">05 — Newsletter</p>
     <h2 class="section-title">Notes on video that explains things</h2>
     <p class="news-lead">Every few weeks I write about turning complicated products into video people finish: scripting, motion design, UI animation, and the mistakes I keep seeing. Nothing to buy, nothing to book — just the craft.</p>
     <!-- TODO: replace this form with the embed from the newsletter tool (Substack / Beehiiv / MailerLite) once chosen. -->
@@ -483,7 +532,7 @@
   <div class="contact-grid" aria-hidden="true"></div>
   <div class="contact-glow" aria-hidden="true"></div>
   <div data-r style="position:relative">
-    <p class="eyebrow">05 — Get in touch</p>
+    <p class="eyebrow">06 — Get in touch</p>
     <h2>Say hello</h2>
     <p class="sub">Questions about video, motion design or a story that will not sit still? Write to me. I read everything and answer what I can.</p>
     <div id="contact-ctas">
