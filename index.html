@@ -154,6 +154,12 @@
   .section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px}
   .section-head p{margin:0;max-width:38ch;font-size:15.5px;line-height:1.6;color:#9aa0a8}
   .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:18px}
+  .work-group-label{margin:0 0 16px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd}
+  .work-group-label-ai{margin-top:40px}
+  .work-placeholder{aspect-ratio:16/9;border-radius:14px;border:1px dashed rgba(255,255,255,.16);background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 12px,transparent 12px 24px),#0d0e10;display:flex;align-items:center;justify-content:center}
+  .work-placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+  .work-placeholder-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd;opacity:.85}
+  .work-placeholder-label{font-size:13px;color:#6d737b}
   .work-card-media{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#101113;cursor:pointer;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
   .work-card-media:hover{border-color:rgba(107,138,253,.55);transform:translateY(-4px)}
   .work-card-media:hover img{transform:scale(1.045)}
@@ -215,10 +221,6 @@
   .testi-name-wrap{min-width:0;flex:1}
   .testi-name{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;letter-spacing:-.015em;color:#f4f5f6}
   .testi-name svg{opacity:.5}
-  .testi-role{margin-top:3px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#6a7078;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .testi-logo{flex:none;height:17px;width:auto;max-width:88px;object-fit:contain;opacity:.72;transition:opacity .3s}
-  .testi-logo:hover{opacity:1}
-  .testi-wordmark{flex:none;font-size:13.5px;font-weight:700;letter-spacing:-.02em;color:#c9ced6;opacity:.8}
   .testi-stars{display:flex;align-items:center;gap:10px}
   .testi-stars .stars{display:flex;gap:3px;color:#6b8afd;font-size:12px;letter-spacing:.16em}
   .testi-stars .line{flex:1;height:1px;background:linear-gradient(90deg,rgba(107,138,253,.35),transparent)}
@@ -228,7 +230,14 @@
 
   #notes{padding:clamp(70px,11vw,100px) 20px 0;max-width:1240px;margin:0 auto}
   .notes-lead{margin:0 0 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6d737b}
-  .notes-list{display:flex;flex-direction:column;gap:18px}
+  .notes-compact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+  .note-compact{padding:24px 22px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;display:flex;flex-direction:column;gap:12px;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+  .note-compact:hover{border-color:rgba(107,138,253,.45);transform:translateY(-3px)}
+  .note-compact h3{margin:0;font-size:19px;line-height:1.25;letter-spacing:-.02em;font-weight:700}
+  .note-compact h3 a{color:inherit}
+  .note-compact h3 a:hover{color:#8ea6ff}
+  .note-compact p{margin:0;font-size:14px;line-height:1.55;color:#9aa0a8}
+  .note-compact .note-more{margin-top:auto}
   .note{position:relative;display:grid;grid-template-columns:minmax(90px,170px) 1fr;gap:clamp(18px,4vw,48px);padding:clamp(26px,4vw,44px);border-radius:22px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(160deg,#111318,#0b0c0e 62%);overflow:hidden;transition:border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
   .note::after{content:"";position:absolute;inset:auto -10% -55% 40%;height:70%;background:radial-gradient(ellipse at center,rgba(107,138,253,.16),transparent 65%);opacity:0;transition:opacity .45s;pointer-events:none}
   .note:hover{border-color:rgba(107,138,253,.5);transform:translateY(-3px)}
@@ -375,65 +384,27 @@
     <p>Free tools and resources, plus practical notes on AI video scripts, AI video editing and the tools that earn their place. What saves time, what wastes it, and what stays human.</p>
   </div>
   <p class="notes-lead" data-r>Start with whatever you are stuck on right now:</p>
-  <div class="notes-list">
-    <article class="note" id="free-ai-video-tools" data-r>
-      <div class="note-num" aria-hidden="true">01</div>
-      <div class="note-body">
-        <div class="note-meta"><span class="note-tag">Free AI tools</span><span class="note-draft">Rough draft</span></div>
-        <h3><a href="/notes/free-ai-video-tools/">Free AI tools for video creators: the resources I actually use</a></h3>
-        <p class="note-quote">&ldquo;Most &lsquo;free AI tools&rsquo; lists are an affiliate-link graveyard. This one is just what is still open in my browser.&rdquo;</p>
-        <div class="note-text">
-          <p>Every &ldquo;best free AI tools&rdquo; list online reads the same: fifty logos, no opinion, and half the tools gated behind a trial. I keep a much shorter list &mdash; the handful of free AI tools and resources I reach for on an actual SaaS video project, for scripting, captions, voiceover, stock footage and quick mockups.</p>
-          <p>No tool here made the cut because it has a slick landing page. Each one replaced a paid tool or a slow manual step on a real deadline, and I am naming the free tier limits too, because that is the part these lists always leave out.</p>
-        </div>
-        <span class="note-take">Free tools, no affiliate links, just what I actually open.</span>
-        <a class="note-more" href="/notes/free-ai-video-tools/">Read the full note &rarr;</a>
-      </div>
+  <div class="notes-compact-grid">
+    <article class="note-compact" data-r>
+      <div class="note-meta"><span class="note-tag">Free AI tools</span><span class="note-draft">Rough draft</span></div>
+      <h3><a href="/notes/free-ai-video-tools/">Free AI tools for video creators: the resources I actually use</a></h3>
+      <p>No affiliate links, no fifty-logo roundup &mdash; just what I actually open, with free-tier limits noted.</p>
+      <a class="note-more" href="/notes/free-ai-video-tools/">Read the full note &rarr;</a>
     </article>
-    <article class="note" id="ai-video-script" data-r>
-      <div class="note-num" aria-hidden="true">02</div>
-      <div class="note-body">
-        <div class="note-meta"><span class="note-tag">AI video script</span><span class="note-draft">Rough draft</span></div>
-        <h3><a href="/notes/ai-video-script/">How to write an AI video script people watch to the end</a></h3>
-        <p class="note-quote">&ldquo;Most AI-written video scripts lose the viewer in the first five seconds. It is almost never the AI&rsquo;s fault.&rdquo;</p>
-        <div class="note-text">
-        <p>Ask AI for a script and you will get the same thing every time: &ldquo;Introducing the all-in-one solution that&hellip;&rdquo; It reads like release notes with a voiceover, and viewers leave before the second sentence. The model is doing exactly what you asked. You asked it about the feature, not about the person watching.</p>
-        <p>The fix is a change of input, not a cleverer prompt. Start with the problem the viewer has on a Tuesday morning, make AI write five different first lines, and throw four away. The hook is the one part I still choose with my own gut.</p>
-        </div>
-        <span class="note-take">Next in the newsletter: the three-question brief I paste in before every script</span>
-        <a class="note-more" href="/notes/ai-video-script/">Read the full note &rarr;</a>
-      </div>
+    <article class="note-compact" data-r>
+      <div class="note-meta"><span class="note-tag">AI video script</span><span class="note-draft">Rough draft</span></div>
+      <h3><a href="/notes/ai-video-script/">How to write an AI video script people watch to the end</a></h3>
+      <p>Where AI speeds up scripting, and the one decision that still has to come from a person.</p>
+      <a class="note-more" href="/notes/ai-video-script/">Read the full note &rarr;</a>
     </article>
-    <article class="note" id="ai-video-editing" data-r>
-      <div class="note-num" aria-hidden="true">03</div>
-      <div class="note-body">
-        <div class="note-meta"><span class="note-tag">AI video editing</span><span class="note-draft">Rough draft</span></div>
-        <h3><a href="/notes/ai-video-editing/">AI video editing: 7 tasks to hand over today, and 3 you never should</a></h3>
-        <p class="note-quote">&ldquo;The best use of AI in editing is the work you never wanted to be good at.&rdquo;</p>
-        <div class="note-text">
-        <p>Start with the easy wins. Auto-captions, silence and filler removal, and resizing one video into vertical, square and wide are solved problems now. Doing them by hand in 2026 is a hobby, not a workflow. Those are three of the seven; the other four are in the newsletter.</p>
-        <p>Now the three I keep for myself: the pacing of a cut, the timing of UI animation against what is on screen, and the order of the story. AI gets all three roughly right, and &ldquo;roughly right&rdquo; is the exact distance between a video people finish and one they close.</p>
-        </div>
-        <span class="note-take">In the newsletter: the full list of 7, with the tools I actually use</span>
-        <a class="note-more" href="/notes/ai-video-editing/">Read the full note &rarr;</a>
-      </div>
-    </article>
-    <article class="note" id="ai-tools-for-video" data-r>
-      <div class="note-num" aria-hidden="true">04</div>
-      <div class="note-body">
-        <div class="note-meta"><span class="note-tag">AI tools for video</span><span class="note-draft">Rough draft</span></div>
-        <h3><a href="/notes/ai-tools-for-video/">The AI tools for video I stopped using, and the 4 I would keep</a></h3>
-        <p class="note-quote">&ldquo;I tried a lot of them. Almost every one failed the same one-line test.&rdquo;</p>
-        <div class="note-text">
-        <p>Every few weeks a new tool promises to replace your video workflow. I try most of them once, on real work, because a demo hides exactly what makes a tool annoying after a week.</p>
-        <p>The test is one question: does this remove a step, or does it add one more thing I have to check? Tools that remove a step stay and become invisible. The rest leave a browser tab open for a month and then quietly close. A tool that has to be babysat is not saving time, it is just moving the work.</p>
-        </div>
-        <span class="note-take">In the newsletter: my shortlist of 4, and what I would skip</span>
-        <a class="note-more" href="/notes/ai-tools-for-video/">Read the full note &rarr;</a>
-      </div>
+    <article class="note-compact" data-r>
+      <div class="note-meta"><span class="note-tag">AI video editing</span><span class="note-draft">Rough draft</span></div>
+      <h3><a href="/notes/ai-video-editing/">AI video editing: 7 tasks to hand over today, and 3 you never should</a></h3>
+      <p>Which editing tasks are safe to automate, and which ones only look finished.</p>
+      <a class="note-more" href="/notes/ai-video-editing/">Read the full note &rarr;</a>
     </article>
   </div>
-  <p class="notes-foot" data-r>New notes go out by email. <a href="#newsletter">Subscribe below</a> to get them first.</p>
+  <p class="notes-foot" data-r><a href="/notes/">See all notes &rarr;</a> &middot; New notes go out by email. <a href="#newsletter">Subscribe below</a> to get them first.</p>
 </section>
 
 <section id="work">
@@ -445,6 +416,7 @@
     <p>Feature launches, product updates and campaign videos from my work in SaaS. Press play on any of them.</p>
   </div>
 
+  <p class="work-group-label" data-r>Hand-crafted</p>
   <div class="work-grid" id="work-grid">
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Convert More Customers. Keep Them Coming Back" data-video-id="Dh-i37iUYkI" data-video-title="Convert More Customers. Keep Them Coming Back" data-video-tag="Integration" data-video-client="GetResponse">
@@ -501,6 +473,46 @@
       <div class="work-meta"><p class="work-title">Personalize emails with one click</p><p class="work-client">GetResponse</p></div>
     </div>
   </div>
+
+  <p class="work-group-label work-group-label-ai" data-r>AI-powered</p>
+  <div class="work-grid" id="work-grid-ai">
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 
@@ -516,23 +528,49 @@
           <a href="https://www.linkedin.com/in/leszczynskimichal" target="_blank" rel="noopener" class="testi-avatar"><img src="assets/person-michal.webp" alt="Michał Leszczyński" loading="lazy" width="46" height="46"></a>
           <div class="testi-name-wrap">
             <a class="testi-name" href="https://www.linkedin.com/in/leszczynskimichal" target="_blank" rel="noopener">Michał Leszczyński <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
-            <div class="testi-role">GetResponse</div>
           </div>
-          <img class="testi-logo" src="assets/logo-getresponse.avif" alt="GetResponse" loading="lazy">
         </div>
-        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><div class="line"></div></div>
+        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
         <blockquote>&ldquo;Having worked with Marcin for over a decade, I can confidently confirm his skills, professionalism, and can-do attitude. He&rsquo;s helped us tremendously with various projects, from recording to editing and creating animations. Great colleague to work with and an expert in his field.&rdquo;</blockquote>
+      </figure>
+      <figure class="testi-card" data-r>
+        <div class="testi-top">
+          <a href="https://www.linkedin.com/in/iklimczak/" target="_blank" rel="noopener" class="testi-avatar"><img src="assets/person-irek.webp" alt="Irek Klimczak" loading="lazy" width="46" height="46"></a>
+          <div class="testi-name-wrap">
+            <a class="testi-name" href="https://www.linkedin.com/in/iklimczak/" target="_blank" rel="noopener">Irek Klimczak <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
+          </div>
+        </div>
+        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
+        <blockquote>&ldquo;Marcin has the knowledge, the ideas and the patience &mdash; a power trio that got us through dozens of content projects. I recommend him for any project that needs great video and animation. Top class!&rdquo;</blockquote>
+      </figure>
+      <figure class="testi-card" data-r>
+        <div class="testi-top">
+          <a href="https://www.linkedin.com/in/pedroxd/" target="_blank" rel="noopener" class="testi-avatar"><img src="assets/person-pedro.webp" alt="Pedro Simão" loading="lazy" width="46" height="46"></a>
+          <div class="testi-name-wrap">
+            <a class="testi-name" href="https://www.linkedin.com/in/pedroxd/" target="_blank" rel="noopener">Pedro Simão <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
+          </div>
+        </div>
+        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
+        <blockquote>&ldquo;What really stands out about Marcin is his willingness to embrace new challenges and constantly level up. I was genuinely impressed by how skilled he became with video animations. It was a huge leap forward and a game changer for our projects. With Marcin on the team, you can always count on a great atmosphere and solid expertise.&rdquo;</blockquote>
+      </figure>
+      <figure class="testi-card" data-r>
+        <div class="testi-top">
+          <a href="https://www.linkedin.com/in/agneswjozwiak/" target="_blank" rel="noopener" class="testi-avatar"><img src="assets/person-agnes.webp" alt="Agnes Józwiak" loading="lazy" width="46" height="46"></a>
+          <div class="testi-name-wrap">
+            <a class="testi-name" href="https://www.linkedin.com/in/agneswjozwiak/" target="_blank" rel="noopener">Agnes Józwiak <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
+          </div>
+        </div>
+        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
+        <blockquote>&ldquo;Besides great attention to detail, Marcin always had great and creative ideas and with the can-do attitude, he was always very professional and focused on the areas and tasks he was responsible for. He was always very responsible &mdash; delivering on time and within scope. I would highly recommend Marcin as a video creator and editor.&rdquo;</blockquote>
       </figure>
       <figure class="testi-card" data-r>
         <div class="testi-top">
           <a href="https://www.linkedin.com/in/srkavanagh/" target="_blank" rel="noopener" class="testi-avatar"><img src="assets/person-sara.webp" alt="Sara Kavanagh" loading="lazy" width="46" height="46"></a>
           <div class="testi-name-wrap">
             <a class="testi-name" href="https://www.linkedin.com/in/srkavanagh/" target="_blank" rel="noopener">Sara Kavanagh <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
-            <div class="testi-role">GetResponse</div>
           </div>
-          <img class="testi-logo" src="assets/logo-getresponse.avif" alt="GetResponse" loading="lazy">
         </div>
-        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><div class="line"></div></div>
+        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
         <blockquote>&ldquo;Marcin is an imaginative and innovative video maker. Working on projects, copy, or the overall concept of videos is really easy thanks to Marcin&rsquo;s creative ideas and quick turnaround time. I highly recommend working with Marcin as his humor, passion, and skills make video projects not only enjoyable but also successful.&rdquo;</blockquote>
       </figure>
     </div>

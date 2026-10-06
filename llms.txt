@@ -6,6 +6,8 @@
 
 ## Notes
 
+All notes: https://imstruzik.com/notes/
+
 - [Free AI Tools for Video Creators: The Resources I Actually Use](https://imstruzik.com/notes/free-ai-video-tools/): free, no-affiliate-link tools for scripting, voiceover, captions, stock footage and mockups, with free-tier limits noted.
 - [How to Write an AI Video Script People Watch to the End](https://imstruzik.com/notes/ai-video-script/): where AI speeds up scripting and the one decision that still has to come from a person.
 - [AI Video Editing: 7 Tasks to Hand Over Today, and 3 You Never Should](https://imstruzik.com/notes/ai-video-editing/): which editing tasks are safe to automate, and which ones only look finished.
