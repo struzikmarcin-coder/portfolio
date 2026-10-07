@@ -154,7 +154,7 @@
   .marquee-track img{height:26px;width:auto;opacity:.55;flex:none;transition:opacity .3s}
   .marquee-track img:hover{opacity:1}
 
-  #work{padding:clamp(56px,9vw,80px) 20px clamp(72px,11vw,110px);max-width:1240px;margin:0 auto}
+  #work{padding:clamp(56px,9vw,80px) 20px clamp(72px,11vw,110px);max-width:1240px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07)}
   .section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px}
   .section-head p{margin:0;max-width:38ch;font-size:15.5px;line-height:1.6;color:#9aa0a8}
   .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:18px}
@@ -214,8 +214,10 @@
 
   #testimonials{padding:clamp(56px,9vw,70px) 20px clamp(70px,10vw,100px);border-top:1px solid rgba(255,255,255,.07);background:#0b0c0e}
   .testi-inner{max-width:1240px;margin:0 auto}
-  .testi-columns{columns:3 320px;column-gap:16px}
-  .testi-card{break-inside:avoid;margin:0 0 16px;display:flex;flex-direction:column;gap:18px;padding:clamp(20px,4vw,26px) clamp(20px,4vw,26px) clamp(20px,3.6vw,24px);border:1px solid rgba(255,255,255,.08);border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+  .testi-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media (max-width:980px){.testi-columns{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.testi-columns{grid-template-columns:1fr}}
+  .testi-card{display:flex;flex-direction:column;gap:16px;padding:clamp(20px,4vw,24px) clamp(20px,4vw,22px) clamp(20px,3.6vw,22px);border:1px solid rgba(255,255,255,.08);border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
   .testi-card:hover{border-color:rgba(107,138,253,.4);transform:translateY(-3px)}
   .testi-top{display:flex;align-items:center;gap:13px}
   .testi-avatar{position:relative;flex:none;display:block;width:46px;height:46px;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
@@ -232,7 +234,7 @@
 
 
 
-  #notes{padding:clamp(70px,11vw,100px) 20px 0;max-width:1240px;margin:0 auto}
+  #notes{padding:clamp(70px,11vw,100px) 20px 0;max-width:1240px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07);background:#0b0c0e}
   .notes-lead{margin:0 0 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6d737b}
   .notes-compact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
   .note-compact{padding:24px 22px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;display:flex;flex-direction:column;gap:12px;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
@@ -263,7 +265,7 @@
   .notes-foot{margin:26px 0 0;font-size:14.5px;color:#8a9099}
   .notes-foot a{color:#c9d2e8}
   @media (max-width:720px){.note{grid-template-columns:1fr;gap:6px}.note-num{font-size:72px}}
-  #about{padding:clamp(70px,11vw,100px) 20px;max-width:1240px;margin:0 auto}
+  #about{padding:clamp(70px,11vw,100px) 20px;max-width:1240px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07)}
   .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(34px,5vw,56px);align-items:center}
   .about-photo{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#101113}
   .about-photo img{width:100%;height:100%;object-fit:cover}
@@ -541,7 +543,7 @@
           </div>
         </div>
         <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
-        <blockquote>&ldquo;Having worked with Marcin for over a decade, I can confidently confirm his skills, professionalism, and can-do attitude. He&rsquo;s helped us tremendously with various projects, from recording to editing and creating animations. Great colleague to work with and an expert in his field.&rdquo;</blockquote>
+        <blockquote>&ldquo;Having worked with Marcin for over a decade, I can confirm his skills, professionalism and can-do attitude &mdash; a great colleague and an expert in his field.&rdquo;</blockquote>
       </figure>
       <figure class="testi-card" data-r>
         <div class="testi-top">
@@ -551,7 +553,7 @@
           </div>
         </div>
         <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
-        <blockquote>&ldquo;Marcin has the knowledge, the ideas and the patience &mdash; a power trio that got us through dozens of content projects. I recommend him for any project that needs great video and animation. Top class!&rdquo;</blockquote>
+        <blockquote>&ldquo;Marcin has the knowledge, the ideas and the patience &mdash; a power trio that got us through dozens of content projects. Top class!&rdquo;</blockquote>
       </figure>
       <figure class="testi-card" data-r>
         <div class="testi-top">
@@ -561,17 +563,7 @@
           </div>
         </div>
         <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
-        <blockquote>&ldquo;What really stands out about Marcin is his willingness to embrace new challenges and constantly level up. I was genuinely impressed by how skilled he became with video animations. It was a huge leap forward and a game changer for our projects. With Marcin on the team, you can always count on a great atmosphere and solid expertise.&rdquo;</blockquote>
-      </figure>
-      <figure class="testi-card" data-r>
-        <div class="testi-top">
-          <a href="https://www.linkedin.com/in/agneswjozwiak/" target="_blank" rel="noopener" class="testi-avatar"><img src="assets/person-agnes.webp" alt="Agnes Józwiak" loading="lazy" width="46" height="46"></a>
-          <div class="testi-name-wrap">
-            <a class="testi-name" href="https://www.linkedin.com/in/agneswjozwiak/" target="_blank" rel="noopener">Agnes Józwiak <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
-          </div>
-        </div>
-        <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
-        <blockquote>&ldquo;Besides great attention to detail, Marcin always had great and creative ideas and with the can-do attitude, he was always very professional and focused on the areas and tasks he was responsible for. He was always very responsible &mdash; delivering on time and within scope. I would highly recommend Marcin as a video creator and editor.&rdquo;</blockquote>
+        <blockquote>&ldquo;What really stands out about Marcin is his willingness to embrace new challenges and constantly level up &mdash; a real game changer for our projects.&rdquo;</blockquote>
       </figure>
       <figure class="testi-card" data-r>
         <div class="testi-top">
@@ -581,7 +573,7 @@
           </div>
         </div>
         <div class="testi-stars"><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="line"></div></div>
-        <blockquote>&ldquo;Marcin is an imaginative and innovative video maker. Working on projects, copy, or the overall concept of videos is really easy thanks to Marcin&rsquo;s creative ideas and quick turnaround time. I highly recommend working with Marcin as his humor, passion, and skills make video projects not only enjoyable but also successful.&rdquo;</blockquote>
+        <blockquote>&ldquo;Marcin is an imaginative, innovative video maker &mdash; his creative ideas and quick turnaround make every project enjoyable and successful.&rdquo;</blockquote>
       </figure>
     </div>
   </div>
@@ -613,9 +605,9 @@
 <section id="newsletter">
   <div class="news-inner" data-r>
     <p class="eyebrow">05 — Newsletter</p>
-    <h2 class="section-title">Notes on video that explains things</h2>
+    <h2 class="section-title">Notes from my AI journey</h2>
     <p class="news-lead">Not another AI influencer selling a course — I'm a user who already did the research. Every few weeks: what actually works in a real video workflow, the AI tools worth your time, and the mistakes I keep seeing. Nothing to buy, nothing to book — just what I use.</p>
-    <!-- TODO: replace this form with the embed from the newsletter tool (Substack / Beehiiv / MailerLite) once chosen. -->
+    <!-- TODO: wire this form up to GetResponse once Marcin exports the plain-HTML signup form (action URL + hidden fields). -->
     <form class="news-form" id="news-form" novalidate>
       <label class="sr-only" for="news-email">Your email address</label>
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
