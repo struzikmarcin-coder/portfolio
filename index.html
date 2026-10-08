@@ -240,10 +240,17 @@
 
 
 
-  #notes{padding:clamp(70px,11vw,100px) 20px 0;border-top:1px solid rgba(255,255,255,.07);background:#121419}
+  #notes{padding:clamp(70px,11vw,100px) 20px clamp(50px,7vw,80px);border-top:1px solid rgba(255,255,255,.07);background:#121419}
   .notes-inner{max-width:1240px;margin:0 auto}
   .notes-lead{margin:0 0 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6d737b}
   .notes-compact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+  .ai-cut-panel{position:relative;padding:clamp(28px,4vw,48px) clamp(20px,4vw,44px) clamp(26px,3.5vw,40px);border-radius:24px;border:1px solid rgba(107,138,253,.4);background:linear-gradient(155deg,rgba(107,138,253,.16),rgba(107,138,253,.02) 70%);overflow:hidden}
+  .ai-cut-panel::before{content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:min(760px,90%);height:380px;background:radial-gradient(ellipse at center,rgba(107,138,253,.28),transparent 70%);pointer-events:none}
+  .ai-cut-panel>*{position:relative}
+  .ai-cut-panel .eyebrow{margin-bottom:18px;display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:999px;background:rgba(141,251,161,.1);border:1px solid rgba(141,251,161,.3);color:#8dfba1}
+  .ai-cut-panel .eyebrow::before{content:"★"}
+  .ai-cut-panel .section-head p{color:#c9ced6}
+  .ai-cut-panel .note-compact{background:rgba(10,11,14,.72);border-color:rgba(107,138,253,.18);backdrop-filter:blur(4px)}
   .note-compact{padding:24px 22px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;display:flex;flex-direction:column;gap:12px;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
   .note-compact:hover{border-color:rgba(107,138,253,.45);transform:translateY(-3px)}
   .note-compact h3{margin:0;font-size:19px;line-height:1.25;letter-spacing:-.02em;font-weight:700}
@@ -396,6 +403,7 @@
 
 <section id="notes">
   <div class="notes-inner">
+  <div class="ai-cut-panel">
   <div class="section-head" data-r>
     <div>
       <p class="eyebrow">01 — The AI Cut</p>
@@ -425,6 +433,7 @@
     </article>
   </div>
   <p class="notes-foot" data-r><a href="/notes/">See all notes &rarr;</a> &middot; New notes go out by email. <a href="#newsletter">Subscribe below</a> to get them first.</p>
+  </div>
   </div>
 </section>
 
