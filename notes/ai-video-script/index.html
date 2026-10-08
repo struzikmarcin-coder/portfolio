@@ -83,6 +83,13 @@
   .outline{display:grid;gap:10px;margin:0 0 40px;padding:0;list-style:none}
   .outline li{padding:16px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;font-size:15px;line-height:1.5;color:#c9ced6}
   .outline li b{display:block;margin-bottom:4px;font-size:15.5px;color:#f4f5f6}
+  .mid-cta{position:relative;margin:36px 0 38px;padding:30px 28px;border-radius:20px;border:1px solid rgba(107,138,253,.4);background:linear-gradient(155deg,rgba(107,138,253,.16),rgba(107,138,253,.02) 70%);text-align:center;overflow:hidden}
+  .mid-cta::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:340px;height:220px;background:radial-gradient(ellipse at center,rgba(107,138,253,.3),transparent 70%);pointer-events:none}
+  .mid-cta-badge{position:relative;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:5px 13px;border-radius:999px;background:rgba(141,251,161,.1);border:1px solid rgba(141,251,161,.3);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8dfba1}
+  .mid-cta h3{position:relative;margin:0 0 10px;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.02em;font-weight:700;color:#f4f5f6}
+  .mid-cta p{position:relative;margin:0 auto 22px;max-width:46ch;font-size:15px;line-height:1.65;color:#c9ced6}
+  .mid-cta-btn{position:relative;display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;background:#3b5bdb;color:#fff;font-size:14.5px;font-weight:600;box-shadow:0 12px 32px rgba(59,91,219,.45);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+  .mid-cta-btn:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 38px rgba(59,91,219,.55)}
   .cta{margin:44px 0 0;padding:28px 26px;border-radius:18px;border:1px solid rgba(107,138,253,.3);background:linear-gradient(160deg,rgba(107,138,253,.1),transparent);text-align:center}
   .cta p{margin:0 0 16px;font-size:15.5px;color:#c9ced6}
   .cta a{display:inline-block;padding:13px 26px;border-radius:100px;background:#3b5bdb;color:#fff;font-size:14.5px;font-weight:600}
@@ -135,6 +142,13 @@
       <h2>Getting five hooks and keeping one</h2>
       <p>With that brief as context, I ask for five different opening lines, not one. Most AI output regresses to the mean on the first try; asking for variation and then choosing is far more reliable than asking for perfection once. Four of the five get thrown away. That is normal, and it is faster than editing one mediocre line into a good one.</p>
 
+      <div class="mid-cta">
+        <span class="mid-cta-badge">★ Free PDF for subscribers</span>
+        <h3>Get the 8 prompts I use to go from brief to script</h3>
+        <p>The three-question brief, five hooks, the beat sheet, the first draft, the &ldquo;kill the generic&rdquo; pass and more, ready to paste into Claude or ChatGPT. Free for subscribers: it unlocks the moment you confirm your email.</p>
+        <a class="mid-cta-btn" href="/?gift=prompts#newsletter">Get the free PDF &rarr;</a>
+      </div>
+
       <h2>What stays human</h2>
       <p>The one decision I never hand over is which single idea the video is built around. AI is good at generating options and reorganizing a mess into a structure; it is not good at knowing which option matters most to a specific audience at a specific moment, because that judgment comes from sitting in on customer calls and watching which features people actually struggle to explain to their own teams. Handing that decision to a model flattens every video into the same shape.</p>
 
@@ -148,7 +162,7 @@
 
     <div class="cta">
       <p>New notes like this go out by email first.</p>
-      <a href="/#newsletter">Steal my AI workflow</a>
+      <a href="/?gift=prompts#newsletter">Steal my AI workflow</a>
     </div>
   </article>
 
