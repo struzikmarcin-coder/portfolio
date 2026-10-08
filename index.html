@@ -56,7 +56,7 @@
     },
     {
       "@type": "ItemList",
-      "name": "Notes — How I work with AI",
+      "name": "The AI Cut — How I work with AI",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "url": "https://imstruzik.com/notes/free-ai-video-tools/" },
         { "@type": "ListItem", "position": 2, "url": "https://imstruzik.com/notes/ai-video-script/" },
@@ -161,7 +161,11 @@
   .section-head p{margin:0;max-width:38ch;font-size:15.5px;line-height:1.6;color:#9aa0a8}
   .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:18px}
   .work-group-label{margin:0 0 16px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd}
-  .work-group-label-ai{margin-top:40px}
+  .work-group-label-hand{margin-top:48px}
+  .work-group-label-ai{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 12px;border-radius:999px;border:1px solid rgba(107,138,253,.38);background:rgba(107,138,253,.1);color:#a9bbff;box-shadow:0 0 28px rgba(107,138,253,.18)}
+  .work-group-label-ai::before{content:"";width:7px;height:7px;border-radius:50%;background:#6b8afd;box-shadow:0 0 10px #6b8afd}
+  @media(max-width:700px){#work-grid-ai .work-placeholder:nth-child(n+4){display:none}}
+  #work-grid-ai .work-placeholder{border-color:rgba(107,138,253,.32);background:radial-gradient(80% 70% at 50% 40%,rgba(107,138,253,.12),transparent 70%),repeating-linear-gradient(135deg,rgba(107,138,253,.04) 0 12px,transparent 12px 24px),#0d0e12}
   .work-placeholder{aspect-ratio:16/9;border-radius:14px;border:1px dashed rgba(255,255,255,.16);background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 12px,transparent 12px 24px),#0d0e10;display:flex;align-items:center;justify-content:center}
   .work-placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
   .work-placeholder-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd;opacity:.85}
@@ -320,13 +324,13 @@
   <nav>
     <a href="#top" class="brand">imstruzik<span>.com</span></a>
     <div id="nav-links">
-      <a href="#notes">Notes</a>
+      <a href="#notes">The AI Cut</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
     <a id="nav-cta" class="btn-primary" href="#newsletter">
-      <span class="dot"></span>Get the newsletter
+      <span class="dot"></span>Steal my AI workflow
     </a>
     <button id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
@@ -336,12 +340,12 @@
 
 <div id="mobile-menu">
   <button id="menu-close" aria-label="Close menu">×</button>
-  <a href="#notes">Notes</a>
+  <a href="#notes">The AI Cut</a>
   <a href="#work">Work</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
   <a class="mobile-cta" href="#newsletter">
-    <span class="dot"></span>Get the newsletter
+    <span class="dot"></span>Steal my AI workflow
   </a>
 </div>
 
@@ -377,7 +381,7 @@
   <p data-r class="hero-sub">I work in SaaS product marketing, where I turn features into video people actually watch — script, video editing, motion design and UI animation in one pair of hands. I cut my teeth as an OG After Effects animator, keyframe by keyframe; these days AI tools sit right next to that muscle memory.</p>
 
   <div id="hero-ctas" data-r>
-    <a class="btn-light" href="#newsletter">Get the newsletter</a>
+    <a class="btn-light" href="#newsletter">Steal my AI workflow</a>
     <a class="btn-outline" href="#notes">Read the notes</a>
   </div>
 
@@ -394,7 +398,7 @@
   <div class="notes-inner">
   <div class="section-head" data-r>
     <div>
-      <p class="eyebrow">01 — Notes</p>
+      <p class="eyebrow">01 — The AI Cut</p>
       <h2 class="section-title">How I work with AI</h2>
     </div>
     <p>Free tools and resources, plus practical notes on AI video scripts, AI video editing and the tools that earn their place. What saves time, what wastes it, and what stays human.</p>
@@ -434,7 +438,47 @@
     <p>Feature launches, product updates and campaign videos from my work in SaaS. Press play on any of them.</p>
   </div>
 
-  <p class="work-group-label" data-r>Hand-crafted</p>
+  <p class="work-group-label work-group-label-ai" data-r>AI-powered</p>
+  <div class="work-grid" id="work-grid-ai">
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+    <div class="work-placeholder" data-r>
+      <div class="work-placeholder-inner">
+        <span class="work-placeholder-tag">AI-powered</span>
+        <span class="work-placeholder-label">Coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="work-group-label work-group-label-hand" data-r>Hand-crafted</p>
   <div class="work-grid" id="work-grid">
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Convert More Customers. Keep Them Coming Back" data-video-id="Dh-i37iUYkI" data-video-title="Convert More Customers. Keep Them Coming Back" data-video-tag="Integration" data-video-client="GetResponse">
@@ -489,46 +533,6 @@
         <span class="work-tag">Feature launch</span>
       </div>
       <div class="work-meta"><p class="work-title">Personalize emails with one click</p><p class="work-client">GetResponse</p></div>
-    </div>
-  </div>
-
-  <p class="work-group-label work-group-label-ai" data-r>AI-powered</p>
-  <div class="work-grid" id="work-grid-ai">
-    <div class="work-placeholder" data-r>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered</span>
-        <span class="work-placeholder-label">Coming soon</span>
-      </div>
-    </div>
-    <div class="work-placeholder" data-r>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered</span>
-        <span class="work-placeholder-label">Coming soon</span>
-      </div>
-    </div>
-    <div class="work-placeholder" data-r>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered</span>
-        <span class="work-placeholder-label">Coming soon</span>
-      </div>
-    </div>
-    <div class="work-placeholder" data-r>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered</span>
-        <span class="work-placeholder-label">Coming soon</span>
-      </div>
-    </div>
-    <div class="work-placeholder" data-r>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered</span>
-        <span class="work-placeholder-label">Coming soon</span>
-      </div>
-    </div>
-    <div class="work-placeholder" data-r>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered</span>
-        <span class="work-placeholder-label">Coming soon</span>
-      </div>
     </div>
   </div>
   </div>

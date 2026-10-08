@@ -4,7 +4,7 @@
 > motion design and UI animation. Writes practical notes on using AI in a real video
 > production workflow: what saves time, what wastes it, and what stays human.
 
-## Notes
+## The AI Cut
 
 All notes: https://imstruzik.com/notes/
 
