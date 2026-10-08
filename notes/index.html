@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes &mdash; How I Work with AI | Marcin Struzik</title>
+<meta name="description" content="Every note Marcin Struzik has written on using AI in SaaS product video: scripting, editing, free tools, and the tools worth keeping.">
+<link rel="canonical" href="https://imstruzik.com/notes/">
+<meta name="robots" content="noindex, nofollow"><!-- TEMP while in coming-soon mode; launch value: index, follow, max-image-preview:large, max-snippet:-1 -->
+<script src="/assets/gate.js"></script>
+<meta name="author" content="Marcin Struzik">
+<meta name="theme-color" content="#08090a">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://imstruzik.com/notes/">
+<meta property="og:site_name" content="imstruzik.com">
+<meta property="og:title" content="Notes &mdash; How I Work with AI | Marcin Struzik">
+<meta property="og:description" content="Every note Marcin Struzik has written on using AI in SaaS product video: scripting, editing, free tools, and the tools worth keeping.">
+<meta property="og:image" content="https://imstruzik.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notes &mdash; How I Work with AI | Marcin Struzik">
+<meta name="twitter:description" content="Every note Marcin Struzik has written on using AI in SaaS product video: scripting, editing, free tools, and the tools worth keeping.">
+<meta name="twitter:image" content="https://imstruzik.com/og.jpg">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://imstruzik.com/notes/",
+  "url": "https://imstruzik.com/notes/",
+  "name": "Notes — How I Work with AI",
+  "description": "Every note Marcin Struzik has written on using AI in SaaS product video: scripting, editing, free tools, and the tools worth keeping.",
+  "isPartOf": { "@id": "https://imstruzik.com/#website" },
+  "about": { "@id": "https://imstruzik.com/#marcin" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "imstruzik.com", "item": "https://imstruzik.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Notes", "item": "https://imstruzik.com/notes/" }
+  ]
+}
+</script>
+
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#08090a;color:#f4f5f6;font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:#f4f5f6;text-decoration:none}
+  a:hover{color:#7c9dff}
+  a:focus-visible{outline:2px solid #6b8afd;outline-offset:3px}
+  ::selection{background:#3b5bdb;color:#fff}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  header{padding:28px 0 0}
+  .brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:16px;letter-spacing:-.02em}
+  .brand span{color:#6b8afd}
+  .back{display:inline-flex;align-items:center;gap:8px;margin:56px 0 28px;font-size:13.5px;font-weight:600;color:#9aa0a8}
+  .back:hover{color:#f4f5f6}
+  .eyebrow{margin:0 0 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b8afd}
+  h1{margin:0 0 16px;font-size:clamp(34px,5.4vw,54px);line-height:1.02;letter-spacing:-.035em;font-weight:700}
+  .dek{margin:0 0 44px;font-size:18px;line-height:1.6;color:#9aa0a8;max-width:62ch}
+  .notes-list{display:flex;flex-direction:column;gap:18px;margin-bottom:10px}
+  .note{position:relative;display:grid;grid-template-columns:minmax(90px,170px) 1fr;gap:clamp(18px,4vw,48px);padding:clamp(26px,4vw,44px);border-radius:22px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(160deg,#111318,#0b0c0e 62%);overflow:hidden;transition:border-color .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+  .note::after{content:"";position:absolute;inset:auto -10% -55% 40%;height:70%;background:radial-gradient(ellipse at center,rgba(107,138,253,.16),transparent 65%);opacity:0;transition:opacity .45s;pointer-events:none}
+  .note:hover{border-color:rgba(107,138,253,.5);transform:translateY(-3px)}
+  .note:hover::after{opacity:1}
+  .note-num{font-size:clamp(76px,11vw,150px);line-height:.85;letter-spacing:-.06em;font-weight:800;color:transparent;-webkit-text-stroke:1.5px rgba(142,166,255,.55);background:linear-gradient(180deg,rgba(142,166,255,.5),transparent 85%);-webkit-background-clip:text;background-clip:text}
+  .note-body{position:relative;z-index:1;min-width:0}
+  .note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px}
+  .note-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b8afd}
+  .note-draft{padding:3px 9px;border-radius:999px;border:1px dashed rgba(255,255,255,.22);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a9099}
+  .note h3{margin:0 0 20px;max-width:22ch;font-size:clamp(26px,3.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700}
+  .note h3 a{color:inherit}
+  .note h3 a:hover{color:#8ea6ff}
+  .note-quote{margin:0 0 22px;padding:2px 0 2px 18px;border-left:3px solid #6b8afd;max-width:46ch;font-size:clamp(17px,2vw,21px);line-height:1.4;letter-spacing:-.015em;font-weight:600;color:#dfe5f5}
+  .note-text{display:grid;gap:14px;max-width:62ch}
+  .note-text p{margin:0;font-size:16px;line-height:1.7;color:#9aa0a8}
+  .note-take{display:inline-block;margin:24px 0 0;padding:9px 16px;border-radius:999px;background:rgba(141,251,161,.09);border:1px solid rgba(141,251,161,.28);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;color:#8dfba1}
+  .note-more{display:block;margin-top:20px;font-size:14.5px;font-weight:600;color:#c9d2e8;text-decoration:none}
+  .note-more:hover{color:#fff}
+  @media (max-width:720px){.note{grid-template-columns:1fr;gap:6px}.note-num{font-size:72px}}
+  .cta{margin:44px 0 0;padding:28px 26px;border-radius:18px;border:1px solid rgba(107,138,253,.3);background:linear-gradient(160deg,rgba(107,138,253,.1),transparent);text-align:center}
+  .cta p{margin:0 0 16px;font-size:15.5px;color:#c9ced6}
+  .cta a{display:inline-block;padding:13px 26px;border-radius:100px;background:#3b5bdb;color:#fff;font-size:14.5px;font-weight:600}
+  .cta a:hover{color:#fff;opacity:.9}
+  footer{margin:60px 0 40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;color:#6d737b}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="brand">imstruzik<span>.com</span></a>
+  </div>
+</header>
+
+<div class="wrap">
+  <a class="back" href="/">&larr; Back to imstruzik.com</a>
+
+  <p class="eyebrow">Notes</p>
+  <h1>How I work with AI</h1>
+  <p class="dek">Every note Marcin Struzik has written on using AI in SaaS product video: scripting, editing, free tools, and the tools worth keeping.</p>
+
+  <div class="notes-list">
+    <article class="note" id="free-ai-video-tools" data-r>
+      <div class="note-num" aria-hidden="true">01</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">Free AI tools</span><span class="note-draft">Rough draft</span></div>
+        <h3><a href="/notes/free-ai-video-tools/">Free AI tools for video creators: the resources I actually use</a></h3>
+        <p class="note-quote">&ldquo;Most &lsquo;free AI tools&rsquo; lists are an affiliate-link graveyard. This one is just what is still open in my browser.&rdquo;</p>
+        <div class="note-text">
+          <p>Every &ldquo;best free AI tools&rdquo; list online reads the same: fifty logos, no opinion, and half the tools gated behind a trial. I keep a much shorter list &mdash; the handful of free AI tools and resources I reach for on an actual SaaS video project, for scripting, captions, voiceover, stock footage and quick mockups.</p>
+          <p>No tool here made the cut because it has a slick landing page. Each one replaced a paid tool or a slow manual step on a real deadline, and I am naming the free tier limits too, because that is the part these lists always leave out.</p>
+        </div>
+        <span class="note-take">Free tools, no affiliate links, just what I actually open.</span>
+        <a class="note-more" href="/notes/free-ai-video-tools/">Read the full note &rarr;</a>
+      </div>
+    </article>
+    <article class="note" id="ai-video-script" data-r>
+      <div class="note-num" aria-hidden="true">02</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">AI video script</span><span class="note-draft">Rough draft</span></div>
+        <h3><a href="/notes/ai-video-script/">How to write an AI video script people watch to the end</a></h3>
+        <p class="note-quote">&ldquo;Most AI-written video scripts lose the viewer in the first five seconds. It is almost never the AI&rsquo;s fault.&rdquo;</p>
+        <div class="note-text">
+          <p>Ask AI for a script and you will get the same thing every time: &ldquo;Introducing the all-in-one solution that&hellip;&rdquo; It reads like release notes with a voiceover, and viewers leave before the second sentence. The model is doing exactly what you asked. You asked it about the feature, not about the person watching.</p>
+          <p>The fix is a change of input, not a cleverer prompt. Start with the problem the viewer has on a Tuesday morning, make AI write five different first lines, and throw four away. The hook is the one part I still choose with my own gut.</p>
+        </div>
+        <span class="note-take">Next in the newsletter: the three-question brief I paste in before every script</span>
+        <a class="note-more" href="/notes/ai-video-script/">Read the full note &rarr;</a>
+      </div>
+    </article>
+    <article class="note" id="ai-video-editing" data-r>
+      <div class="note-num" aria-hidden="true">03</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">AI video editing</span><span class="note-draft">Rough draft</span></div>
+        <h3><a href="/notes/ai-video-editing/">AI video editing: 7 tasks to hand over today, and 3 you never should</a></h3>
+        <p class="note-quote">&ldquo;The best use of AI in editing is the work you never wanted to be good at.&rdquo;</p>
+        <div class="note-text">
+          <p>Start with the easy wins. Auto-captions, silence and filler removal, and resizing one video into vertical, square and wide are solved problems now. Doing them by hand in 2026 is a hobby, not a workflow. Those are three of the seven; the other four are in the newsletter.</p>
+          <p>Now the three I keep for myself: the pacing of a cut, the timing of UI animation against what is on screen, and the order of the story. AI gets all three roughly right, and &ldquo;roughly right&rdquo; is the exact distance between a video people finish and one they close.</p>
+        </div>
+        <span class="note-take">In the newsletter: the full list of 7, with the tools I actually use</span>
+        <a class="note-more" href="/notes/ai-video-editing/">Read the full note &rarr;</a>
+      </div>
+    </article>
+    <article class="note" id="ai-tools-for-video" data-r>
+      <div class="note-num" aria-hidden="true">04</div>
+      <div class="note-body">
+        <div class="note-meta"><span class="note-tag">AI tools for video</span><span class="note-draft">Rough draft</span></div>
+        <h3><a href="/notes/ai-tools-for-video/">The AI tools for video I stopped using, and the 4 I would keep</a></h3>
+        <p class="note-quote">&ldquo;I tried a lot of them. Almost every one failed the same one-line test.&rdquo;</p>
+        <div class="note-text">
+          <p>Every few weeks a new tool promises to replace your video workflow. I try most of them once, on real work, because a demo hides exactly what makes a tool annoying after a week.</p>
+          <p>The test is one question: does this remove a step, or does it add one more thing I have to check? Tools that remove a step stay and become invisible. The rest leave a browser tab open for a month and then quietly close. A tool that has to be babysat is not saving time, it is just moving the work.</p>
+        </div>
+        <span class="note-take">In the newsletter: my shortlist of 4, and what I would skip</span>
+        <a class="note-more" href="/notes/ai-tools-for-video/">Read the full note &rarr;</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="cta">
+    <p>New notes go out by email first.</p>
+    <a href="/#newsletter">Get the newsletter</a>
+  </div>
+
+  <footer>imstruzik.com &mdash; Marcin Struzik</footer>
+</div>
+
+</body>
+</html>
