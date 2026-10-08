@@ -613,8 +613,11 @@
     <p class="eyebrow">05 — Newsletter</p>
     <h2 class="section-title">From zero<br>to AI editing hero</h2>
     <p class="news-lead">Not another AI influencer selling a course — I'm a user who already did the research. Every few weeks: what actually works in a real video workflow, the AI tools worth your time, and the mistakes I keep seeing. Nothing to buy, nothing to book — just what I use.</p>
-    <!-- TODO: wire this form up to GetResponse once Marcin exports the plain-HTML signup form (action URL + hidden fields). -->
-    <form class="news-form" id="news-form" novalidate>
+    <!-- GetResponse plain-HTML signup (help: "Do you offer a plain HTML form code?"). campaign_token = list token from the list's settings; empty = form stays in placeholder mode. -->
+    <form class="news-form" id="news-form" action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8" novalidate>
+      <input type="hidden" name="campaign_token" value="">
+      <input type="hidden" name="thankyou_url" value="https://imstruzik.com/?subscribed=1#newsletter">
+      <input type="hidden" name="start_day" value="0">
       <label class="sr-only" for="news-email">Your email address</label>
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
       <button class="btn-light" type="submit">Subscribe</button>
@@ -688,23 +691,30 @@
     }, 2600);
   }
 
-  /* ---------- newsletter form: placeholder until the email tool is wired up ---------- */
+  /* ---------- newsletter form: posts to GetResponse, which redirects back with ?subscribed=1 ---------- */
   var newsForm = document.getElementById('news-form');
   var newsNote = document.getElementById('news-note');
   if(newsForm){
+    if(/[?&]subscribed=1/.test(location.search)){
+      newsNote.textContent = 'Almost there — check your inbox and click the confirmation link.';
+      newsNote.classList.add('is-ok');
+    }
     newsForm.addEventListener('submit', function(ev){
-      ev.preventDefault();
       var input = document.getElementById('news-email');
       var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
       newsNote.classList.remove('is-error','is-ok');
       if(!ok){
+        ev.preventDefault();
         newsNote.textContent = 'That email does not look right — mind checking it?';
         newsNote.classList.add('is-error');
         input.focus();
         return;
       }
-      newsNote.textContent = 'Signup is not connected yet — the newsletter tool still has to be plugged in here.';
-      newsNote.classList.add('is-error');
+      if(!newsForm.elements.campaign_token.value){
+        ev.preventDefault();
+        newsNote.textContent = 'Signup is not connected yet — the newsletter tool still has to be plugged in here.';
+        newsNote.classList.add('is-error');
+      }
     });
   }
 
