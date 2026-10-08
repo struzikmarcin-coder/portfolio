@@ -101,6 +101,9 @@
   .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.1);vertical-align:top}
   .tbl td{color:#c9ced6}
   .tbl th{color:#9aa0a8;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+  .pick{margin:6px 0 34px;padding:22px 24px;border-radius:16px;border:1px solid rgba(107,138,253,.35);border-left:3px solid #6b8afd;background:linear-gradient(155deg,rgba(107,138,253,.12),rgba(107,138,253,.02) 75%)}
+  .pick-label{margin:0 0 10px!important;font-family:'JetBrains Mono',monospace;font-size:11px!important;letter-spacing:.12em;text-transform:uppercase;color:#8ea6ff!important}
+  .body-copy .pick p:last-child{margin-bottom:0}
   .mid-cta{position:relative;margin:36px 0 38px;padding:30px 28px;border-radius:20px;border:1px solid rgba(107,138,253,.4);background:linear-gradient(155deg,rgba(107,138,253,.16),rgba(107,138,253,.02) 70%);text-align:center;overflow:hidden}
   .mid-cta::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:340px;height:220px;background:radial-gradient(ellipse at center,rgba(107,138,253,.3),transparent 70%);pointer-events:none}
   .mid-cta-badge{position:relative;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:5px 13px;border-radius:999px;background:rgba(141,251,161,.1);border:1px solid rgba(141,251,161,.3);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8dfba1}
@@ -129,8 +132,13 @@
     <div class="body-copy">
       <p>Search &ldquo;free AI tools for video&rdquo; and you get the same fifty-logo roundup on every site, written by someone who has never cut a video in their life, stuffed with affiliate links to tools that stopped being free a year ago. This is the opposite of that: the short list of free tools and resources I actually have open while producing a SaaS product video, organized by the part of the job they help with. Nothing here is sponsored, and I am naming the free-tier limits, because that is the part those roundups always leave out.</p>
 
+      <div class="pick">
+        <p class="pick-label">Before the free list: the one I would pay for</p>
+        <p>One honest disclaimer up front. <strong>Claude</strong> is my second brain. If I had to pay for something and could keep only one AI tool, it would be this one, and I say that hand on heart. On an ordinary day it is like a cheap student who happily does the legwork you never have time for. On a hard day it is like a cheap specialist who actually knows the niche stuff that would otherwise cost a fortune in consultant hours. Everything below is free and genuinely useful, but this is the tool that changed how I work.</p>
+      </div>
+
       <h2>Scripting &amp; research</h2>
-      <p>Before any tool opens, the job is turning a feature brief into a structure. I keep this part simple: <strong>ChatGPT</strong> does almost everything in this phase for me &mdash; copy, LinkedIn posts, drafting offers, client communication, brief analysis, research and strategy, all in the same free-tier chat window. <strong>Claude</strong> is my second pair of hands, for anything that turns into an actual piece of writing rather than a quick draft (this site included). I am also starting to bring in <strong>NotebookLM</strong> (free) for the messier briefs &mdash; a jumble of Slack threads, a PRD and old scripts &mdash; because it can summarize across several documents at once instead of one at a time.</p>
+      <p>Before any tool opens, the job is turning a feature brief into a structure. I keep this part simple: <strong>ChatGPT</strong> does almost everything in this phase for me &mdash; copy, LinkedIn posts, drafting offers, client communication, brief analysis, research and strategy, all in the same free-tier chat window. <strong>Claude</strong>, my one non-negotiable from above, takes anything that turns into an actual piece of writing rather than a quick draft (this site included). I am also starting to bring in <strong>NotebookLM</strong> (free) for the messier briefs &mdash; a jumble of Slack threads, a PRD and old scripts &mdash; because it can summarize across several documents at once instead of one at a time.</p>
 
       <h2>Voiceover &amp; localization</h2>
       <p>For a rough-cut voiceover, a placeholder track while picking music, or dubbing a video into another language, <strong>ElevenLabs</strong> is the one I actually use. The free tier gives a limited monthly character allowance, which is enough for a handful of 60&ndash;90 second scripts before it asks you to upgrade &mdash; but the localization feature is the part that earns it a spot here, since re-recording a voiceover in three languages used to mean three separate bookings.</p>
