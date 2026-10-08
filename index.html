@@ -698,6 +698,9 @@
     if(/[?&]subscribed=1/.test(location.search)){
       newsNote.textContent = 'Almost there — check your inbox and click the confirmation link.';
       newsNote.classList.add('is-ok');
+    } else if(/[?&]confirmed=1/.test(location.search)){
+      newsNote.textContent = 'You\'re in. Thanks for confirming — first email is on its way.';
+      newsNote.classList.add('is-ok');
     }
     newsForm.addEventListener('submit', function(ev){
       var input = document.getElementById('news-email');
