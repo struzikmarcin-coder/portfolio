@@ -30,7 +30,7 @@
     var q = location.search;
     var note = /[?&]subscribed=1/.test(q) ? ['Almost there: check your inbox and click the confirmation link.', 1]
       : /[?&]confirmed=1/.test(q) ? ["You're in. Thanks for confirming, you'll hear from me first.", 1]
-      : ['Get the launch heads-up and the first issue of the newsletter. Free, one click to unsubscribe.', 0];
+      : ['Get the launch heads-up, plus my free Product Video Brief (fillable PDF) in your first email. One click to unsubscribe.', 0];
     var g = document.createElement('div');
     g.id = 'cs-gate';
     g.innerHTML = '<span class="cs-eyebrow">imstruzik.com</span>'
