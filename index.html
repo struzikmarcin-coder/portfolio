@@ -271,7 +271,6 @@
   .note-body{position:relative;z-index:1;min-width:0}
   .note-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px}
   .note-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b8afd}
-  .note-draft{padding:3px 9px;border-radius:999px;border:1px dashed rgba(255,255,255,.22);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8a9099}
   .note h3{margin:0 0 20px;max-width:22ch;font-size:clamp(26px,3.6vw,42px);line-height:1.04;letter-spacing:-.035em;font-weight:700}
   .note h3 a{color:inherit}
   .note h3 a:hover{color:#8ea6ff}
@@ -310,8 +309,10 @@
   .news-form input::placeholder{color:#6d737b}
   .news-form input:focus{outline:none;border-color:#6b8afd;background:rgba(107,138,253,.07)}
   .news-form button{flex:0 0 auto;cursor:pointer;border:0;font:inherit}
-  .news-gift{margin:0 auto 22px;max-width:46ch;font-size:15px;line-height:1.55;color:#e8eaed}
-  .news-gift strong{color:#fff}
+  .news-gift{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px;padding:7px 15px;border-radius:999px;background:rgba(141,251,161,.08);border:1px solid rgba(141,251,161,.3);font-size:13.5px;line-height:1.45;color:#c9ced6}
+  .news-gift b{color:#8dfba1;font-weight:600}
+  .news-note a{display:inline-flex;margin-top:14px;padding:12px 22px;border-radius:999px;background:#8dfba1;color:#0b0d10;font-size:14.5px;font-weight:600;box-shadow:0 10px 28px rgba(141,251,161,.25)}
+  .news-note a:hover{color:#0b0d10;opacity:.92}
   .news-note{margin:18px 0 0;font-size:13px;line-height:1.6;color:#6d737b}
   .news-note.is-error{color:#ffb4a2}
   .news-note.is-ok{color:#8dfba1}
@@ -427,19 +428,19 @@
   <p class="notes-lead" data-r>Start with whatever you are stuck on right now:</p>
   <div class="notes-compact-grid">
     <article class="note-compact" data-r>
-      <div class="note-meta"><span class="note-tag">Free AI tools</span><span class="note-draft">Rough draft</span></div>
+      <div class="note-meta"><span class="note-tag">Free AI tools</span></div>
       <h3><a href="/notes/free-ai-video-tools/">Free AI tools for video creators: the resources I actually use</a></h3>
       <p>No affiliate links, no fifty-logo roundup &mdash; just what I actually open, with free-tier limits noted.</p>
       <a class="note-more" href="/notes/free-ai-video-tools/">Read the full note &rarr;</a>
     </article>
     <article class="note-compact" data-r>
-      <div class="note-meta"><span class="note-tag">AI video script</span><span class="note-draft">Rough draft</span></div>
+      <div class="note-meta"><span class="note-tag">AI video script</span></div>
       <h3><a href="/notes/ai-video-script/">How to write an AI video script people watch to the end</a></h3>
       <p>Where AI speeds up scripting, and the one decision that still has to come from a person.</p>
       <a class="note-more" href="/notes/ai-video-script/">Read the full note &rarr;</a>
     </article>
     <article class="note-compact" data-r>
-      <div class="note-meta"><span class="note-tag">AI video editing</span><span class="note-draft">Rough draft</span></div>
+      <div class="note-meta"><span class="note-tag">AI video editing</span></div>
       <h3><a href="/notes/ai-video-editing/">AI video editing: 7 tasks to hand over today, and 3 you never should</a></h3>
       <p>Which editing tasks are safe to automate, and which ones only look finished.</p>
       <a class="note-more" href="/notes/ai-video-editing/">Read the full note &rarr;</a>
@@ -645,9 +646,9 @@
   <div class="news-inner" data-r>
     <p class="eyebrow">05 — Newsletter</p>
     <h2 class="section-title">From zero<br>to AI editing hero</h2>
-    <p class="news-lead">Not another AI influencer selling a course — I'm a user who already did the research. Every few weeks: what actually works in a real video workflow, the AI tools worth your time, and the mistakes I keep seeing. Nothing to buy, nothing to book — just what I use.</p>
-    <p class="news-gift"><strong>Free gift:</strong> your first email brings my Product Video Brief, the fillable PDF I use before every script. A few more free templates follow over the next two weeks.</p>
+    <p class="news-lead">Not another AI influencer selling a course — I'm a user who already did the research. Every two weeks: what actually works in a real video workflow, the AI tools worth your time, and the mistakes I keep seeing. Nothing to buy, nothing to book — just what I use.</p>
     <!-- GetResponse plain-HTML signup (help: "Do you offer a plain HTML form code?"). campaign_token = list token from the list's settings; empty = form stays in placeholder mode. -->
+    <p class="news-gift" id="news-gift"><b>★ Free on signup:</b> <span id="news-gift-name">the Product Video Brief I fill in before every script (PDF)</span></p>
     <form class="news-form" id="news-form" action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8" novalidate>
       <input type="hidden" name="campaign_token" value="7Cw5K">
       <input type="hidden" name="thankyou_url" value="https://imstruzik.com/?subscribed=1#newsletter">
@@ -728,12 +729,37 @@
   /* ---------- newsletter form: posts to GetResponse, which redirects back with ?subscribed=1 ---------- */
   var newsForm = document.getElementById('news-form');
   var newsNote = document.getElementById('news-note');
+  /* ?gift=… comes from a note's bonus box. The promised PDF unlocks on the confirmation page (?confirmed=1),
+     so people have to confirm to get it; the choice is kept in localStorage across the GetResponse round trip.
+     Everyone still gets the full welcome series by email. */
+  var GIFTS = {
+    prompts:   ['the AI Video Script Prompt Pack (PDF)', '/assets/downloads/ai-video-script-prompt-pack-imstruzik.com.pdf'],
+    stack:     ['My AI Stack cheat sheet (PDF)', '/assets/downloads/my-ai-stack-imstruzik.com.pdf'],
+    checklist: ['the Before You Hit Publish checklist (PDF)', '/assets/downloads/before-you-hit-publish-checklist-imstruzik.com.pdf']
+  };
+  function store(v){ try{ v ? localStorage.setItem('imstruzik-gift', v) : localStorage.removeItem('imstruzik-gift'); }catch(e){} }
+  function stored(){ try{ return localStorage.getItem('imstruzik-gift'); }catch(e){ return null; } }
+  var giftMatch = location.search.match(/[?&]gift=([a-z]+)/);
+  var gift = giftMatch && GIFTS[giftMatch[1]] ? giftMatch[1] : null;
   if(newsForm){
+    var shown = gift || (/[?&](subscribed|confirmed)=1/.test(location.search) && GIFTS[stored()] ? stored() : null);
+    if(shown){
+      document.getElementById('news-gift-name').textContent = GIFTS[shown][0];
+    }
     if(/[?&]subscribed=1/.test(location.search)){
-      newsNote.textContent = 'Almost there — check your inbox and click the confirmation link.';
+      newsNote.textContent = gift || GIFTS[stored()]
+        ? 'Almost there — click the confirmation link in your inbox and your PDF unlocks right here.'
+        : 'Almost there — check your inbox and click the confirmation link.';
       newsNote.classList.add('is-ok');
     } else if(/[?&]confirmed=1/.test(location.search)){
+      var g = GIFTS[stored()];
       newsNote.textContent = 'You\'re in. Thanks for confirming — first email is on its way.';
+      if(g){
+        var dl = document.createElement('a');
+        dl.href = g[1]; dl.setAttribute('download', ''); dl.textContent = 'Download ' + g[0].replace(/^the /, 'your ') + ' →';
+        newsNote.appendChild(document.createElement('br'));
+        newsNote.appendChild(dl);
+      }
       newsNote.classList.add('is-ok');
     }
     newsForm.addEventListener('submit', function(ev){
@@ -747,6 +773,7 @@
         input.focus();
         return;
       }
+      store(gift);
       if(!newsForm.elements.campaign_token.value){
         ev.preventDefault();
         newsNote.textContent = 'Signup is not connected yet — the newsletter tool still has to be plugged in here.';
