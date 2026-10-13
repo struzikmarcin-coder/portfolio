@@ -43,7 +43,7 @@
   "author": { "@type": "Person", "@id": "https://imstruzik.com/#marcin", "name": "Marcin Struzik", "url": "https://imstruzik.com/" },
   "publisher": { "@type": "Person", "@id": "https://imstruzik.com/#marcin", "name": "Marcin Struzik", "url": "https://imstruzik.com/" },
   "datePublished": "2026-10-06",
-  "dateModified": "2026-10-08",
+  "dateModified": "2026-10-14",
   "about": "AI video script",
   "inLanguage": "en"
 }
@@ -71,7 +71,7 @@
   .mono{font-family:'JetBrains Mono',monospace}
   .wrap{max-width:720px;margin:0 auto;padding:0 20px}
   header{padding:28px 0 0}
-  .brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:16px;letter-spacing:-.02em}
+  .brand{display:inline-flex;align-items:center;gap:0;font-weight:800;font-size:16px;letter-spacing:-.02em}
   .brand span{color:#6b8afd}
   .back{display:inline-flex;align-items:center;gap:8px;margin:56px 0 0;font-size:13.5px;font-weight:600;color:#9aa0a8}
   .back:hover{color:#f4f5f6}
@@ -107,6 +107,14 @@
   .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.1);vertical-align:top}
   .tbl td{color:#c9ced6}
   .tbl th{color:#9aa0a8;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+  .read-next{margin:48px 0 0}
+  .read-next h2{margin:0 0 16px;font-size:20px;letter-spacing:-.02em;font-weight:700}
+  .rn-grid{display:grid;gap:12px}
+  .rn-card{display:block;padding:16px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.09);background:#0e0f11;transition:border-color .25s}
+  .rn-card:hover{border-color:rgba(107,138,253,.45);color:#f4f5f6}
+  .rn-card b{display:block;margin-bottom:4px;font-size:15.5px;line-height:1.35}
+  .rn-card span{font-size:14px;line-height:1.5;color:#9aa0a8}
+  .rn-all{display:inline-block;margin-top:14px;font-size:13px;color:#9aa0a8}
 </style>
 </head>
 <body>
@@ -166,7 +174,11 @@
     </div>
   </article>
 
-  <div class="mono" style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#9aa0a8"><a href="/notes/free-ai-video-tools/">&larr; Previous note</a> &middot; <a href="/notes/">All notes</a> &middot; <a href="/notes/ai-video-editing/">Next note &rarr;</a></div>
+  <section class="read-next" aria-labelledby="rn-title">
+    <h2 id="rn-title">Read next</h2>
+    <div class="rn-grid"><a class="rn-card" href="/notes/free-ai-video-tools/"><b>Free AI tools for video creators</b><span>The free tools I actually open, with limits noted.</span></a><a class="rn-card" href="/notes/ai-video-editing/"><b>AI video editing: 7 tasks to hand over, 3 to keep</b><span>Which edits are safe to automate.</span></a><a class="rn-card" href="/notes/ai-tools-for-video/"><b>The AI tools for video I stopped using, and the 4 I would keep</b><span>A shortlist from real client work.</span></a></div>
+    <a class="rn-all mono" href="/notes/">All notes &rarr;</a>
+  </section>
 
   <footer>imstruzik.com &mdash; Marcin Struzik</footer>
 </div>

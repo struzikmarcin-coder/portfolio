@@ -258,7 +258,8 @@
   #notes{padding:clamp(70px,11vw,100px) 20px clamp(50px,7vw,80px);border-top:1px solid rgba(255,255,255,.07);background:#121419}
   .notes-inner{max-width:1240px;margin:0 auto}
   .notes-lead{margin:0 0 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6d737b}
-  .notes-compact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+  .notes-compact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:640px){.notes-compact-grid{grid-template-columns:1fr}}
   .ai-cut-panel{position:relative;padding:clamp(28px,4vw,48px) clamp(20px,4vw,44px) clamp(26px,3.5vw,40px);border-radius:24px;border:1px solid rgba(107,138,253,.4);background:linear-gradient(155deg,rgba(107,138,253,.16),rgba(107,138,253,.02) 70%);overflow:hidden}
   .ai-cut-panel::before{content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:min(760px,90%);height:380px;background:radial-gradient(ellipse at center,rgba(107,138,253,.28),transparent 70%);pointer-events:none}
   .ai-cut-panel>*{position:relative}
@@ -458,6 +459,12 @@
       <h3><a href="/notes/ai-video-editing/">AI video editing: 7 tasks to hand over today, and 3 you never should</a></h3>
       <p>Which editing tasks are safe to automate, and which ones only look finished.</p>
       <a class="note-more" href="/notes/ai-video-editing/">Read the full note &rarr;</a>
+    </article>
+    <article class="note-compact" data-r>
+      <div class="note-meta"><span class="note-tag">AI tools</span></div>
+      <h3><a href="/notes/ai-tools-for-video/">The AI tools for video I stopped using, and the 4 I would keep</a></h3>
+      <p>A working shortlist from real client work, not demos.</p>
+      <a class="note-more" href="/notes/ai-tools-for-video/">Read the full note &rarr;</a>
     </article>
   </div>
   <div class="notes-foot" data-r>
