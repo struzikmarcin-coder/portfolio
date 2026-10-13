@@ -1,0 +1,6 @@
+# GitHub Pages builds this site with Jekyll. The site itself is plain HTML;
+# tools/ holds extension source whose READMEs Jekyll would otherwise publish
+# as unstyled "| portfolio" pages with an http:// canonical. The source stays
+# on GitHub; only the built website skips it.
+exclude:
+  - tools
