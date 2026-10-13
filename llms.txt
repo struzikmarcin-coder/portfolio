@@ -21,3 +21,7 @@ https://imstruzik.com/downloads/: Email Blur, a browser extension Marcin built t
 
 - Email: hello@imstruzik.com
 - LinkedIn: https://www.linkedin.com/in/imstruzik/
+
+## What I use
+
+https://imstruzik.com/uses/: the tools Marcin uses and recommends for video work, with affiliate links marked.
