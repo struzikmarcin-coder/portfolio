@@ -13,6 +13,10 @@ All notes: https://imstruzik.com/notes/
 - [AI Video Editing: 7 Tasks to Hand Over Today, and 3 You Never Should](https://imstruzik.com/notes/ai-video-editing/): which editing tasks are safe to automate, and which ones only look finished.
 - [The AI Tools for Video I Stopped Using, and the 4 I Would Keep](https://imstruzik.com/notes/ai-tools-for-video/): a working shortlist after testing tools on real client work, not demos.
 
+## Free downloads
+
+https://imstruzik.com/downloads/: free Product Video Brief, AI Video Script Prompt Pack, Before You Hit Publish checklist, My AI Stack (PDFs, unlocked with a newsletter signup) and the free Email Blur browser extension (blurs email addresses on any web page before you record your screen; source: https://github.com/struzikmarcin-coder/portfolio/tree/main/tools/email-blur).
+
 ## Contact
 
 - Email: hello@imstruzik.com
