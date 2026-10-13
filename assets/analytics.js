@@ -4,7 +4,7 @@
    Skip your own visits: open any page with ?notrack=1 once per browser (?notrack=0 undoes it).
 
    Custom events (Umami → Events):
-     newsletter-submit     someone pressed Subscribe / Notify me      {form: homepage|gate, gift}
+     newsletter-submit     someone pressed Subscribe / Notify me      {form: homepage|downloads|gate, gift}
      newsletter-signup     GetResponse sent them back (?subscribed=1)  {form, gift}
      newsletter-confirmed  they clicked the confirmation link        {gift}
      pdf-download          click on any PDF link                     {file}
@@ -32,7 +32,7 @@
   s.setAttribute('data-domains', 'imstruzik.com');
   s.onload = function(){
     // GetResponse thank-you pages: the homepage form returns to /?subscribed=1#newsletter, the gate form to /?subscribed=1
-    if(/[?&]subscribed=1/.test(q)) track('newsletter-signup', {form: location.hash === '#newsletter' ? 'homepage' : 'gate', gift: gift()});
+    if(/[?&]subscribed=1/.test(q)) track('newsletter-signup', {form: path.indexOf('/downloads/') === 0 ? 'downloads' : location.hash === '#newsletter' ? 'homepage' : 'gate', gift: gift()});
     if(/[?&]confirmed=1/.test(q)) track('newsletter-confirmed', {gift: gift()});
   };
   document.head.appendChild(s);
@@ -40,7 +40,7 @@
   document.addEventListener('submit', function(ev){
     var f = ev.target;
     if(!f.action || f.action.indexOf('getresponse.com') < 0 || ev.defaultPrevented) return;
-    track('newsletter-submit', {form: f.closest('#cs-gate') ? 'gate' : 'homepage', gift: (q.match(/[?&]gift=([a-z]+)/) || [0, 'none'])[1]});
+    track('newsletter-submit', {form: f.closest('#cs-gate') ? 'gate' : path.indexOf('/downloads/') === 0 ? 'downloads' : 'homepage', gift: (q.match(/[?&]gift=([a-z]+)/) || [0, 'none'])[1]});
   });
 
   document.addEventListener('click', function(ev){

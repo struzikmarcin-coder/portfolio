@@ -357,6 +357,7 @@
       <a href="#notes">The AI Cut</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
+      <a href="/downloads/">Free downloads</a>
       <a href="#contact">Contact</a>
     </div>
     <a id="nav-cta" class="btn-primary" href="#newsletter">
@@ -373,6 +374,7 @@
   <a href="#notes">The AI Cut</a>
   <a href="#work">Work</a>
   <a href="#about">About</a>
+  <a href="/downloads/">Free downloads</a>
   <a href="#contact">Contact</a>
   <a class="mobile-cta" href="#newsletter">
     <span class="dot"></span>Steal my AI workflow
@@ -703,6 +705,7 @@
     <span>imstruzik.com — Marcin Struzik</span>
     <div class="links">
       <a href="#newsletter">Newsletter</a>
+      <a href="/downloads/">Free downloads</a>
       <a href="https://www.linkedin.com/in/imstruzik/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:hello@imstruzik.com">Email</a>
       <a href="#top">Back to top</a>
@@ -775,9 +778,11 @@
     } else if(/[?&]confirmed=1/.test(location.search)){
       var g = GIFTS[stored()];
       newsNote.textContent = 'You\'re in. Thanks for confirming — first email is on its way.';
+      /* signed up on /downloads/: send them back to the now unlocked library */
+      if(stored() === 'library') g = ['the free library', '/downloads/?unlocked=1'];
       if(g){
         var dl = document.createElement('a');
-        dl.href = g[1]; dl.setAttribute('download', ''); dl.textContent = 'Download ' + g[0].replace(/^the /, 'your ') + ' →';
+        dl.href = g[1]; if(/\.pdf$/.test(g[1])) dl.setAttribute('download', ''); dl.textContent = (/\.pdf$/.test(g[1]) ? 'Download ' : 'Open ') + g[0].replace(/^the /, 'your ') + ' →';
         newsNote.appendChild(document.createElement('br'));
         newsNote.appendChild(dl);
       }
