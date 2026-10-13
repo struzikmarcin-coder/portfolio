@@ -96,6 +96,10 @@
   .item{position:relative;display:flex;flex-direction:column;padding:clamp(22px,3vw,30px);border-radius:20px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(160deg,#111318,#0b0c0e 62%);transition:border-color .35s}
   .item:hover{border-color:rgba(107,138,253,.45)}
   .item--wide{grid-column:1/-1}
+  .item{overflow:hidden}
+  .item-img{display:block;width:calc(100% + 2*clamp(22px,3vw,30px));max-width:none;height:auto;aspect-ratio:1200/750;margin:calc(-1*clamp(22px,3vw,30px)) calc(-1*clamp(22px,3vw,30px)) 22px;border-radius:19px 19px 0 0;border-bottom:1px solid rgba(255,255,255,.07)}
+  .item--wide{display:grid;grid-template-columns:1.15fr 1fr;gap:0 clamp(22px,3vw,34px);align-items:center}
+  .item--wide .item-img{grid-row:span 5;width:calc(100% + clamp(22px,3vw,30px));aspect-ratio:1080/740;margin:calc(-1*clamp(22px,3vw,30px)) 0 calc(-1*clamp(22px,3vw,30px)) calc(-1*clamp(22px,3vw,30px));border-radius:19px 0 0 19px;border:0;border-right:1px solid rgba(255,255,255,.07);align-self:stretch;object-fit:cover}
   .item-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
   .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b8afd}
   .tag--free{color:#8dfba1}
@@ -103,7 +107,7 @@
   .item p{margin:0 0 12px;font-size:15px;line-height:1.65;color:#9aa0a8}
   .item ul{margin:0 0 18px;padding-left:18px;font-size:14.5px;line-height:1.65;color:#9aa0a8}
   .item .spacer{flex:1}
-  .item-action{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;margin-top:6px;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600}
+  .item-action{display:inline-flex;align-self:flex-start;justify-self:start;align-items:center;gap:8px;margin-top:6px;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600}
   .item-action.locked{border:1px dashed rgba(255,255,255,.18);color:#9aa0a8}
   .item-action.locked:hover{color:#f4f5f6;border-color:rgba(107,138,253,.6)}
   .item-action.open{background:#8dfba1;color:#0b0d10}
@@ -112,7 +116,7 @@
   .item-action.ext:hover{color:#fff;opacity:.9}
   .item-from{margin:14px 0 0;font-size:13px;color:#6d737b}
   .item-from a{color:#9aa0a8;text-decoration:underline;text-underline-offset:3px}
-  @media (max-width:720px){.items{grid-template-columns:1fr}}
+  @media (max-width:720px){.items{grid-template-columns:1fr}.item--wide{display:flex;align-items:stretch}.item--wide .item-img{width:calc(100% + 2*clamp(22px,3vw,30px));margin:calc(-1*clamp(22px,3vw,30px)) calc(-1*clamp(22px,3vw,30px)) 22px;border-radius:19px 19px 0 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.07)}}
 
   .cta{margin:44px 0 0;padding:28px 26px;border-radius:18px;border:1px solid rgba(255,255,255,.09);text-align:center}
   .cta p{margin:0 0 16px;font-size:15.5px;color:#c9ced6}
@@ -152,6 +156,7 @@
 
   <div class="items">
     <article class="item">
+      <img class="item-img" src="/assets/library/product-video-brief.webp" width="1200" height="750" alt="Product Video Brief PDF, cover and a fillable page" loading="lazy">
       <div class="item-meta"><span class="tag">PDF &middot; 6 pages &middot; fillable</span></div>
       <h3>Product Video Brief</h3>
       <p>The brief I fill in before I write a single line of a SaaS product video: one goal, the audience and their real pain, a one-sentence positioning, and the message in AIDA order. Made for product marketers, fillable on screen, ready to paste into ChatGPT or Claude.</p>
@@ -160,6 +165,7 @@
     </article>
 
     <article class="item">
+      <img class="item-img" src="/assets/library/ai-video-script-prompt-pack.webp" width="1200" height="750" alt="AI Video Script Prompt Pack PDF, cover and the first prompt" loading="lazy">
       <div class="item-meta"><span class="tag">PDF &middot; 5 pages</span></div>
       <h3>AI Video Script Prompt Pack</h3>
       <p>8 prompts that take you from a messy brief to a script people watch to the end: five hooks to pick from, a beat sheet, a first draft timed for voiceover, a pass that kills the generic phrases, and cutting it to length. With a real before and after.</p>
@@ -169,6 +175,7 @@
     </article>
 
     <article class="item">
+      <img class="item-img" src="/assets/library/before-you-hit-publish-checklist.webp" width="1200" height="750" alt="Before You Hit Publish checklist PDF, cover and the first checks" loading="lazy">
       <div class="item-meta"><span class="tag">PDF &middot; 4 pages &middot; fillable</span></div>
       <h3>Before You Hit Publish Checklist</h3>
       <p>22 checks I run on every video before it goes out: does the first 3 seconds talk to the viewer, does it work on mute, is there any real customer data on screen, is the voiceover loud enough, do captions sit in the safe zones, is every format exported.</p>
@@ -178,6 +185,7 @@
     </article>
 
     <article class="item">
+      <img class="item-img" src="/assets/library/my-ai-stack.webp" width="1200" height="750" alt="My AI Stack PDF, cover and the workflow page" loading="lazy">
       <div class="item-meta"><span class="tag">PDF &middot; 4 pages</span></div>
       <h3>My AI Stack</h3>
       <p>The AI tools I actually use for video right now and how they fit together: Claude at the center (chat, Claude Code, skills), video built in code with Remotion and HyperFrames, and the rest of the kit.</p>
@@ -188,9 +196,10 @@
 
     <!-- TODO(Marcin): extension name, store link, screenshot -->
     <article class="item item--wide" id="email-blur">
+      <img class="item-img" src="/assets/library/email-blur-card.webp" width="1080" height="740" alt="Email Blur blurring every email address in a customer list while the screen is being recorded" loading="lazy">
       <div class="item-meta"><span class="tag">Browser extension</span><span class="tag tag--free">Free, no signup</span></div>
       <h3>Email Blur</h3>
-      <p>Blurs every email address on the page, automatically. I built it for screen recordings and demos, where one visible customer address means re-recording the whole take. Just as handy when you share your screen on a call.</p>
+      <p>Blurs every email address on the page, live, before you hit record. I built it for my own product videos: one visible customer email used to mean a blur mask in the edit, tracked by hand, take after take. Now the recording is clean from the first take, and it works just as well when you share your screen on a call.</p>
       <div class="spacer"></div>
       <a class="item-action ext" href="#" target="_blank" rel="noopener">Get the extension &rarr;</a>
     </article>
