@@ -1,0 +1,6 @@
+{
+  "extName": { "message": "Email Blur" },
+  "extDescription": { "message": "Blurs email addresses on web pages. Click the icon to turn it on or off." },
+  "titleOn": { "message": "Email Blur: on" },
+  "titleOff": { "message": "Email Blur: off" }
+}

@@ -8,6 +8,7 @@
      newsletter-signup     GetResponse sent them back (?subscribed=1)  {form, gift}
      newsletter-confirmed  they clicked the confirmation link        {gift}
      pdf-download          click on any PDF link                     {file}
+     extension-download    click on the Email Blur .zip              {file}
      bonus-click           click on a note's free-PDF box            {gift, note}
      note-read             reader got to the end of a note           {note}
      contact-click         email or LinkedIn link                    {type, place} */
@@ -48,6 +49,7 @@
     if(!a) return;
     var href = a.getAttribute('href'), place = a.closest('#cs-gate') ? 'gate' : (noteMatch ? noteMatch[1] : path);
     if(/\.pdf(\?|#|$)/i.test(href)) track('pdf-download', {file: href.split('/').pop()});
+    else if(/\.zip(\?|#|$)/i.test(href)) track('extension-download', {file: href.split('/').pop()});
     else if(/[?&]gift=/.test(href)) track('bonus-click', {gift: href.match(/[?&]gift=([a-z]+)/)[1], note: noteMatch ? noteMatch[1] : path});
     else if(/^mailto:/i.test(href)) track('contact-click', {type: 'email', place: place});
     else if(/linkedin\.com/i.test(href)) track('contact-click', {type: 'linkedin', place: place});

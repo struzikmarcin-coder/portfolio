@@ -1,0 +1,6 @@
+{
+  "extName": { "message": "Email Blur" },
+  "extDescription": { "message": "Zamazuje adresy e-mail na stronach. Kliknij ikonę, aby włączyć lub wyłączyć." },
+  "titleOn": { "message": "Email Blur: włączony" },
+  "titleOff": { "message": "Email Blur: wyłączony" }
+}
