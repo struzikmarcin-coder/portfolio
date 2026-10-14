@@ -315,8 +315,11 @@
   .news-gift b{color:#8dfba1;font-weight:600}
   .news-gift a{color:#c9ced6;text-decoration:underline;text-underline-offset:3px}
   .news-gift a:hover{color:#8dfba1}
+  @media (max-width:560px){.news-gift{display:block;border-radius:16px;padding:9px 16px}}
   .news-note a{display:inline-flex;margin-top:14px;padding:12px 22px;border-radius:999px;background:#8dfba1;color:#0b0d10;font-size:14.5px;font-weight:600;box-shadow:0 10px 28px rgba(141,251,161,.25)}
   .news-note a:hover{color:#0b0d10;opacity:.92}
+  .news-note a.news-privacy{display:inline;margin:0;padding:0;background:none;box-shadow:none;color:inherit;font-size:inherit;font-weight:inherit;text-decoration:underline;text-underline-offset:3px}
+  .news-note a.news-privacy:hover{color:#f4f5f6;opacity:1}
   .news-note{margin:18px 0 0;font-size:13px;line-height:1.6;color:#6d737b}
   .news-note.is-error{color:#ffb4a2}
   .news-note.is-ok{color:#8dfba1}
@@ -413,9 +416,9 @@
   </div>
 
   <div id="hero-strip" data-r>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/H2gr8Xuzo_s/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"></div>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/x8IydBbk6lg/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"></div>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/ogk_iq_8Jx8/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/H2gr8Xuzo_s/hqdefault.jpg" alt="" width="480" height="360" decoding="async"></div>
+    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/x8IydBbk6lg/hqdefault.jpg" alt="" width="480" height="360" decoding="async"></div>
+    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/ogk_iq_8Jx8/hqdefault.jpg" alt="" width="480" height="360" decoding="async"></div>
   </div>
 
 </section>
@@ -687,7 +690,7 @@
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
       <button class="btn-light" type="submit">Subscribe</button>
     </form>
-    <p class="news-note" id="news-note" role="status">Free. One click to unsubscribe. Your address stays with me.</p>
+    <p class="news-note" id="news-note" role="status">Free. One click to unsubscribe. Your address stays with me. <a class="news-privacy" href="/privacy/">Privacy</a></p>
   </div>
 </section>
 
@@ -716,6 +719,7 @@
       <a href="/uses/">What I use</a>
       <a href="https://www.linkedin.com/in/imstruzik/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:hello@imstruzik.com">Email</a>
+      <a href="/privacy/">Privacy</a>
       <a href="#top">Back to top</a>
     </div>
   </div>
