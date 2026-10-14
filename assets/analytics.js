@@ -11,7 +11,12 @@
      extension-download    click on the Email Blur .zip              {file}
      bonus-click           click on a note's free-PDF box            {gift, note}
      note-read             reader got to the end of a note           {note}
-     contact-click         email or LinkedIn link                    {type, place} */
+     contact-click         email or LinkedIn link                    {type, place}
+     game-start            Cut Force (/play/): pressed start        {layout: wide|portrait}
+     game-end              Cut Force: finished (win or out of lives) {result, score, lives}
+     game-share            Cut Force: pressed Share on LinkedIn      {result}
+     game-card             Cut Force: saved the score card           {result}
+     game-cta              Cut Force: clicked Free AI library        {to} */
 (function(){
   var WEBSITE_ID = '1556e948-c8d7-4c55-bd3e-17a06cd1ce02';
   var q = location.search;
