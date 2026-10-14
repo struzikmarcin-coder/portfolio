@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Cut Force: a free 8-bit game for marketers | imstruzik.com</title>
+<meta name="description" content="Cut Force is a free 8-bit shooter for marketers: get your video past THE COMMITTEE (CEO, Legal, Sales). By Marcin Struzik, OG After Effects animator, now with AI.">
+<link rel="canonical" href="https://imstruzik.com/play/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#08090a">
+<meta property="og:type" content="website"><meta property="og:url" content="https://imstruzik.com/play/"><meta property="og:site_name" content="imstruzik.com">
+<meta property="og:title" content="Cut Force: can your video beat THE COMMITTEE?">
+<meta property="og:description" content="A free 8-bit game for marketers. 90 seconds, no signup. By Marcin Struzik.">
+<meta property="og:image" content="https://imstruzik.com/assets/play-og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://imstruzik.com/assets/play-og.png">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script src="/assets/analytics.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{height:100%;background:#08090a;overflow:hidden;touch-action:manipulation;overscroll-behavior:none;font-family:'Press Start 2P',monospace}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{--w:320;position:relative;aspect-ratio:var(--w)/180;width:min(100vw,calc(100vh*var(--w)/180));max-height:100vh}
+canvas{width:100%;height:100%;display:block;image-rendering:pixelated;background:#0b0d24}
+#crt{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);box-shadow:inset 0 0 90px rgba(0,0,0,.6)}
+#end{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:clamp(10px,2.6vh,26px);background:rgba(8,9,10,.78);text-align:center;color:#f4f5f6;padding:3%}
+#end h1{font-size:clamp(14px,4.2vw,40px);color:#8dfba1;text-shadow:3px 3px 0 #101113}
+#end.lose h1{color:#ff4d4d}
+#end p{font-family:'VT323',monospace;font-size:clamp(20px,3.2vw,30px);line-height:1.25}
+#end b{color:#ffd166;font-weight:normal}
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{font-family:'Press Start 2P',monospace;font-size:clamp(9px,1.2vw + 3px,13px);padding:1.4em 1.5em;border:3px solid currentColor;background:#08090a;box-shadow:4px 4px 0 currentColor;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.4}
+.blue{color:#6b8afd}.amber{color:#ffd166}.green{color:#8dfba1}
+.home{position:fixed;left:max(10px,env(safe-area-inset-left));bottom:max(8px,env(safe-area-inset-bottom));font-size:8px;color:#6a7078;text-decoration:none;padding:12px 6px;z-index:3}
+.small{font-size:clamp(7px,1.1vw,10px);color:#6a7078;font-family:'Press Start 2P',monospace}
+</style></head><body>
+<div id="wrap"><div id="stage">
+<canvas id="c" width="320" height="180"></canvas><div id="crt"></div>
+</div></div>
+<a class="home" href="https://imstruzik.com/" target="_blank" rel="noopener">&lt; IMSTRUZIK.COM</a>
+<div id="end"><h1 id="eh"></h1><p id="et"></p>
+<div class="btns"><button class="btn blue" id="bshare">SHARE ON LINKEDIN</button><button class="btn green" id="bcard">SAVE SCORE CARD</button><a class="btn amber" href="https://imstruzik.com/downloads/?utm_source=cutforce" target="_blank" rel="noopener" onclick="ev('game-cta',{to:'downloads'})">FREE AI LIBRARY</a></div>
+<div class="btns"><button class="btn" style="color:#c9ced6" id="bagain">PLAY AGAIN</button></div>
+<div class="small">BY MARCIN STRUZIK · IMSTRUZIK.COM</div></div>
+<script>
+let W=320;const H=180,GY=150;
+const cv=document.getElementById('c'),x=cv.getContext('2d'),stage=document.getElementById('stage');
+function applyLayout(){const nw=innerHeight>innerWidth*1.05?224:320;if(nw!==W){W=nw;cv.width=W;stage.style.setProperty('--w',W);}}
+addEventListener('resize',()=>{if(state==='title'||state==='win'||state==='lose')applyLayout();});
+applyLayout();
+const PAL={K:'#101113',S:'#f2b98c',H:'#4a2c1a',B:'#6b8afd',G:'#8dfba1',D:'#2b3a7a',W:'#ffffff',P:'#ff5fa2',A:'#ffd166',R:'#ff4d4d',Y:'#9aa0a8',N:'#2a2d36',O:'#e07b39',L:'#c9ced6'};
+const SP={
+soldier:`.....HHHH.......
+....HHHHHH......
+....RRRRRR......
+....SSKSSS......
+.....SSSS.......
+...SSSSSSS......
+..SSSSSSSSLLLLLLLL
+..SSSSSSSKKKKLLLLK
+..SSSSSSS..KK.....
+...SSSSS........
+...NNNNNN.......
+...NN..NN.......
+..NN....NN......
+..NN.....NN.....
+.KKK.....KKK....`,
+soldier2:`.....HHHH.......
+....HHHHHH......
+....RRRRRR......
+....SSKSSS......
+.....SSSS.......
+...SSSSSSS......
+..SSSSSSSSLLLLLLLL
+..SSSSSSSKKKKLLLLK
+..SSSSSSS..KK.....
+...SSSSS........
+...NNNNNN.......
+....NN.NN.......
+....NN..NN......
+...NNN...NN.....
+...KKK...KKK....`,
+suit:`....HHHH....
+...HSSSSH...
+...SKSSKS...
+...SSSSSS...
+....SSSS....
+..YYYWWYYY..
+.YYYYRWYYYY.
+.YYYYRYYYYY.
+.SYYYRYYYYS.
+.S.YYYYYY.SR
+...YYYYYY...
+...YYYYYY...
+...YY..YY...
+...YY..YY...
+..KKK..KKK..`,
+chip:`..A.A.A.A..
+.KKKKKKKKK.
+AKGGGGGGGKA
+.KGKGGGKGK.
+AKGKGGGKGKA
+.KGKKKGKGK.
+AKGKGGGKGKA
+.KGGGGGGGK.
+AKKKKKKKKKA
+..A.A.A.A..`};
+function spr(c,n,px,py,flip){const rows=SP[n].split('\n');rows.forEach((r,j)=>{for(let i=0;i<r.length;i++){const ch=r[i];if(ch==='.')continue;c.fillStyle=PAL[ch];c.fillRect(flip?px+r.length-1-i:px+i,py+j,1,1);}});}
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const params=new URLSearchParams(location.search);
+const BOSS_AT=params.has('boss')?60:2600, GOD=params.has('god');
+let state='title',t=0,dist=0,score=0,lives=3,invuln=0,weapon='normal',stakes=0,spawnT=1.2,fireT=0,popups=[],particles=[],endAt=0,shake=0;
+let P,enemies,bullets,ebul,pickups,boss;
+const keys={left:0,right:0};let jumpBuf=0,started=false;
+function reset(){P={x:44,y:GY,vy:0,ground:true,f:0};enemies=[];bullets=[];ebul=[];pickups=[];dist=0;score=0;lives=3;invuln=0;weapon='normal';stakes=0;spawnT=1.2;fireT=0;popups=[];particles=[];boss=null;t=0;pk1=false;pk2=false;if(params.has('spread'))weapon='spread';}
+let pk1=false,pk2=false;
+function pop(txt,px,py,col){popups.push({txt,x:px,y:py,t:0,col:col||'#ffd166'});}
+function boom(px,py,col,n){for(let i=0;i<(n||8);i++)particles.push({x:px,y:py,vx:rnd(-60,60),vy:rnd(-80,20),t:rnd(.3,.6),c:col||'#ffd166'});}
+function ev(n,d){try{if(window.umami&&umami.track)umami.track(n,d);}catch(e){}}
+function startGame(){applyLayout();ev('game-start',{layout:W<300?'portrait':'wide'});reset();state='play';document.getElementById('end').style.display='none';if(params.has('boss')){dist=BOSS_AT-1;}}
+function endGame(win){state=win?'win':'lose';endAt=t;
+ const bonus=win?lives*1000:0; if(win)score+=bonus;
+ const rank=win?(lives===3?'VIDEO APPROVED, NO REVISIONS':lives===2?'APPROVED AFTER ONE ROUND':'APPROVED. BARELY.'):(dist>BOSS_AT*.6?'STUCK IN LEGAL REVIEW':'LOST IN THE KICKOFF CALL');
+ G.rank=rank;G.score=score;ev('game-end',{result:win?'win':'lose',score:score,lives:lives});
+ const e=document.getElementById('end');e.className=win?'':'lose';e.style.display='flex';
+ document.getElementById('eh').textContent=win?'COMMITTEE DEFEATED!':'REVISIONS EXHAUSTED';
+ document.getElementById('et').innerHTML='Score: <b>'+String(score).padStart(6,'0')+'</b> · Stakeholders cut: <b>'+stakes+'</b><br>Rank: <b>'+rank+'</b>';}
+const G={rank:'',score:0};
+function jump(){if(state==='title'){if(!started||t>.3){startGame();}return;}if(state!=='play')return;jumpBuf=.12;}
+function doJump(){if(P.ground&&jumpBuf>0){P.vy=-225;P.ground=false;jumpBuf=0;}}
+addEventListener('keydown',e=>{const k=e.key;if([' ','ArrowUp','ArrowLeft','ArrowRight','w','a','d','z','W','A','D','Z'].includes(k))e.preventDefault();
+ if(k===' '||k==='ArrowUp'||k==='w'||k==='W'||k==='z'||k==='Z')jump();
+ if(k==='ArrowLeft'||k==='a'||k==='A')keys.left=1;if(k==='ArrowRight'||k==='d'||k==='D')keys.right=1;
+ if(k==='Enter'&&state==='title')jump();});
+addEventListener('keyup',e=>{const k=e.key;if(k==='ArrowLeft'||k==='a'||k==='A')keys.left=0;if(k==='ArrowRight'||k==='d'||k==='D')keys.right=0;});
+cv.addEventListener('pointerdown',e=>{e.preventDefault();jump();});
+document.getElementById('bagain').onclick=()=>{startGame();};
+document.getElementById('bshare').onclick=()=>{ev('game-share',{result:state});
+ const txt=(state==='win'?'I beat THE COMMITTEE in Cut Force: ':'I got stuck in legal review in Cut Force: ')+G.rank+', score '+G.score+'. Free 8-bit game for marketers by Marcin Struzik: https://imstruzik.com/play/';
+ try{navigator.clipboard.writeText(txt);}catch(_){}
+ window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent('https://imstruzik.com/play/'),'_blank','noopener');
+ const b=document.getElementById('bshare');b.textContent='TEXT COPIED, PASTE IT';};
+document.getElementById('bcard').onclick=()=>{ev('game-card',{result:state});const c=document.createElement('canvas');c.width=1200;c.height=628;const q=c.getContext('2d');
+ q.fillStyle='#0b0d24';q.fillRect(0,0,1200,628);q.textBaseline='top';
+ q.font='16px "Press Start 2P",monospace';q.fillStyle='#8dfba1';q.fillText('★ CUT FORCE · SCORE CARD',60,44);
+ q.font='30px "Press Start 2P",monospace';q.fillStyle='#ffd166';q.fillText(state==='win'?'I beat THE COMMITTEE.':'The Committee won. This time.',60,86);
+ q.font='26px "Press Start 2P",monospace';q.fillStyle='#ff5fa2';q.fillText(G.rank,60,200);
+ q.font='34px "VT323",monospace';q.fillStyle='#f4f5f6';q.fillText('Score '+String(G.score).padStart(6,'0')+'  ·  Stakeholders cut '+stakes,60,270);
+ q.font='14px "Press Start 2P",monospace';q.fillStyle='#c9ced6';q.fillText('BY MARCIN STRUZIK · OG AFTER EFFECTS ANIMATOR. NOW WITH AI.',60,520);
+ q.fillStyle='#8dfba1';q.fillRect(60,560,420,44);q.fillStyle='#08090a';q.font='16px "Press Start 2P",monospace';q.fillText('PLAY: IMSTRUZIK.COM/PLAY',76,574);
+ const s=q.getImageData(0,0,1,1);const tmp=document.createElement('canvas');tmp.width=24;tmp.height=15;const tq=tmp.getContext('2d');spr(tq,'soldier',0,0);q.imageSmoothingEnabled=false;q.drawImage(tmp,780,360,24*14,15*14);
+ const a=document.createElement('a');a.download='cut-force-score.png';a.href=c.toDataURL('image/png');a.click();};
+function spawn(){const r=Math.random();
+ if(!pk1&&dist>700){pk1=true;pickups.push({x:W+10,y:GY-24,type:'ai'});return;}
+ if(!pk2&&dist>2000&&weapon!=='spread'){pk2=true;pickups.push({x:W+10,y:GY-24,type:'ai'});return;}
+ enemies.push({x:W+10,y:GY-15,hp:1,fire:rnd(.4,1.2),f:0,shooter:Math.random()<.65});}
+function hurt(){if(invuln>0||GOD)return;lives--;invuln=1.8;shake=.2;boom(P.x+8,P.y-8,'#ff4d4d',12);ebul=ebul.filter(b=>b.x>P.x+30||b.x<P.x-30);
+ if(lives<=0){endGame(false);}}
+function shoot(){const gx=P.x+16,gy=P.y-9;
+ if(weapon==='spread'){[-.17,-.08,0,.08,.17].map(a=>a*(W<300?1.8:1)).forEach(a=>bullets.push({x:gx,y:gy,vx:Math.cos(a)*230,vy:Math.sin(a)*230,s:2,c:'#8dfba1'}));fireT=.2;}
+ else{bullets.push({x:gx,y:gy,vx:240,vy:0,s:2,c:'#ffd166'});fireT=.26;}}
+function startBoss(){boss={x:W-58,t:0,tur:[{y:96,hp:10,fire:1.2,n:'CEO'},{y:119,hp:10,fire:1.8,n:'LEGAL'},{y:141,hp:10,fire:.8,n:'SALES'}],core:{hp:16,fire:2},dead:false,intro:1.2};state='boss';enemies=[];pop('BOSS: THE COMMITTEE',100,50,'#ff4d4d');}
+function update(dt){t+=dt;
+ if(state==='title')return;
+ if(state==='play'||state==='boss'){
+  if(jumpBuf>0)jumpBuf-=dt;doJump();
+  if(keys.left)P.x-=70*dt;if(keys.right)P.x+=70*dt;P.x=Math.max(8,Math.min(state==='boss'&&boss?boss.x-60:W-150,P.x));
+  P.vy+=620*dt;P.y+=P.vy*dt;if(P.y>=GY){P.y=GY;P.vy=0;P.ground=true;}
+  P.f+=dt*(P.ground?10:0);invuln=Math.max(0,invuln-dt);shake=Math.max(0,shake-dt);
+  fireT-=dt;if(fireT<=0)shoot();
+  if(state==='play'){dist+=60*dt;spawnT-=dt;if(spawnT<=0){spawn();spawnT=rnd(1.0,1.9)*(dist>1800?.8:1);}
+   if(dist>=BOSS_AT)startBoss();}
+  const sp=state==='play'?60:0;
+  enemies.forEach(e=>{e.x-=(sp+14)*dt;e.f+=dt*6;e.fire-=dt;if(e.shooter&&e.fire<=0&&e.x<W-30&&e.x>P.x+40){e.fire=rnd(1.4,2.2);ebul.push({x:e.x-2,y:e.y+7,vx:-85,vy:0,pen:true});}
+   if(!GOD&&Math.abs((e.x+6)-(P.x+9))<8&&Math.abs((e.y+7)-(P.y-7))<12)hurt();});
+  pickups.forEach(p=>{p.x-=sp*dt;if(Math.abs(p.x+5-(P.x+9))<10&&Math.abs(p.y+5-(P.y-8))<13){p.dead=true;weapon='spread';pop('AI SPREAD!',P.x-6,P.y-30,'#8dfba1');boom(p.x,p.y,'#8dfba1',10);}});
+  pickups=pickups.filter(p=>!p.dead&&p.x>-20);
+  bullets.forEach(b=>{b.x+=b.vx*dt;b.y+=b.vy*dt;
+   enemies.forEach(e=>{if(!b.dead&&!e.dead&&b.x>e.x&&b.x<e.x+12&&b.y>e.y&&b.y<e.y+15){e.dead=true;b.dead=true;stakes++;score+=100;boom(e.x+6,e.y+7,'#ffd166',8);pop('+100',e.x,e.y-6);}});
+   if(boss&&!b.dead){
+    boss.tur.forEach(u=>{if(u.hp>0&&b.x>boss.x-10&&b.x<boss.x+20&&Math.abs(b.y-(u.y+4))<9){u.hp--;b.dead=true;boom(b.x,b.y,'#fff',2);if(u.hp<=0){score+=500;boom(boss.x+6,u.y+4,'#ff4d4d',16);pop('+500',boss.x-24,u.y-6,'#ff5fa2');shake=.25;}}});
+    if(boss.tur.every(u=>u.hp<=0)&&!b.dead&&b.x>boss.x+8&&Math.abs(b.y-(GY-12))<14&&boss.core.hp>0){boss.core.hp--;b.dead=true;boom(b.x,b.y,'#ffd166',3);if(boss.core.hp<=0){score+=2000;boom(boss.x+22,GY-12,'#ff4d4d',40);shake=.6;pop('APPROVED!',140,70,'#8dfba1');boss.dead=true;boss.endT=1.5;}}}});
+  bullets=bullets.filter(b=>!b.dead&&b.x<W+10&&b.y>-10&&b.y<H);enemies=enemies.filter(e=>!e.dead&&e.x>-20);
+  if(boss){boss.t+=dt;boss.intro-=dt;
+   if(!boss.dead&&boss.intro<=0){boss.tur.forEach(u=>{if(u.hp<=0)return;u.fire-=dt;if(u.fire<=0){u.fire=rnd(1.5,2.4);const a=Math.atan2((P.y-8)-(u.y+4),(P.x+9)-(boss.x-6));ebul.push({x:boss.x-8,y:u.y+4,vx:Math.cos(a)*70,vy:Math.sin(a)*70});}});
+    if(boss.tur.every(u=>u.hp<=0)){boss.core.fire-=dt;if(boss.core.fire<=0){boss.core.fire=1.1;const a=Math.atan2((P.y-8)-(GY-12),(P.x+9)-(boss.x+10));ebul.push({x:boss.x+8,y:GY-12,vx:Math.cos(a)*75,vy:Math.sin(a)*75});}}}
+   if(boss.dead){boss.endT-=dt;if(boss.endT<=0&&state!=='win')endGame(true);}}
+  ebul.forEach(b=>{b.x+=b.vx*dt;b.y+=b.vy*dt;if(!GOD&&Math.abs(b.x-(P.x+9))<5&&Math.abs(b.y-(P.y-8))<9&&!b.dead){b.dead=true;hurt();}});
+  ebul=ebul.filter(b=>!b.dead&&b.x>-10&&b.x<W+10&&b.y>-10&&b.y<H);
+ }
+ particles.forEach(p=>{p.t-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=200*dt;});particles=particles.filter(p=>p.t>0);
+ popups.forEach(p=>{p.t+=dt;p.y-=14*dt;});popups=popups.filter(p=>p.t<1.1);}
+const skyline=[[0,90,30],[32,70,22],[56,100,26],[84,60,18],[104,85,30],[136,75,20],[158,95,28],[188,65,24],[216,88,30],[250,72,26],[282,96,38]];
+function txt(s,px,py,col,size,align){x.font=(size||8)+'px "Press Start 2P",monospace';x.textAlign=align||'left';x.textBaseline='top';x.fillStyle='#101113';x.fillText(s,px+1,py+1);x.fillStyle=col||'#fff';x.fillText(s,px,py);}
+function draw(){
+ const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0b0d24');g.addColorStop(1,'#2a1d4a');x.fillStyle=g;x.fillRect(0,0,W,H);
+ const sx=state==='title'?t*20:dist;
+ x.fillStyle='#fff';for(let i=0;i<14;i++){const px=((i*57-sx*.05)%W+W)%W;x.fillRect(px|0,(i*13)%60,1,1);}
+ const off=(sx*.3)%320;for(let k=-1;k<2;k++)skyline.forEach(([bx,by,w])=>{const px=bx-off+k*320;if(px>W||px+w<0)return;x.fillStyle='#161a33';x.fillRect(px|0,by+20,w,H-by);x.fillStyle='#3d4470';for(let yy=by+26;yy<150;yy+=8)for(let xx=bx+3;xx<bx+w-3;xx+=6)if((xx*7+yy*3)%5<2)x.fillRect((xx-off+k*320)|0,yy,2,3);});
+ x.fillStyle='#14306b';x.fillRect(0,GY+12,W,H-GY-12);x.fillStyle='#6b8afd';for(let i=0;i<W;i+=14)x.fillRect(((i-sx*.5)%W+W)%W,GY+16+(i%3)*4,5,1);
+ const bo=sx%16;for(let bx=-16;bx<W+16;bx+=16){const px=bx-bo;x.fillStyle='#9aa0a8';x.fillRect(px,GY,16,6);x.fillStyle='#5a606a';x.fillRect(px,GY+6,16,4);x.fillStyle='#101113';x.fillRect(px+15,GY,1,10);x.fillStyle='#c9ced6';x.fillRect(px,GY,15,1);}
+ if(boss){x.save();if(boss.dead&&Math.floor(t*20)%2)x.globalAlpha=.6;
+  x.fillStyle='#3a3f4a';x.fillRect(boss.x,40,W-boss.x,H);x.fillStyle='#2a2d36';for(let yy=44;yy<H;yy+=12)x.fillRect(boss.x,yy,W-boss.x,1);x.fillStyle='#101113';x.fillRect(boss.x,40,2,H);
+  boss.tur.forEach(u=>{if(u.hp<=0){x.fillStyle='#101113';x.fillRect(boss.x+2,u.y-4,20,14);x.fillStyle='#ff4d4d';x.fillRect(boss.x+6,u.y+2,4,3);return;}
+   x.fillStyle='#5a606a';x.fillRect(boss.x+2,u.y-4,22,14);x.fillStyle='#101113';x.fillRect(boss.x-12,u.y+2,14,3);x.fillStyle=u.hp<4&&Math.floor(t*8)%2?'#fff':'#ff4d4d';x.fillRect(boss.x+8,u.y,6,6);
+   x.fillStyle='#101113';x.fillRect(boss.x+26,u.y-4,W-boss.x-28,10);txt(u.n,boss.x+28,u.y-3,'#ff4d4d',5);x.fillStyle='#ff4d4d';x.fillRect(boss.x+26,u.y+7,Math.max(0,u.hp/10*(W-boss.x-28)),2);});
+  if(boss.core.hp>0&&boss.tur.every(u=>u.hp<=0)){x.fillStyle='#ff4d4d';x.fillRect(boss.x+8,GY-24,24,24);x.fillStyle='#ffd166';x.fillRect(boss.x+13,GY-19,14,14);x.fillStyle='#fff';x.fillRect(boss.x+17,GY-15,6,6);}
+  x.restore();}
+ if(state!=='title'){
+  pickups.forEach(p=>{spr(x,'chip',p.x|0,(p.y+Math.sin(t*6)*2)|0);});
+  enemies.forEach(e=>{spr(x,'suit',e.x|0,e.y|0,true);});
+  ebul.forEach(b=>{x.fillStyle=b.pen?'#ff4d4d':'#ff5fa2';x.fillRect(b.x-2,b.y-1,b.pen?5:3,b.pen?2:3);});
+  bullets.forEach(b=>{x.fillStyle=b.c;x.fillRect(b.x,b.y,b.s+1,2);});
+  if(!(invuln>0&&Math.floor(t*14)%2)){const run=P.ground&&Math.floor(P.f)%2;spr(x,run?'soldier2':'soldier',(P.x-4)|0,(P.y-15)|0);}
+  particles.forEach(p=>{x.fillStyle=p.c;x.fillRect(p.x|0,p.y|0,2,2);});
+  popups.forEach(p=>txt(p.txt,p.x,p.y,p.col,6));
+  txt('1P',6,5,'#8dfba1',8);for(let i=0;i<lives;i++){x.fillStyle='#8dfba1';x.fillRect(26+i*7,6,5,7);}
+  txt(String(score).padStart(6,'0'),6,17,'#fff',8);
+  txt(weapon==='spread'?'AI SPREAD':'NORMAL',W-6,5,weapon==='spread'?'#8dfba1':'#9aa0a8',W<300?6:8,'right');
+  txt(W<300?(state==='boss'?'THE COMMITTEE':'KICKOFF CALL'):(state==='boss'?'BOSS: THE COMMITTEE':'STAGE 1: THE KICKOFF CALL'),W/2,5,'#ffd166',6,'center');
+  if(state==='play'&&t<4)txt('TAP / SPACE = JUMP · AUTO-FIRE',W/2,H-18,'#fff',6,'center');
+ }else{
+  txt('★ A GAME FOR MARKETERS ★',W/2,20,'#ff4d4d',7,'center');
+  x.save();x.fillStyle='#ff4d4d';x.font=(W<300?20:28)+'px "Press Start 2P",monospace';x.textAlign='center';x.textBaseline='top';x.fillText('CUT FORCE',W/2+3,38+3);x.fillStyle='#ffd166';x.fillText('CUT FORCE',W/2,38);x.restore();
+  txt('YOUR VIDEO vs. THE COMMITTEE',W/2,84,'#f4f5f6',7,'center');
+  if(Math.floor(t*2)%2)txt('PRESS START / TAP',W/2,98,'#8dfba1',9,'center');
+  txt('BY MARCIN STRUZIK',W/2,115,'#6b8afd',6,'center');txt('OG AFTER EFFECTS ANIMATOR. NOW WITH AI.',W/2,125,'#c9ced6',5,'center');
+  spr(x,Math.floor(t*6)%2?'soldier':'soldier2',20,GY-15);spr(x,'suit',W-60,GY-15,true);}
+}
+let last=performance.now();
+function loop(n){const dt=Math.min(.05,(n-last)/1000);last=n;update(dt);
+ if(shake>0){x.save();x.translate(rnd(-1.5,1.5),rnd(-1.5,1.5));}
+ draw();if(shake>0)x.restore();requestAnimationFrame(loop);}
+reset();started=true;
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>requestAnimationFrame(loop));
+window.__cf={get:()=>({state,dist,score,lives,weapon,stakes,boss:boss&&boss.tur.map(u=>u.hp).concat(boss.core.hp)}),start:()=>startGame()};
+</script></body></html>
