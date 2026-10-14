@@ -167,22 +167,6 @@
   .work-group-label-hand{margin-top:48px}
   .work-group-label-ai{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 12px;border-radius:999px;border:1px solid rgba(107,138,253,.38);background:rgba(107,138,253,.1);color:#a9bbff;box-shadow:0 0 28px rgba(107,138,253,.18)}
   .work-group-label-ai::before{content:"";width:7px;height:7px;border-radius:50%;background:#6b8afd;box-shadow:0 0 10px #6b8afd}
-  @media(max-width:700px){#work-grid-ai .work-placeholder:nth-child(n+4){display:none}}
-  #work-grid-ai .work-placeholder{border-color:rgba(107,138,253,.32);background:radial-gradient(80% 70% at 50% 40%,rgba(107,138,253,.12),transparent 70%),repeating-linear-gradient(135deg,rgba(107,138,253,.04) 0 12px,transparent 12px 24px),#0d0e12}
-  .work-placeholder{aspect-ratio:16/9;border-radius:14px;border:1px dashed rgba(255,255,255,.16);background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 12px,transparent 12px 24px),#0d0e10;display:flex;align-items:center;justify-content:center}
-  .work-placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
-  .work-placeholder-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd;opacity:.85}
-  .work-placeholder-label{font-size:13px;color:#8a9099}
-  .work-placeholder{position:relative;overflow:hidden}
-  .wp-frame i{position:absolute;width:14px;height:14px;border:2px solid rgba(107,138,253,.55)}
-  .wp-frame i:nth-child(1){top:12px;left:12px;border-right:0;border-bottom:0}
-  .wp-frame i:nth-child(2){top:12px;right:12px;border-left:0;border-bottom:0}
-  .wp-frame i:nth-child(3){bottom:12px;left:12px;border-right:0;border-top:0}
-  .wp-frame i:nth-child(4){bottom:12px;right:12px;border-left:0;border-top:0}
-  .wp-bar{display:block;width:96px;height:3px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:8px;overflow:hidden}
-  .wp-bar b{display:block;width:38%;height:100%;background:#6b8afd;border-radius:2px;animation:wpbar 2.4s ease-in-out infinite alternate}
-  @keyframes wpbar{from{transform:translateX(-10%)}to{transform:translateX(160%)}}
-  @media(prefers-reduced-motion:reduce){.wp-bar b{animation:none}}
   .work-card-media{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#101113;cursor:pointer;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
   .work-card-media:hover{border-color:rgba(107,138,253,.55);transform:translateY(-4px)}
   .work-card-media:hover img{transform:scale(1.045)}
@@ -491,53 +475,59 @@
 
   <p class="work-group-label work-group-label-ai" data-r>AI-powered</p>
   <div class="work-grid" id="work-grid-ai">
-    <div class="work-placeholder" data-r>
-      <span class="wp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered · Product launch</span>
-        <span class="work-placeholder-label">The real piece lands here soon</span>
-        <span class="wp-bar" aria-hidden="true"><b></b></span>
+    <div data-r>
+      <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Product launch" data-video-id="hWFtJcP_3k8" data-video-title="Product launch" data-video-tag="Product launch" data-video-client="Made with AI">
+        <img src="https://i.ytimg.com/vi/hWFtJcP_3k8/maxresdefault.jpg" alt="Product launch — AI-powered video by Marcin Struzik" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/hWFtJcP_3k8/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/hWFtJcP_3k8/hqdefault.jpg'">
+        <div class="work-card-scrim"></div>
+        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
+        <span class="work-tag">Product launch</span>
       </div>
+      <div class="work-meta"><p class="work-title">Product launch</p><p class="work-client">Made with AI</p></div>
     </div>
-    <div class="work-placeholder" data-r>
-      <span class="wp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered · Explainer</span>
-        <span class="work-placeholder-label">The real piece lands here soon</span>
-        <span class="wp-bar" aria-hidden="true"><b></b></span>
+    <div data-r>
+      <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Explainer" data-video-id="UqFpYAMRscE" data-video-title="Explainer" data-video-tag="Explainer" data-video-client="Made with AI">
+        <img src="https://i.ytimg.com/vi/UqFpYAMRscE/maxresdefault.jpg" alt="Explainer — AI-powered video by Marcin Struzik" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/UqFpYAMRscE/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/UqFpYAMRscE/hqdefault.jpg'">
+        <div class="work-card-scrim"></div>
+        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
+        <span class="work-tag">Explainer</span>
       </div>
+      <div class="work-meta"><p class="work-title">Explainer</p><p class="work-client">Made with AI</p></div>
     </div>
-    <div class="work-placeholder" data-r>
-      <span class="wp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered · Ad spot</span>
-        <span class="work-placeholder-label">The real piece lands here soon</span>
-        <span class="wp-bar" aria-hidden="true"><b></b></span>
+    <div data-r>
+      <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Ad spot" data-video-id="hby1h2SOqSo" data-video-title="Ad spot" data-video-tag="Ad spot" data-video-client="Made with AI">
+        <img src="https://i.ytimg.com/vi/hby1h2SOqSo/maxresdefault.jpg" alt="Ad spot — AI-powered video by Marcin Struzik" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/hby1h2SOqSo/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/hby1h2SOqSo/hqdefault.jpg'">
+        <div class="work-card-scrim"></div>
+        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
+        <span class="work-tag">Ad spot</span>
       </div>
+      <div class="work-meta"><p class="work-title">Ad spot</p><p class="work-client">Made with AI</p></div>
     </div>
-    <div class="work-placeholder" data-r>
-      <span class="wp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered · Social cut</span>
-        <span class="work-placeholder-label">The real piece lands here soon</span>
-        <span class="wp-bar" aria-hidden="true"><b></b></span>
+    <div data-r>
+      <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Social cut" data-video-id="aRzCg2gLBFU" data-video-title="Social cut" data-video-tag="Social cut" data-video-client="Made with AI">
+        <img src="https://i.ytimg.com/vi/aRzCg2gLBFU/maxresdefault.jpg" alt="Social cut — AI-powered video by Marcin Struzik" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/aRzCg2gLBFU/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/aRzCg2gLBFU/hqdefault.jpg'">
+        <div class="work-card-scrim"></div>
+        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
+        <span class="work-tag">Social cut</span>
       </div>
+      <div class="work-meta"><p class="work-title">Social cut</p><p class="work-client">Made with AI</p></div>
     </div>
-    <div class="work-placeholder" data-r>
-      <span class="wp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered · Motion graphics</span>
-        <span class="work-placeholder-label">The real piece lands here soon</span>
-        <span class="wp-bar" aria-hidden="true"><b></b></span>
+    <div data-r>
+      <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Motion graphics" data-video-id="BUV6CTh2wVU" data-video-title="Motion graphics" data-video-tag="Motion graphics" data-video-client="Made with AI">
+        <img src="https://i.ytimg.com/vi/BUV6CTh2wVU/maxresdefault.jpg" alt="Motion graphics — AI-powered video by Marcin Struzik" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/BUV6CTh2wVU/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/BUV6CTh2wVU/hqdefault.jpg'">
+        <div class="work-card-scrim"></div>
+        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
+        <span class="work-tag">Motion graphics</span>
       </div>
+      <div class="work-meta"><p class="work-title">Motion graphics</p><p class="work-client">Made with AI</p></div>
     </div>
-    <div class="work-placeholder" data-r>
-      <span class="wp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <div class="work-placeholder-inner">
-        <span class="work-placeholder-tag">AI-powered · Voice-over</span>
-        <span class="work-placeholder-label">The real piece lands here soon</span>
-        <span class="wp-bar" aria-hidden="true"><b></b></span>
+    <div data-r>
+      <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Voice-over" data-video-id="TIOqaUY11Ak" data-video-title="Voice-over" data-video-tag="Voice-over" data-video-client="Made with AI">
+        <img src="https://i.ytimg.com/vi/TIOqaUY11Ak/maxresdefault.jpg" alt="Voice-over — AI-powered video by Marcin Struzik" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/TIOqaUY11Ak/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TIOqaUY11Ak/hqdefault.jpg'">
+        <div class="work-card-scrim"></div>
+        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
+        <span class="work-tag">Voice-over</span>
       </div>
+      <div class="work-meta"><p class="work-title">Voice-over</p><p class="work-client">Made with AI</p></div>
     </div>
   </div>
 
