@@ -419,7 +419,7 @@ function showRevive(){
   };
 }
 function revive(){
-  ov.classList.remove('on');G.hearts=3;G.state='play';G.keyDown=false;respawn();G.inv=2.5;track('lifeline-continue',{level:G.li+1});
+  ov.classList.remove('on');G.hearts=3;G.state='play';G.keyDown=false;respawn(G.L.speed*3.2);G.inv=3.5;track('lifeline-continue',{level:G.li+1});
 }
 function die(){
   if(!G.revived){G.revived=true;showRevive();return}
@@ -431,8 +431,14 @@ function die(){
   ov.classList.add('on');lbWire(G.score,G.tot.gems+G.lvGems,clockStr());
   document.getElementById('b-retry').onclick=()=>{track('retry',{level:G.li+1});startLevel(G.li)};
 }
-function respawn(){
+function respawn(back){
   const h=G.h;let c=Math.max(1,Math.floor(h.lastSafe.x/TS)-1);
+  if(back){ // lifeline: step back ~3 s of running onto safe floor so there is time to react
+    const tx=Math.max(2*TS,Math.min(h.x,h.lastSafe.x+TS*4)-back);let cc=Math.floor(tx/TS);
+    while(cc>1&&!(tileAt(cc,7)===1&&tileAt(cc-1,7)===1&&tileAt(cc+1,7)===1&&!tileAt(cc,6)&&!tileAt(cc,5)))cc--;
+    c=Math.max(1,cc);
+    G.L.en.forEach(e=>{if(e.alive&&Math.abs(e.x-(c*TS+32))<TS*3){e.alive=false;e.sq=.3}});
+  }
   // find ground top in that column
   let r=0;while(r<ROWS&&tileAt(c,r)!==1)r++;
   h.x=c*TS+32;h.y=r*TS;h.vy=0;h.on=true;h.jumps=2;G.inv=2;
