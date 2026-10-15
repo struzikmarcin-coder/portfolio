@@ -425,9 +425,10 @@ function die(){
   if(!G.revived){G.revived=true;showRevive();return}
   G.state='dead';G.deaths++;track('game-over',{level:G.li+1});
   card.innerHTML=`<div class="badge">Overtime</div><h2>The meeting never ended</h2><p>The ${G.L.th.room} claimed another victim. Happens to the best of us.</p>
-  <div class="stats"><div><b>${G.lvGems}/5</b><span>Approvals</span></div><div><b>${G.lvCoins}</b><span>Coins</span></div></div>
+  <div class="stats"><div><b>${G.lvGems}/5</b><span>Approvals</span></div><div><b>${G.lvCoins}</b><span>Coins</span></div><div><b>${G.score}</b><span>Score</span></div></div>
+  ${lbBlock()}
   <button class="pri" id="b-retry">Try again</button>`;
-  ov.classList.add('on');
+  ov.classList.add('on');lbWire(G.score,G.tot.gems+G.lvGems,clockStr());
   document.getElementById('b-retry').onclick=()=>{track('retry',{level:G.li+1});startLevel(G.li)};
 }
 function respawn(){
