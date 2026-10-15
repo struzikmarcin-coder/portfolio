@@ -30,6 +30,8 @@ button,a.btn{display:block;width:100%;margin-top:10px;border:0;border-radius:14p
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .card input{display:block;width:100%;padding:14px 16px;margin-top:10px;border-radius:12px;border:2px solid #d9dcf0;font:inherit;font-size:16px;color:var(--ink);background:#fff}
 .card input:focus{outline:none;border-color:var(--accent)}
+.lb{margin:12px 0 4px;text-align:left}.lb form{display:flex;gap:8px}.lb input{margin-top:0;flex:1;min-width:0;padding:11px 12px}.lb .pri{width:auto;margin-top:0;padding:0 14px;white-space:nowrap}
+.lbh{font-weight:800;margin:10px 0 4px}.lbr{display:flex;gap:8px;font-size:14px;padding:3px 6px;border-radius:8px}.lbr .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lbr.me{background:#efe9ff}
 .card a:not(.btn){color:var(--accent)}
 </style></head>
 <body>
@@ -54,6 +56,38 @@ function resize(){
 addEventListener('resize',resize);
 
 // ---------- analytics (no-op when Umami is absent) ----------
+// leaderboard: paste the Google Apps Script web app URL here to switch it on (empty = hidden)
+const LB={url:'https://friday1742-ranking.shrill-mouse-3af9.workers.dev/'};window.__LB=LB;
+function lbNick(v){return String(v||'').replace(/[^\p{L}\p{N} _.-]/gu,'').replace(/\s+/g,' ').trim().slice(0,16)}
+function lbLoad(box,me){
+  box.innerHTML='<p class="hint">Loading the board...</p>';
+  fetch(LB.url+(LB.url.includes('?')?'&':'?')+'top=10&t='+Date.now()).then(r=>r.json()).then(d=>{
+    const rows=(d&&d.top)||[];box.innerHTML='';
+    const h=document.createElement('div');h.className='lbh';h.textContent='Top 10';box.appendChild(h);
+    if(!rows.length){const p=document.createElement('p');p.className='hint';p.textContent='No scores yet. Be the first!';box.appendChild(p);return}
+    rows.forEach((r,i)=>{const row=document.createElement('div');row.className='lbr'+(me&&r.nick===me?' me':'');
+      const a=document.createElement('span');a.textContent=(i+1)+'.';const b=document.createElement('span');b.className='n';b.textContent=r.nick;const c=document.createElement('b');c.textContent=r.score;
+      row.append(a,b,c);box.appendChild(row)});
+  }).catch(()=>{box.innerHTML='<p class="hint">The board is taking a coffee break.</p>'});
+}
+function lbBlock(){
+  if(!LB.url)return'';
+  let saved='';try{saved=localStorage.getItem('f1742-nick')||''}catch(e){}
+  return `<div class="lb"><form id="lb-form" novalidate><label class="sr" for="lb-nick">Your nickname</label>
+  <input id="lb-nick" maxlength="16" autocomplete="nickname" placeholder="Nickname for the leaderboard" value="${saved.replace(/"/g,'')}">
+  <button class="pri" id="lb-go" type="submit">Save my score</button></form><div id="lb-box"></div></div>`;
+}
+function lbWire(score,total,t){
+  if(!LB.url)return;
+  const form=document.getElementById('lb-form'),inp=document.getElementById('lb-nick'),box=document.getElementById('lb-box'),go=document.getElementById('lb-go');
+  lbLoad(box,'');
+  form.onsubmit=e=>{e.preventDefault();const n=lbNick(inp.value);if(n.length<2){inp.focus();inp.placeholder='2-16 letters or digits';return}
+    try{localStorage.setItem('f1742-nick',n)}catch(_){}
+    go.disabled=true;go.textContent='Saved';inp.disabled=true;
+    track('lb-submit',{score:score});
+    fetch(LB.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({nick:n,score:score,approvals:total,time:t})}).catch(()=>{}).finally(()=>setTimeout(()=>lbLoad(box,n),1200));
+  };
+}
 function track(n,d){try{window.umami&&window.umami.track(n,d)}catch(e){}}
 
 // ---------- tiny sfx ----------
@@ -532,11 +566,13 @@ function final(){
   const shareUrl='https://www.linkedin.com/feed/?shareActive=true&text='+encodeURIComponent(txt+' https://imstruzik.com');
   card.innerHTML=`<div class="badge">You made it out</div><h1>${t}</h1><p><b>${verdict}</b></p><p class="hint">Your rank: <b>${rank}</b></p>
   <div class="stats"><div><b>${total}/${MAXG}</b><span>Approvals</span></div><div><b>${G.tot.coins}</b><span>Coins</span></div><div><b>${G.score}</b><span>Score</span></div></div>
+  ${lbBlock()}
   <a class="btn sec" id="b-share" target="_blank" rel="noopener" href="${shareUrl}">Share my score on LinkedIn</a>
   <a class="btn pri" id="b-cta" href="https://imstruzik.com/downloads/" target="_blank" rel="noopener">Get the free AI video toolkit</a>
   <button class="ter" id="b-again">Play again</button>
   <p class="hint">Made by Marcin Struzik, OG After Effects animator. Now with AI.</p>`;
   ov.classList.add('on');G.state='final';
+  lbWire(G.score,total,t);
   document.getElementById('b-share').onclick=()=>track('game-share',{score:G.score});
   document.getElementById('b-cta').onclick=()=>track('game-cta');
   document.getElementById('b-again').onclick=()=>{newRun()};
