@@ -209,13 +209,7 @@
   .yt-play:hover{opacity:.92}
   .yt-out{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:#f4f5f6}
   .yt-out:hover{background:rgba(255,255,255,.12)}
-  .yt-remember{display:inline-flex;align-items:center;gap:9px;margin-top:16px;font-size:13px;color:#9aa0a8;cursor:pointer}
-  .yt-remember input{appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:0;border-radius:5px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.04);display:grid;place-content:center;cursor:pointer}
-  .yt-remember input::after{content:'';width:9px;height:5px;border-left:2px solid #0b0d10;border-bottom:2px solid #0b0d10;transform:translateY(-1px) rotate(-45deg) scale(0)}
-  .yt-remember input:checked{background:#8dfba1;border-color:#8dfba1}
-  .yt-remember input:checked::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
-  .yt-remember input:focus-visible,.yt-gate-btns :focus-visible{outline:2px solid #6b8afd;outline-offset:2px}
-  @media (max-width:520px){.yt-gate-box p{margin-bottom:12px}.yt-gate-btns button,.yt-gate-btns a{padding:10px 16px;font-size:13.5px}.yt-remember{margin-top:10px}}
+  @media (max-width:520px){.yt-gate-box p{margin-bottom:12px}.yt-gate-btns button,.yt-gate-btns a{padding:10px 16px;font-size:13.5px}}
 
   #case{padding:clamp(56px,9vw,70px) 20px clamp(70px,10vw,100px);border-top:1px solid rgba(255,255,255,.07)}
   .case-inner{max-width:1240px;margin:0 auto}
@@ -883,7 +877,7 @@
   var lbTag = document.getElementById('lightbox-tag');
 
   /* The player comes from YouTube (Google), so it only loads after the visitor agrees.
-     "Don't ask again" is kept in localStorage (imstruzik-yt); /privacy/ has a button that clears it. */
+     Pressing play once is remembered in localStorage (imstruzik-yt); /privacy/ has a button that clears it. */
   var YT_KEY = 'imstruzik-yt';
   function ytAllowed(){ try{ return localStorage.getItem(YT_KEY) === '1'; }catch(e){ return false; } }
   function playVideo(id, title){
@@ -896,12 +890,11 @@
       playVideo(id, title);
     } else {
       frame.innerHTML = '<div class="yt-gate" style="background-image:url(/assets/yt/'+id+'.webp)"><div class="yt-gate-box">'
-        + '<p>This video plays from YouTube. When you press play, YouTube (Google) receives your IP address and may store data in your browser. More in my <a href="/privacy/">privacy policy</a>.</p>'
+        + '<p>This video plays from YouTube. When you press play, YouTube (Google) receives your IP address and may store data in your browser. Your choice is remembered on this site and you can undo it in my <a href="/privacy/">privacy policy</a>.</p>'
         + '<div class="yt-gate-btns"><button class="yt-play" type="button">&#9654; Play video</button><a class="yt-out" href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener">Watch on YouTube &#8599;</a></div>'
-        + '<label class="yt-remember"><input type="checkbox"> Don&rsquo;t ask again</label>'
         + '</div></div>';
       frame.querySelector('.yt-play').addEventListener('click', function(){
-        if(frame.querySelector('.yt-remember input').checked){ try{ localStorage.setItem(YT_KEY, '1'); }catch(e){} }
+        try{ localStorage.setItem(YT_KEY, '1'); }catch(e){}
         playVideo(id, title);
       });
     }
