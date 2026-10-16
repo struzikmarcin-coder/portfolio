@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're in! Check your inbox | imstruzik.com</title>
+<meta name="description" content="Thanks for signing up. Confirm your email and the free library is yours.">
+<meta name="robots" content="noindex, follow">
+<script src="/assets/analytics.js"></script>
+<meta name="theme-color" content="#08090a">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preload" href="/assets/fonts/archivo-latin-1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+  h1{text-wrap:balance} p{text-wrap:pretty}
+  body{margin:0;min-height:100vh;min-height:100svh;background:#08090a;color:#f4f5f6;font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;overflow-x:hidden}
+  a{color:#f4f5f6;text-decoration:none}
+  a:hover{color:#7c9dff}
+  a:focus-visible{outline:2px solid #6b8afd;outline-offset:3px}
+  header{padding:28px 20px 0;max-width:900px;margin:0 auto;width:100%;box-sizing:border-box}
+  .brand{font-weight:800;font-size:16px;letter-spacing:-.02em}
+  .brand span{color:#6b8afd}
+  main{flex:1;display:grid;place-items:center;padding:40px 20px 64px;text-align:center;position:relative;overflow:hidden}
+  .glow{position:absolute;width:720px;height:720px;max-width:180vw;left:50%;top:45%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(141,251,161,.16),rgba(107,138,253,.1) 40%,transparent 68%);pointer-events:none}
+  .in{position:relative;max-width:640px;animation:pop .7s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.in{animation:none}}
+  .ph{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #8dfba1;box-shadow:0 0 0 8px rgba(141,251,161,.12);margin:0 auto 26px;display:block}
+  h1{margin:0 0 18px;font-size:clamp(48px,9vw,88px);line-height:.95;letter-spacing:-.045em;font-weight:800}
+  h1 em{font-style:normal;color:#8dfba1}
+  .one{margin:0 auto 26px;font-size:clamp(18px,2.4vw,21px);line-height:1.5;color:#c9ced6;max-width:30ch}
+  .one b{color:#f4f5f6}
+  .small{margin:0;font-size:14px;line-height:1.6;color:#6d737b}
+  .small b{color:#9aa0a8;font-weight:600}
+  .home{display:inline-block;margin-top:28px;font-size:14px;color:#9aa0a8}
+</style>
+</head>
+<body>
+<header><a class="brand" href="/">imstruzik<span>.com</span></a></header>
+<main>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="in">
+    <img class="ph" src="/assets/portrait-marcin.webp" width="96" height="96" alt="Marcin Struzik">
+    <h1>High five,<br><em>you&rsquo;re in!</em></h1>
+    <p class="one" id="one">Open my email and hit <b>confirm</b>, and the whole free library is yours.</p>
+    <p class="small">Not there in a minute? Peek in <b>Spam</b> or <b>Promotions</b>.<br>It comes from hello@imstruzik.com.</p>
+    <a class="home" id="back" href="/">&larr; Back to imstruzik.com</a>
+  </div>
+</main>
+<script>
+  /* GetResponse lands here after signup (thankyou_url). A note's bonus box stores its PDF in localStorage;
+     it unlocks on the confirmation page (/?confirmed=1), together with the library. */
+  (function(){
+    var GIFTS = {prompts:'AI Video Script Prompt Pack', stack:'My AI Stack cheat sheet', checklist:'Before You Hit Publish checklist'};
+    var g; try{ g = GIFTS[localStorage.getItem('imstruzik-gift')]; }catch(e){}
+    if(g) document.getElementById('one').innerHTML = 'Open my email and hit <b>confirm</b>, and your ' + g + ' is yours, plus the whole free library.';
+    if(/[?&]from=downloads/.test(location.search)){ var b = document.getElementById('back'); b.href = '/downloads/'; b.innerHTML = '&larr; Back to Free downloads'; }
+  })();
+</script>
+</body>
+</html>

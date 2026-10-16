@@ -396,7 +396,7 @@ function hurt(){
   G.hearts--;G.inv=1.8;h.hurt=.4;h.vy=-520;h.on=false;S_HURT();G.shake=.25;
   if(G.hearts<=0){die();}
 }
-const GR={url:'https://app.getresponse.com/add_subscriber.html',token:'7Cw5K',thanks:'https://imstruzik.com/?subscribed=1#newsletter'};
+const GR={url:'https://app.getresponse.com/add_subscriber.html',token:'7Cw5K',thanks:'https://imstruzik.com/thanks/?from=play'};
 function showRevive(){
   G.state='dead';track('lifeline-shown',{level:G.li+1});
   card.innerHTML=`<div class="badge">Out of lives</div><h2>Want a life back?</h2>
@@ -423,7 +423,7 @@ function showRevive(){
     let sent=true;
     const finish=()=>{
       track('lifeline-signup',{sent:sent});
-      card.innerHTML=`<div class="badge">Life restored</div><h2>Back in the game</h2><p>${sent?'Check your inbox and confirm your address to get the library.':'Preview mode: the signup is only sent from the live site.'}</p><button class="pri" id="rv-cont">Continue</button>`;
+      card.innerHTML=`<div class="badge">Life restored</div><h2>Back in the game</h2><p>${sent?'Check your inbox (or Spam) and confirm your address to get the library.':'Preview mode: the signup is only sent from the live site.'}</p><button class="pri" id="rv-cont">Continue</button>`;
       document.getElementById('rv-cont').onclick=revive;
     };
     try{fetch(GR.url,{method:'POST',mode:'no-cors',body:body}).then(finish,()=>{sent=false;finish()});}catch(err){sent=false;finish();}

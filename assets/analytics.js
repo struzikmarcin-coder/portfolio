@@ -5,7 +5,7 @@
 
    Custom events (Umami → Events):
      newsletter-submit     someone pressed Subscribe / Notify me      {form: homepage|downloads|gate, gift}
-     newsletter-signup     GetResponse sent them back (?subscribed=1)  {form, gift}
+     newsletter-signup     GetResponse sent them to /thanks/          {form, gift}
      newsletter-confirmed  they clicked the confirmation link        {gift}
      pdf-download          click on any PDF link                     {file}
      extension-download    click on the Email Blur .zip              {file}
@@ -33,8 +33,9 @@
   s.setAttribute('data-domains', 'imstruzik.com');
   s.setAttribute('data-do-not-track', 'true');
   s.onload = function(){
-    // GetResponse thank-you pages: the homepage form returns to /?subscribed=1#newsletter, the gate form to /?subscribed=1
-    if(/[?&]subscribed=1/.test(q)) track('newsletter-signup', {form: path.indexOf('/downloads/') === 0 ? 'downloads' : location.hash === '#newsletter' ? 'homepage' : 'gate', gift: gift()});
+    // GetResponse thank-you page: /thanks/ (?from=downloads for the library form). ?subscribed=1 is the old return URL.
+    if(path.indexOf('/thanks/') === 0) track('newsletter-signup', {form: (q.match(/[?&]from=([a-z]+)/) || [0, 'homepage'])[1], gift: gift()});
+    else if(/[?&]subscribed=1/.test(q)) track('newsletter-signup', {form: path.indexOf('/downloads/') === 0 ? 'downloads' : location.hash === '#newsletter' ? 'homepage' : 'gate', gift: gift()});
     if(/[?&]confirmed=1/.test(q)) track('newsletter-confirmed', {gift: gift()});
   };
   document.head.appendChild(s);
