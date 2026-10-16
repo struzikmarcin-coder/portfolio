@@ -168,6 +168,9 @@
   .work-inner{max-width:1240px;margin:0 auto}
   .section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px}
   .section-head p{margin:0;max-width:38ch;font-size:15.5px;line-height:1.6;color:#9aa0a8}
+  .yt-note{display:block;margin-top:10px;font-size:12.5px;line-height:1.5;color:#6d737b}
+  .yt-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+  .yt-note a:hover{color:#c9ced6}
   .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:18px}
   .work-group-label{margin:0 0 16px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd}
   .work-group-label-hand{margin-top:48px}
@@ -198,18 +201,6 @@
   #lightbox-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
   .lightbox-frame{position:relative;aspect-ratio:16/9;max-height:74vh;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#000;box-shadow:0 40px 120px rgba(0,0,0,.75),0 0 0 1px rgba(107,138,253,.18)}
   .lightbox-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .yt-gate{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);background-size:cover;background-position:center;text-align:center}
-  .yt-gate::before{content:'';position:absolute;inset:0;background:rgba(8,9,12,.78);backdrop-filter:blur(6px)}
-  .yt-gate-box{position:relative;max-width:470px}
-  .yt-gate-box p{margin:0 0 18px;font-size:clamp(13px,1.6vw,15px);line-height:1.6;color:#c9ced6}
-  .yt-gate-box p a{color:#f4f5f6;text-decoration:underline;text-underline-offset:3px}
-  .yt-gate-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-  .yt-gate-btns button,.yt-gate-btns a{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;text-decoration:none}
-  .yt-play{border:0;background:#8dfba1;color:#0b0d10;box-shadow:0 10px 28px rgba(141,251,161,.25)}
-  .yt-play:hover{opacity:.92}
-  .yt-out{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:#f4f5f6}
-  .yt-out:hover{background:rgba(255,255,255,.12)}
-  @media (max-width:520px){.yt-gate-box p{margin-bottom:12px}.yt-gate-btns button,.yt-gate-btns a{padding:10px 16px;font-size:13.5px}}
 
   #case{padding:clamp(56px,9vw,70px) 20px clamp(70px,10vw,100px);border-top:1px solid rgba(255,255,255,.07)}
   .case-inner{max-width:1240px;margin:0 auto}
@@ -431,7 +422,7 @@
     </span>
   </h1>
 
-  <p data-r class="hero-sub">I work in SaaS product marketing, where I&nbsp;turn features into video people actually watch — script, video editing, motion design and UI&nbsp;animation in one pair of hands. I&nbsp;cut my teeth as an OG After Effects animator, keyframe by keyframe; these days AI&nbsp;tools sit right next to that muscle memory.</p>
+  <p data-r class="hero-sub">I work in GetResponse marketing, where I&nbsp;turn features into video people actually watch — script, video editing, motion design and UI&nbsp;animation in one pair of hands. I&nbsp;cut my teeth as an OG After Effects animator, keyframe by keyframe; these days AI&nbsp;tools sit right next to that muscle memory.</p>
 
   <div id="hero-ctas" data-r>
     <a class="btn-light" href="#newsletter">Steal my AI workflow</a>
@@ -502,7 +493,7 @@
       <p class="eyebrow">02 — Selected work</p>
       <h2 class="section-title">Things I have made</h2>
     </div>
-    <p>Feature launches, product updates and campaign videos from my work in SaaS. Press play on any of them.</p>
+    <p>Feature launches, product updates and campaign videos from my work in SaaS. Press play on any of them.<span class="yt-note">Videos play from YouTube, which may collect data about&nbsp;you. <a href="/privacy/">Privacy</a></span></p>
   </div>
 
   <p class="work-group-label work-group-label-ai" data-r>AI-powered</p>
@@ -876,32 +867,12 @@
   var lbTitle = document.getElementById('lightbox-title');
   var lbTag = document.getElementById('lightbox-tag');
 
-  /* The player comes from YouTube (Google), so it only loads after the visitor agrees.
-     Pressing play once is remembered in localStorage (imstruzik-yt); /privacy/ has a button that clears it. */
-  var YT_KEY = 'imstruzik-yt';
-  function ytAllowed(){ try{ return localStorage.getItem(YT_KEY) === '1'; }catch(e){ return false; } }
-  function playVideo(id, title){
-    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1" title="'+title+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-  }
   function openLightbox(id, title, tag, client){
     lbTitle.textContent = title;
     lbTag.textContent = tag + ' — ' + client;
-    if(ytAllowed()){
-      playVideo(id, title);
-    } else {
-      frame.innerHTML = '<div class="yt-gate" style="background-image:url(/assets/yt/'+id+'.webp)"><div class="yt-gate-box">'
-        + '<p>This video plays from YouTube. When you press play, YouTube (Google) receives your IP address and may store data in your browser. Your choice is remembered on this site and you can undo it in my <a href="/privacy/">privacy policy</a>.</p>'
-        + '<div class="yt-gate-btns"><button class="yt-play" type="button">&#9654; Play video</button><a class="yt-out" href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener">Watch on YouTube &#8599;</a></div>'
-        + '</div></div>';
-      frame.querySelector('.yt-play').addEventListener('click', function(){
-        try{ localStorage.setItem(YT_KEY, '1'); }catch(e){}
-        playVideo(id, title);
-      });
-    }
+    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1" title="'+title+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
-    var play = frame.querySelector('.yt-play');
-    if(play) play.focus();
   }
   function closeLightbox(){
     lightbox.classList.remove('is-open');
