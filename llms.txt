@@ -1,6 +1,6 @@
 # imstruzik.com
 
-> Marcin Struzik — 13+ years in SaaS product marketing video. Scripting, video editing,
+> Marcin Struzik — 14+ years in SaaS product marketing video. Scripting, video editing,
 > motion design and UI animation. Writes practical notes on using AI in a real video
 > production workflow: what saves time, what wastes it, and what stays human.
 
