@@ -1,0 +1,58 @@
+# One-off helper: downloads Google Fonts and YouTube thumbnails into the repo,
+# so the site stops loading them from Google on every visit. Removed after use.
+name: fetch-self-hosted
+on:
+  push:
+    branches: [claude/project-thread-07b6o1]
+    paths: [.github/workflows/fetch-self-hosted.yml]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - name: Fetch fonts and thumbnails
+        run: |
+          python3 - <<'PY'
+          import re, os, io, urllib.request
+          from PIL import Image
+          UA = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'}
+          def get(u):
+              return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30).read()
+          os.makedirs('assets/fonts', exist_ok=True)
+          css = get('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap').decode()
+          out, cache = [], {}
+          for block in re.findall(r'/\*\s*([\w-]+)\s*\*/\s*(@font-face\s*\{[^}]*\})', css):
+              subset, face = block
+              if subset not in ('latin', 'latin-ext'):
+                  continue
+              fam = re.search(r"font-family:\s*'([^']+)'", face).group(1).lower().replace(' ', '-')
+              url = re.search(r'url\((https://[^)]+)\)', face).group(1)
+              if url not in cache:
+                  name = f'{fam}-{subset}-{len(cache)}.woff2'
+                  open('assets/fonts/' + name, 'wb').write(get(url))
+                  cache[url] = name
+              out.append(face.replace(url, '/assets/fonts/' + cache[url]))
+          open('assets/fonts/fonts.css', 'w').write('/* Self-hosted Google Fonts (Archivo, JetBrains Mono), SIL Open Font License 1.1. Latin + Latin Extended only. */\n' + '\n'.join(out) + '\n')
+          os.makedirs('assets/yt', exist_ok=True)
+          ids = 'H2gr8Xuzo_s x8IydBbk6lg ogk_iq_8Jx8 iojlGiU4ACE MN7-9vy0_5I Dh-i37iUYkI hWFtJcP_3k8 UqFpYAMRscE hby1h2SOqSo aRzCg2gLBFU BUV6CTh2wVU TIOqaUY11Ak'.split()
+          for i in ids:
+              hq = Image.open(io.BytesIO(get(f'https://i.ytimg.com/vi/{i}/hqdefault.jpg'))).convert('RGB')
+              hq.save(f'assets/yt/{i}-hq.webp', 'WEBP', quality=80)
+              try:
+                  mx = Image.open(io.BytesIO(get(f'https://i.ytimg.com/vi/{i}/maxresdefault.jpg'))).convert('RGB')
+                  if mx.width < 200: raise ValueError('placeholder')
+              except Exception:
+                  mx = hq.crop((0, 45, 480, 315))
+              mx.save(f'assets/yt/{i}.webp', 'WEBP', quality=80)
+          PY
+          ls -la assets/fonts assets/yt
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add assets/fonts assets/yt
+          git commit -m "Add self-hosted fonts and YouTube thumbnails"
+          git push
