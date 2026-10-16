@@ -31,6 +31,7 @@
   s.src = 'https://cloud.umami.is/script.js';
   s.setAttribute('data-website-id', WEBSITE_ID);
   s.setAttribute('data-domains', 'imstruzik.com');
+  s.setAttribute('data-do-not-track', 'true');
   s.onload = function(){
     // GetResponse thank-you pages: the homepage form returns to /?subscribed=1#newsletter, the gate form to /?subscribed=1
     if(/[?&]subscribed=1/.test(q)) track('newsletter-signup', {form: path.indexOf('/downloads/') === 0 ? 'downloads' : location.hash === '#newsletter' ? 'homepage' : 'gate', gift: gift()});

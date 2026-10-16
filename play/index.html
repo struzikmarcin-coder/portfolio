@@ -33,6 +33,12 @@ button,a.btn{display:block;width:100%;margin-top:10px;border:0;border-radius:14p
 .lb{margin:12px 0 4px;text-align:left}.lb form{display:flex;gap:8px}.lb input{margin-top:0;flex:1;min-width:0;padding:11px 12px}.lb .pri{width:auto;margin-top:0;padding:0 14px;white-space:nowrap}
 .lbh{font-weight:800;margin:10px 0 4px}.lbr{display:flex;gap:8px;font-size:14px;padding:3px 6px;border-radius:8px}.lbr .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lbr.me{background:#efe9ff}
 .card a:not(.btn){color:var(--accent)}
+.consent{display:flex;align-items:flex-start;gap:10px;margin:12px 0 2px;text-align:left;font-size:13px;line-height:1.45;color:#4a5079;cursor:pointer;user-select:none}
+.card .consent input{appearance:none;-webkit-appearance:none;flex:0 0 22px;width:22px;height:22px;margin:0;padding:0;border-radius:7px;border:2px solid #c9cdea;background:#fff;display:grid;place-content:center;cursor:pointer}
+.card .consent input::after{content:'';width:10px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .12s}
+.card .consent input:checked{background:var(--accent);border-color:var(--accent)}
+.card .consent input:checked::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+.card .consent.err input{border-color:#c62828}
 </style></head>
 <body>
 <div id="wrap"><div id="stage"><canvas id="cv"></canvas><div id="ov"><div class="card" id="card"></div></div></div></div>
@@ -397,16 +403,21 @@ function showRevive(){
   <p>Join my newsletter (every 2 weeks: AI video workflows that actually work) and you keep playing. You also get my free library of 4 PDFs and the Email Blur extension.</p>
   <form id="rv-form" novalidate><label class="sr" for="rv-email">Your email address</label>
   <input id="rv-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
+  <label class="consent" for="rv-consent"><input id="rv-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email (welcome series, then every 2&nbsp;weeks). I&nbsp;can unsubscribe at any&nbsp;time. <a href="https://imstruzik.com/privacy/" target="_blank" rel="noopener">Privacy policy</a></span></label>
   <button class="pri" id="rv-go" type="submit">Subscribe and get a life</button></form>
   <button class="ter" id="rv-no" type="button">No thanks, I will quit</button>
-  <p class="hint" id="rv-note">Free. Confirm by email, unsubscribe anytime. <a href="https://imstruzik.com/privacy/" target="_blank" rel="noopener">Privacy</a></p>`;
+  <p class="hint" id="rv-note">Free. Confirm by email to get the library.</p>`;
   ov.classList.add('on');
   const form=document.getElementById('rv-form'),email=document.getElementById('rv-email'),note=document.getElementById('rv-note'),go=document.getElementById('rv-go');
+  const noteText=note.textContent;
+  document.getElementById('rv-consent').onchange=e=>{e.target.parentNode.classList.remove('err');if(e.target.checked&&/tick the box/.test(note.textContent)){note.textContent=noteText;note.style.removeProperty('color')}};
   document.getElementById('rv-no').onclick=()=>{track('lifeline-skip');ov.classList.remove('on');die();};
   form.onsubmit=e=>{
     e.preventDefault();
     const v=email.value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){note.textContent='Please enter a valid email address.';note.style.color='#c62828';email.focus();return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){note.textContent='Please enter a valid email address.';note.style.setProperty('color','#c62828','important');email.focus();return}
+    const ck=document.getElementById('rv-consent');
+    if(!ck.checked){note.textContent='Please tick the box so I can send you the emails.';note.style.setProperty('color','#c62828','important');ck.parentNode.classList.add('err');ck.focus();return}
     go.disabled=true;go.textContent='Sending...';
     const body=new URLSearchParams({campaign_token:GR.token,thankyou_url:GR.thanks,start_day:'0',email:v});
     let sent=true;
