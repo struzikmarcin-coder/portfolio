@@ -28,9 +28,8 @@
 
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/archivo-latin-1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 
 <script type="application/ld+json">
 {
@@ -87,6 +86,15 @@
   .news-form input:focus{outline:none;border-color:#6b8afd;background:rgba(107,138,253,.07)}
   .news-form button{flex:0 0 auto;cursor:pointer;border:0;padding:15px 26px;border-radius:999px;background:#f4f5f6;color:#0b0d10;font:inherit;font-size:15px;font-weight:600}
   .news-form button:hover{opacity:.9}
+  .consent{flex:1 1 100%;display:flex;align-items:flex-start;gap:11px;margin:6px 0 0;text-align:left;font-size:13.5px;line-height:1.55;color:#9aa0a8;cursor:pointer}
+  .consent input{appearance:none;-webkit-appearance:none;flex:0 0 20px;width:20px;height:20px;min-width:0;margin:1px 0 0;padding:0;border-radius:6px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.04);cursor:pointer;display:grid;place-content:center;transition:border-color .15s,background .15s}
+  .consent input::after{content:'';width:10px;height:6px;border-left:2px solid #0b0d10;border-bottom:2px solid #0b0d10;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .12s}
+  .consent input:checked{background:#8dfba1;border-color:#8dfba1}
+  .consent input:checked::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+  .consent input:focus-visible{outline:2px solid #6b8afd;outline-offset:2px}
+  .consent.is-error input{border-color:#ffb4a2;background:rgba(255,180,162,.08)}
+  .consent a{color:#c9ced6;text-decoration:underline;text-underline-offset:3px}
+  .consent a:hover{color:#f4f5f6}
   .get .news-note{margin:14px 0 0;font-size:13px;line-height:1.6;color:#6d737b}
   .get .news-note.is-error{color:#ffb4a2}
   .get .news-note.is-ok{color:#8dfba1}
@@ -162,8 +170,9 @@
       <label class="sr-only" for="news-email">Your email address</label>
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
       <button type="submit">Unlock the library</button>
+      <label class="consent" for="news-consent"><input id="news-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email: a short welcome series, then one email every 2&nbsp;weeks. I&nbsp;can unsubscribe at any&nbsp;time. <a href="/privacy/">Privacy policy</a></span></label>
     </form>
-    <p class="news-note" id="news-note" role="status">Free. Your address stays with me. <a class="news-privacy" href="/privacy/">Privacy</a></p>
+    <p class="news-note" id="news-note" role="status">Free. Confirm by email and everything unlocks. Your address stays with me.</p>
   </section>
 
   <div class="items">
@@ -262,6 +271,11 @@
     note.textContent = 'Almost there. Click the confirmation link in your inbox and the whole library unlocks.';
     note.classList.add('is-ok');
   }
+  var noteText = note.innerHTML;
+  document.getElementById('news-consent').addEventListener('change', function(){
+    this.parentNode.classList.remove('is-error');
+    if(this.checked && note.classList.contains('is-error') && /tick the box/.test(note.textContent)){ note.innerHTML = noteText; note.classList.remove('is-error'); }
+  });
   form.addEventListener('submit', function(ev){
     var input = document.getElementById('news-email');
     note.classList.remove('is-error','is-ok');
@@ -270,6 +284,15 @@
       note.textContent = 'That email does not look right, mind checking it?';
       note.classList.add('is-error');
       input.focus();
+      return;
+    }
+    var consent = document.getElementById('news-consent');
+    if(!consent.checked){
+      ev.preventDefault();
+      note.textContent = 'Please tick the box above so I can send you the emails.';
+      note.classList.add('is-error');
+      consent.parentNode.classList.add('is-error');
+      consent.focus();
       return;
     }
     try{ localStorage.setItem('imstruzik-gift', 'library'); }catch(e){}

@@ -29,10 +29,8 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://i.ytimg.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/archivo-latin-1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 
 <script type="application/ld+json">
 {
@@ -200,6 +198,18 @@
   #lightbox-close:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
   .lightbox-frame{position:relative;aspect-ratio:16/9;max-height:74vh;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#000;box-shadow:0 40px 120px rgba(0,0,0,.75),0 0 0 1px rgba(107,138,253,.18)}
   .lightbox-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .yt-gate{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);background-size:cover;background-position:center;text-align:center}
+  .yt-gate::before{content:'';position:absolute;inset:0;background:rgba(8,9,12,.78);backdrop-filter:blur(6px)}
+  .yt-gate-box{position:relative;max-width:470px}
+  .yt-gate-box p{margin:0 0 18px;font-size:clamp(13px,1.6vw,15px);line-height:1.6;color:#c9ced6}
+  .yt-gate-box p a{color:#f4f5f6;text-decoration:underline;text-underline-offset:3px}
+  .yt-gate-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .yt-gate-btns button,.yt-gate-btns a{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;text-decoration:none}
+  .yt-play{border:0;background:#8dfba1;color:#0b0d10;box-shadow:0 10px 28px rgba(141,251,161,.25)}
+  .yt-play:hover{opacity:.92}
+  .yt-out{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:#f4f5f6}
+  .yt-out:hover{background:rgba(255,255,255,.12)}
+  @media (max-width:520px){.yt-gate-box p{margin-bottom:12px}.yt-gate-btns button,.yt-gate-btns a{padding:10px 16px;font-size:13.5px}}
 
   #case{padding:clamp(56px,9vw,70px) 20px clamp(70px,10vw,100px);border-top:1px solid rgba(255,255,255,.07)}
   .case-inner{max-width:1240px;margin:0 auto}
@@ -324,6 +334,15 @@
   .news-note a:hover{color:#0b0d10;opacity:.92}
   .news-note a.news-privacy{display:inline;margin:0;padding:0;background:none;box-shadow:none;color:inherit;font-size:inherit;font-weight:inherit;text-decoration:underline;text-underline-offset:3px}
   .news-note a.news-privacy:hover{color:#f4f5f6;opacity:1}
+  .consent{flex:1 1 100%;display:flex;align-items:flex-start;gap:11px;margin:6px 0 0;text-align:left;font-size:13.5px;line-height:1.55;color:#9aa0a8;cursor:pointer}
+  .consent input{appearance:none;-webkit-appearance:none;flex:0 0 20px;width:20px;height:20px;min-width:0;margin:1px 0 0;padding:0;border-radius:6px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.04);cursor:pointer;display:grid;place-content:center;transition:border-color .15s,background .15s}
+  .consent input::after{content:'';width:10px;height:6px;border-left:2px solid #0b0d10;border-bottom:2px solid #0b0d10;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .12s}
+  .consent input:checked{background:#8dfba1;border-color:#8dfba1}
+  .consent input:checked::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+  .consent input:focus-visible{outline:2px solid #6b8afd;outline-offset:2px}
+  .consent.is-error input{border-color:#ffb4a2;background:rgba(255,180,162,.08)}
+  .consent a{color:#c9ced6;text-decoration:underline;text-underline-offset:3px}
+  .consent a:hover{color:#f4f5f6}
   .news-note{margin:18px 0 0;font-size:13px;line-height:1.6;color:#6d737b}
   .news-note.is-error{color:#ffb4a2}
   .news-note.is-ok{color:#8dfba1}
@@ -420,9 +439,9 @@
   </div>
 
   <div id="hero-strip" data-r>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/H2gr8Xuzo_s/hqdefault.jpg" alt="" width="480" height="360" decoding="async"></div>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/x8IydBbk6lg/hqdefault.jpg" alt="" width="480" height="360" decoding="async"></div>
-    <div class="hero-thumb"><img src="https://i.ytimg.com/vi/ogk_iq_8Jx8/hqdefault.jpg" alt="" width="480" height="360" decoding="async"></div>
+    <div class="hero-thumb"><img src="/assets/yt/H2gr8Xuzo_s-hq.webp" alt="" width="480" height="360" decoding="async"></div>
+    <div class="hero-thumb"><img src="/assets/yt/x8IydBbk6lg-hq.webp" alt="" width="480" height="360" decoding="async"></div>
+    <div class="hero-thumb"><img src="/assets/yt/ogk_iq_8Jx8-hq.webp" alt="" width="480" height="360" decoding="async"></div>
   </div>
 
 </section>
@@ -490,7 +509,7 @@
   <div class="work-grid" id="work-grid-ai">
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: MCP Server Promo" data-video-id="hWFtJcP_3k8" data-video-title="MCP Server Promo" data-video-tag="Promo" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/hWFtJcP_3k8/maxresdefault.jpg" alt="MCP Server Promo — promo video for GetResponse, made with AI" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/hWFtJcP_3k8/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/hWFtJcP_3k8/hqdefault.jpg'">
+        <img src="/assets/yt/hWFtJcP_3k8.webp" alt="MCP Server Promo — promo video for GetResponse, made with AI" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Promo</span>
@@ -499,7 +518,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Marketing Automation Promo" data-video-id="UqFpYAMRscE" data-video-title="Marketing Automation Promo" data-video-tag="Promo" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/UqFpYAMRscE/maxresdefault.jpg" alt="Marketing Automation Promo — promo video for GetResponse, made with AI" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/UqFpYAMRscE/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/UqFpYAMRscE/hqdefault.jpg'">
+        <img src="/assets/yt/UqFpYAMRscE.webp" alt="Marketing Automation Promo — promo video for GetResponse, made with AI" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Promo</span>
@@ -508,7 +527,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: AI Email Creator" data-video-id="hby1h2SOqSo" data-video-title="AI Email Creator" data-video-tag="Feature launch" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/hby1h2SOqSo/maxresdefault.jpg" alt="AI Email Creator — feature launch video for GetResponse, made with AI" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/hby1h2SOqSo/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/hby1h2SOqSo/hqdefault.jpg'">
+        <img src="/assets/yt/hby1h2SOqSo.webp" alt="AI Email Creator — feature launch video for GetResponse, made with AI" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Feature launch</span>
@@ -517,7 +536,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Landing Page Builder" data-video-id="aRzCg2gLBFU" data-video-title="Landing Page Builder" data-video-tag="Feature launch" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/aRzCg2gLBFU/maxresdefault.jpg" alt="Landing Page Builder — feature launch video for GetResponse, made with AI" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/aRzCg2gLBFU/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/aRzCg2gLBFU/hqdefault.jpg'">
+        <img src="/assets/yt/aRzCg2gLBFU.webp" alt="Landing Page Builder — feature launch video for GetResponse, made with AI" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Feature launch</span>
@@ -526,7 +545,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Product Recommendations" data-video-id="BUV6CTh2wVU" data-video-title="Product Recommendations" data-video-tag="Feature launch" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/BUV6CTh2wVU/maxresdefault.jpg" alt="Product Recommendations — feature launch video for GetResponse, made with AI" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/BUV6CTh2wVU/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/BUV6CTh2wVU/hqdefault.jpg'">
+        <img src="/assets/yt/BUV6CTh2wVU.webp" alt="Product Recommendations — feature launch video for GetResponse, made with AI" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Feature launch</span>
@@ -535,7 +554,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: GetResponse Showreel" data-video-id="TIOqaUY11Ak" data-video-title="GetResponse Showreel" data-video-tag="Showreel" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/TIOqaUY11Ak/maxresdefault.jpg" alt="GetResponse Showreel — showreel video for GetResponse, made with AI" loading="lazy" width="1280" height="720" onload="if(this.naturalWidth&lt;=120)this.src='https://i.ytimg.com/vi/TIOqaUY11Ak/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TIOqaUY11Ak/hqdefault.jpg'">
+        <img src="/assets/yt/TIOqaUY11Ak.webp" alt="GetResponse Showreel — showreel video for GetResponse, made with AI" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Showreel</span>
@@ -548,7 +567,7 @@
   <div class="work-grid" id="work-grid">
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Convert More Customers. Keep Them Coming Back" data-video-id="Dh-i37iUYkI" data-video-title="Convert More Customers. Keep Them Coming Back" data-video-tag="Integration" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/Dh-i37iUYkI/maxresdefault.jpg" alt="Convert More Customers. Keep Them Coming Back — integration launch video for GetResponse" loading="lazy" width="1280" height="720">
+        <img src="/assets/yt/Dh-i37iUYkI.webp" alt="Convert More Customers. Keep Them Coming Back — integration launch video for GetResponse" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Integration</span>
@@ -557,7 +576,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Keep your students engaged" data-video-id="x8IydBbk6lg" data-video-title="Keep your students engaged" data-video-tag="Product update" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/x8IydBbk6lg/maxresdefault.jpg" alt="Keep your students engaged — product update video for GetResponse" loading="lazy" width="1280" height="720">
+        <img src="/assets/yt/x8IydBbk6lg.webp" alt="Keep your students engaged — product update video for GetResponse" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Product update</span>
@@ -566,7 +585,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: AI Course Creator" data-video-id="ogk_iq_8Jx8" data-video-title="AI Course Creator" data-video-tag="Feature launch" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/ogk_iq_8Jx8/maxresdefault.jpg" alt="AI Course Creator — feature launch video for GetResponse" loading="lazy" width="1280" height="720">
+        <img src="/assets/yt/ogk_iq_8Jx8.webp" alt="AI Course Creator — feature launch video for GetResponse" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Feature launch</span>
@@ -575,7 +594,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Monetize your knowledge" data-video-id="iojlGiU4ACE" data-video-title="Monetize your knowledge" data-video-tag="Campaign" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/iojlGiU4ACE/maxresdefault.jpg" alt="Monetize your knowledge — campaign video for GetResponse" loading="lazy" width="1280" height="720">
+        <img src="/assets/yt/iojlGiU4ACE.webp" alt="Monetize your knowledge — campaign video for GetResponse" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Campaign</span>
@@ -584,7 +603,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Product walkthrough" data-video-id="MN7-9vy0_5I" data-video-title="Product walkthrough" data-video-tag="Explainer" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/MN7-9vy0_5I/maxresdefault.jpg" alt="Product walkthrough — explainer video for GetResponse" loading="lazy" width="1280" height="720">
+        <img src="/assets/yt/MN7-9vy0_5I.webp" alt="Product walkthrough — explainer video for GetResponse" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Explainer</span>
@@ -593,7 +612,7 @@
     </div>
     <div data-r>
       <div class="work-card-media" role="button" tabindex="0" aria-label="Play video: Personalize emails with one click" data-video-id="H2gr8Xuzo_s" data-video-title="Personalize emails with one click" data-video-tag="Feature launch" data-video-client="GetResponse">
-        <img src="https://i.ytimg.com/vi/H2gr8Xuzo_s/maxresdefault.jpg" alt="Personalize emails with one click — feature launch video for GetResponse" loading="lazy" width="1280" height="720">
+        <img src="/assets/yt/H2gr8Xuzo_s.webp" alt="Personalize emails with one click — feature launch video for GetResponse" loading="lazy" width="1280" height="720">
         <div class="work-card-scrim"></div>
         <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
         <span class="work-tag">Feature launch</span>
@@ -693,8 +712,9 @@
       <label class="sr-only" for="news-email">Your email address</label>
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
       <button class="btn-light" type="submit">Subscribe</button>
+      <label class="consent" for="news-consent"><input id="news-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email: a short welcome series, then one email every 2&nbsp;weeks. I&nbsp;can unsubscribe at any&nbsp;time. <a href="/privacy/">Privacy policy</a></span></label>
     </form>
-    <p class="news-note" id="news-note" role="status">Free. One click to unsubscribe. Your address stays with me. <a class="news-privacy" href="/privacy/">Privacy</a></p>
+    <p class="news-note" id="news-note" role="status">Free. Confirm by email. Your address stays with me.</p>
   </div>
 </section>
 
@@ -782,6 +802,11 @@
   var giftMatch = location.search.match(/[?&]gift=([a-z]+)/);
   var gift = giftMatch && GIFTS[giftMatch[1]] ? giftMatch[1] : null;
   if(newsForm){
+    var noteText = newsNote.innerHTML;
+    document.getElementById('news-consent').addEventListener('change', function(){
+      this.parentNode.classList.remove('is-error');
+      if(this.checked && newsNote.classList.contains('is-error') && /tick the box/.test(newsNote.textContent)){ newsNote.innerHTML = noteText; newsNote.classList.remove('is-error'); }
+    });
     var shown = gift || (/[?&](subscribed|confirmed)=1/.test(location.search) && GIFTS[stored()] ? stored() : null);
     if(shown){
       document.getElementById('news-gift-name').textContent = GIFTS[shown][0].replace(/^the /, 'The ') + ', plus the rest of my free library';
@@ -818,6 +843,15 @@
         input.focus();
         return;
       }
+      var consent = document.getElementById('news-consent');
+      if(!consent.checked){
+        ev.preventDefault();
+        newsNote.textContent = 'Please tick the box above so I can send you the emails.';
+        newsNote.classList.add('is-error');
+        consent.parentNode.classList.add('is-error');
+        consent.focus();
+        return;
+      }
       store(gift);
       if(!newsForm.elements.campaign_token.value){
         ev.preventDefault();
@@ -842,12 +876,32 @@
   var lbTitle = document.getElementById('lightbox-title');
   var lbTag = document.getElementById('lightbox-tag');
 
+  /* The player comes from YouTube (Google), so it only loads after the visitor agrees.
+     Pressing play once is remembered in localStorage (imstruzik-yt); /privacy/ has a button that clears it. */
+  var YT_KEY = 'imstruzik-yt';
+  function ytAllowed(){ try{ return localStorage.getItem(YT_KEY) === '1'; }catch(e){ return false; } }
+  function playVideo(id, title){
+    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1" title="'+title+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  }
   function openLightbox(id, title, tag, client){
     lbTitle.textContent = title;
     lbTag.textContent = tag + ' — ' + client;
-    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1" title="'+title+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    if(ytAllowed()){
+      playVideo(id, title);
+    } else {
+      frame.innerHTML = '<div class="yt-gate" style="background-image:url(/assets/yt/'+id+'.webp)"><div class="yt-gate-box">'
+        + '<p>This video plays from YouTube. When you press play, YouTube (Google) receives your IP address and may store data in your browser. Your choice is remembered on this site and you can undo it in my <a href="/privacy/">privacy policy</a>.</p>'
+        + '<div class="yt-gate-btns"><button class="yt-play" type="button">&#9654; Play video</button><a class="yt-out" href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener">Watch on YouTube &#8599;</a></div>'
+        + '</div></div>';
+      frame.querySelector('.yt-play').addEventListener('click', function(){
+        try{ localStorage.setItem(YT_KEY, '1'); }catch(e){}
+        playVideo(id, title);
+      });
+    }
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
+    var play = frame.querySelector('.yt-play');
+    if(play) play.focus();
   }
   function closeLightbox(){
     lightbox.classList.remove('is-open');
