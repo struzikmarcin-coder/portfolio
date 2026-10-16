@@ -3,7 +3,8 @@
 > Marcin Struzik is an AI motion designer at GetResponse, with 14+ years in SaaS product
 > marketing video and 2,000+ videos made. He covers scripting, video editing, motion design
 > and UI animation, and writes The AI Cut: practical notes on what AI does well in a real
-> video workflow and what stays human.
+> video workflow and what stays human. The site is for people who make product and marketing
+> videos and want to use AI without losing the craft.
 
 Last updated: 2026-10-16. YouTube: https://www.youtube.com/@imstruzik
 
