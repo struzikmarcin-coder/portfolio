@@ -45,19 +45,18 @@
   <div class="in">
     <img class="ph" src="/assets/portrait-marcin.webp" width="96" height="96" alt="Marcin Struzik">
     <h1>High five,<br><em>you&rsquo;re in!</em></h1>
-    <p class="one" id="one">Open my email and hit <b>confirm</b>, and the whole free library is yours.</p>
-    <p class="small">Not there in a minute? Peek in <b>Spam</b> or <b>Promotions</b>.<br>It comes from hello@imstruzik.com.</p>
+    <p class="one" id="one">Open my welcome email and the whole free library is yours.</p>
+    <p class="small">Not there in a minute? Peek in <b>Spam</b> or <b>Promotions</b>.<br>It comes from Substack.</p>
     <p class="play">While you wait: escape the office in <a href="/play/">Friday 17:42</a>, a 2-minute game.</p>
     <a class="home" id="back" href="/">&larr; Back to imstruzik.com</a>
   </div>
 </main>
 <script>
-  /* GetResponse lands here after signup (thankyou_url). A note's bonus box stores its PDF in localStorage;
-     it unlocks on the confirmation page (/?confirmed=1), together with the library. */
+  /* Kept for old links: signups now finish on Substack, whose welcome email links to /downloads/?unlocked=1. */
   (function(){
     var GIFTS = {prompts:'AI Video Script Prompt Pack', stack:'My AI Stack cheat sheet', checklist:'Before You Hit Publish checklist'};
     var g; try{ g = GIFTS[localStorage.getItem('imstruzik-gift')]; }catch(e){}
-    if(g) document.getElementById('one').innerHTML = 'Open my email and hit <b>confirm</b>, and your ' + g + ' is yours, plus the whole free library.';
+    if(g) document.getElementById('one').innerHTML = 'Open my welcome email and your ' + g + ' is yours, plus the whole free library.';
     if(/[?&]from=downloads/.test(location.search)){ var b = document.getElementById('back'); b.href = '/downloads/'; b.innerHTML = '&larr; Back to Free downloads'; }
   })();
 </script>

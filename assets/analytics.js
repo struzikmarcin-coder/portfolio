@@ -4,9 +4,8 @@
    Skip your own visits: open any page with ?notrack=1 once per browser (?notrack=0 undoes it).
 
    Custom events (Umami → Events):
-     newsletter-submit     someone pressed Subscribe / Notify me      {form: homepage|downloads|gate, gift}
-     newsletter-signup     GetResponse sent them to /thanks/          {form, gift}
-     newsletter-confirmed  they clicked the confirmation link        {gift}
+     newsletter-submit     someone pressed Subscribe (opens Substack) {form: homepage|downloads|gate, gift}
+     newsletter-confirmed  they opened the library link from the Substack welcome email {gift}
      pdf-download          click on any PDF link                     {file}
      extension-download    click on the Email Blur .zip              {file}
      bonus-click           click on a note's free-PDF box            {gift, note}
@@ -33,16 +32,14 @@
   s.setAttribute('data-domains', 'imstruzik.com');
   s.setAttribute('data-do-not-track', 'true');
   s.onload = function(){
-    // GetResponse thank-you page: /thanks/ (?from=downloads for the library form). ?subscribed=1 is the old return URL.
-    if(path.indexOf('/thanks/') === 0) track('newsletter-signup', {form: (q.match(/[?&]from=([a-z]+)/) || [0, 'homepage'])[1], gift: gift()});
-    else if(/[?&]subscribed=1/.test(q)) track('newsletter-signup', {form: path.indexOf('/downloads/') === 0 ? 'downloads' : location.hash === '#newsletter' ? 'homepage' : 'gate', gift: gift()});
-    if(/[?&]confirmed=1/.test(q)) track('newsletter-confirmed', {gift: gift()});
+    // Substack has no redirect back, so the finished signup shows up when the welcome email's library link is opened.
+    if(/[?&](confirmed|unlocked)=1/.test(q)) track('newsletter-confirmed', {gift: gift()});
   };
   document.head.appendChild(s);
 
   document.addEventListener('submit', function(ev){
     var f = ev.target;
-    if(!f.action || f.action.indexOf('getresponse.com') < 0 || ev.defaultPrevented) return;
+    if(!f.action || f.action.indexOf('substack.com') < 0 || ev.defaultPrevented) return;
     track('newsletter-submit', {form: f.closest('#cs-gate') ? 'gate' : path.indexOf('/downloads/') === 0 ? 'downloads' : 'homepage', gift: (q.match(/[?&]gift=([a-z]+)/) || [0, 'none'])[1]});
   });
 
