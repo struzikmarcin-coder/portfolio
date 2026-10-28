@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
 Disallow: /assets/downloads/
-
-Sitemap: https://imstruzik.com/sitemap.xml
