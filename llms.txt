@@ -21,6 +21,10 @@ All notes: https://imstruzik.com/notes/
 
 https://imstruzik.com/downloads/: Email Blur, a browser extension Marcin built that blurs every email address on a web page before you record your screen (source: https://github.com/struzikmarcin-coder/portfolio/tree/main/tools/email-blur), plus the Product Video Brief, AI Video Script Prompt Pack, Before You Hit Publish checklist and My AI Stack PDFs. All free, unlocked with a newsletter signup.
 
+## Newsletter
+
+The AI Cut newsletter, every two weeks, on Substack: https://imstruzik.substack.com
+
 ## Contact
 
 - Email: hello@imstruzik.com

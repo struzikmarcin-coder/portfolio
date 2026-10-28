@@ -162,17 +162,14 @@
 
   <section class="get" id="get">
     <h2 id="get-title">One signup, everything unlocked</h2>
-    <p id="get-text">Leave your email, confirm it, and the whole library is yours. You also get my newsletter every two weeks. One click to&nbsp;unsubscribe.</p>
-    <form class="news-form" id="news-form" action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8" novalidate>
-      <input type="hidden" name="campaign_token" value="7Cw5K">
-      <input type="hidden" name="thankyou_url" value="https://imstruzik.com/thanks/?from=downloads">
-      <input type="hidden" name="start_day" value="0">
+    <p id="get-text">Leave your email, finish on Substack, and the welcome email brings the whole library. You also get my newsletter every two weeks. One click to&nbsp;unsubscribe.</p>
+    <form class="news-form" id="news-form" action="https://imstruzik.substack.com/subscribe" method="get" target="_blank" accept-charset="utf-8" novalidate>
       <label class="sr-only" for="news-email">Your email address</label>
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
       <button type="submit">Unlock the library</button>
-      <label class="consent" for="news-consent"><input id="news-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email: a short welcome series, then one email every 2&nbsp;weeks. I&nbsp;can unsubscribe at any&nbsp;time. <a href="/privacy/">Privacy policy</a></span></label>
+      <label class="consent" for="news-consent"><input id="news-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email: a welcome email, then one email every 2&nbsp;weeks, sent through Substack. I&nbsp;can unsubscribe at any&nbsp;time. <a href="/privacy/">Privacy policy</a></span></label>
     </form>
-    <p class="news-note" id="news-note" role="status">Free. Confirm by email and everything unlocks. Your address stays with me.</p>
+    <p class="news-note" id="news-note" role="status">Free. One more click on Substack, then everything unlocks from the welcome email.</p>
   </section>
 
   <div class="items">
@@ -246,9 +243,8 @@
 
 <script>
 (function(){
-  /* The library unlocks after double opt-in: GetResponse confirm lands on /?confirmed=1, which links here with ?unlocked=1
-     (and the first welcome email links here with ?unlocked=1 too). Remembered in localStorage, so it is a soft gate:
-     the PDFs keep their public URLs. */
+  /* The library unlocks from the Substack welcome email, which links here with ?unlocked=1.
+     Remembered in localStorage, so it is a soft gate: the PDFs keep their public URLs. */
   var KEY = 'imstruzik-library', q = location.search;
   function get(){ try{ return localStorage.getItem(KEY) === '1'; }catch(e){ return false; } }
   function set(){ try{ localStorage.setItem(KEY, '1'); }catch(e){} }
@@ -258,7 +254,7 @@
   if(get()){
     document.getElementById('get').classList.add('is-unlocked');
     document.getElementById('get-title').textContent = 'You’re in. Everything is unlocked.';
-    document.getElementById('get-text').textContent = 'Thanks for confirming. Grab whatever you need below, and come back any time: this browser remembers you.';
+    document.getElementById('get-text').textContent = 'Thanks for subscribing. Grab whatever you need below, and come back any time: this browser remembers you.';
     form.hidden = true; note.hidden = true;
     document.querySelectorAll('.item-action.locked').forEach(function(a){
       a.href = a.dataset.pdf; a.setAttribute('download', '');
@@ -266,10 +262,6 @@
     });
     document.getElementById('install').hidden = false;
     return;
-  }
-  if(/[?&]subscribed=1/.test(q)){
-    note.textContent = 'Almost there. Click the confirmation link in your inbox and the whole library unlocks.';
-    note.classList.add('is-ok');
   }
   var noteText = note.innerHTML;
   document.getElementById('news-consent').addEventListener('change', function(){
@@ -296,6 +288,8 @@
       return;
     }
     try{ localStorage.setItem('imstruzik-gift', 'library'); }catch(e){}
+    note.textContent = 'Almost there. Press Subscribe in the Substack tab, then open my welcome email to unlock everything.';
+    note.classList.add('is-ok');
   });
 })();
 </script>

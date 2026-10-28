@@ -45,7 +45,7 @@
       "jobTitle": "AI Motion Designer and SaaS Product Video Producer",
       "description": "AI motion designer with 14+ years in SaaS product video and 2,000+ videos made. Started as an After Effects animator; now combines motion design, scripting, video editing and UI animation with AI tools.",
       "knowsAbout": ["AI motion design", "Motion design", "After Effects", "UI animation", "Video editing", "SaaS product launches", "AI video production", "Free AI tools for video", "AI video scripts", "AI video editing", "AI tools for video"],
-      "sameAs": ["https://www.linkedin.com/in/imstruzik/", "https://www.instagram.com/imstruzik/"]
+      "sameAs": ["https://www.linkedin.com/in/imstruzik/", "https://www.instagram.com/imstruzik/", "https://imstruzik.substack.com"]
     },
     {
       "@type": "WebSite",
@@ -543,18 +543,15 @@
     <p class="eyebrow">04 &middot; Newsletter</p>
     <h2 class="section-title">From zero<br>to AI editing hero</h2>
     <p class="news-lead">For people who make product videos: one email every two weeks on what worked in my workflow and which AI tools I kept. There&rsquo;s no course at the end, promise.</p>
-    <!-- GetResponse plain-HTML signup (help: "Do you offer a plain HTML form code?"). campaign_token = list token from the list's settings; empty = form stays in placeholder mode. -->
+    <!-- Substack signup: opens imstruzik.substack.com/subscribe with the email filled in (new tab), one more click there finishes it. -->
     <p class="news-gift" id="news-gift"><b>★ Free on signup:</b> <span id="news-gift-name">my whole <a href="/downloads/">free library</a>: 4 PDFs and the Email Blur extension</span></p>
-    <form class="news-form" id="news-form" action="https://app.getresponse.com/add_subscriber.html" method="post" accept-charset="utf-8" novalidate>
-      <input type="hidden" name="campaign_token" value="7Cw5K">
-      <input type="hidden" name="thankyou_url" value="https://imstruzik.com/thanks/">
-      <input type="hidden" name="start_day" value="0">
+    <form class="news-form" id="news-form" action="https://imstruzik.substack.com/subscribe" method="get" target="_blank" accept-charset="utf-8" novalidate>
       <label class="sr-only" for="news-email">Your email address</label>
       <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
       <button class="btn-light" type="submit">Subscribe</button>
-      <label class="consent" for="news-consent"><input id="news-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email: a short welcome series, then one email every 2&nbsp;weeks. I&nbsp;can unsubscribe at any&nbsp;time. <a href="/privacy/">Privacy policy</a></span></label>
+      <label class="consent" for="news-consent"><input id="news-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email: a welcome email, then one email every 2&nbsp;weeks, sent through Substack. I&nbsp;can unsubscribe at any&nbsp;time. <a href="/privacy/">Privacy policy</a></span></label>
     </form>
-    <p class="news-note" id="news-note" role="status">Free. Confirm by email. Your address stays with me.</p>
+    <p class="news-note" id="news-note" role="status">Free. You finish in one click on Substack.</p>
   </div>
 </section>
 
@@ -627,12 +624,11 @@
     }, 2600);
   }
 
-  /* ---------- newsletter form: posts to GetResponse, which redirects back with ?subscribed=1 ---------- */
+  /* ---------- newsletter form: opens the Substack subscribe page in a new tab, email already filled in ---------- */
   var newsForm = document.getElementById('news-form');
   var newsNote = document.getElementById('news-note');
-  /* ?gift=… comes from a note's bonus box. The promised PDF unlocks on the confirmation page (?confirmed=1),
-     so people have to confirm to get it; the choice is kept in localStorage across the GetResponse round trip.
-     Everyone still gets the full welcome series by email. */
+  /* ?gift=… comes from a note's bonus box. The PDFs unlock through the library link in the Substack welcome email
+     (/downloads/?unlocked=1); the choice is kept in localStorage so ?confirmed=1 can still show its own button. */
   var GIFTS = {
     prompts:   ['the AI Video Script Prompt Pack (PDF)', '/assets/downloads/ai-video-script-prompt-pack-imstruzik.com.pdf'],
     stack:     ['My AI Stack cheat sheet (PDF)', '/assets/downloads/my-ai-stack-imstruzik.com.pdf'],
@@ -648,16 +644,11 @@
       this.parentNode.classList.remove('is-error');
       if(this.checked && newsNote.classList.contains('is-error') && /tick the box/.test(newsNote.textContent)){ newsNote.innerHTML = noteText; newsNote.classList.remove('is-error'); }
     });
-    var shown = gift || (/[?&](subscribed|confirmed)=1/.test(location.search) && GIFTS[stored()] ? stored() : null);
+    var shown = gift || (/[?&]confirmed=1/.test(location.search) && GIFTS[stored()] ? stored() : null);
     if(shown){
       document.getElementById('news-gift-name').textContent = GIFTS[shown][0].replace(/^the /, 'The ') + ', plus the rest of my free library';
     }
-    if(/[?&]subscribed=1/.test(location.search)){
-      newsNote.textContent = gift || GIFTS[stored()]
-        ? 'Almost there. Click the confirmation link in your inbox and your PDF unlocks here.'
-        : 'Almost there. Check your inbox and click the confirmation link.';
-      newsNote.classList.add('is-ok');
-    } else if(/[?&]confirmed=1/.test(location.search)){
+    if(/[?&]confirmed=1/.test(location.search)){
       var g = GIFTS[stored()];
       newsNote.textContent = 'You\'re in. Thanks for confirming, the first email is on its way.';
       /* everyone gets the whole library; a note's gift PDF also gets its own button */
@@ -694,11 +685,8 @@
         return;
       }
       store(gift);
-      if(!newsForm.elements.campaign_token.value){
-        ev.preventDefault();
-        newsNote.textContent = 'Signup is not connected yet. The newsletter tool still has to be plugged in here.';
-        newsNote.classList.add('is-error');
-      }
+      newsNote.textContent = 'Almost there. Press Subscribe in the Substack tab, then my welcome email brings your free library.';
+      newsNote.classList.add('is-ok');
     });
   }
 

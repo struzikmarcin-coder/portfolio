@@ -397,17 +397,17 @@ function hurt(){
   G.hearts--;G.inv=1.8;h.hurt=.4;h.vy=-520;h.on=false;S_HURT();G.shake=.25;
   if(G.hearts<=0){die();}
 }
-const GR={url:'https://app.getresponse.com/add_subscriber.html',token:'7Cw5K',thanks:'https://imstruzik.com/thanks/?from=play'};
+const SUBSCRIBE='https://imstruzik.substack.com/subscribe';
 function showRevive(){
   G.state='dead';track('lifeline-shown',{level:G.li+1});
   card.innerHTML=`<div class="badge">Out of lives</div><h2>Want a life back?</h2>
   <p>Join my newsletter (every 2 weeks: AI video workflows that actually work) and you keep playing. You also get my free library of 4 PDFs and the Email Blur extension.</p>
   <form id="rv-form" novalidate><label class="sr" for="rv-email">Your email address</label>
   <input id="rv-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required>
-  <label class="consent" for="rv-consent"><input id="rv-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email (welcome series, then every 2&nbsp;weeks). I&nbsp;can unsubscribe at any&nbsp;time. <a href="https://imstruzik.com/privacy/" target="_blank" rel="noopener">Privacy policy</a></span></label>
+  <label class="consent" for="rv-consent"><input id="rv-consent" type="checkbox"><span>Yes, send me Marcin Struzik&rsquo;s newsletter by email (welcome email, then every 2&nbsp;weeks, sent through Substack). I&nbsp;can unsubscribe at any&nbsp;time. <a href="https://imstruzik.com/privacy/" target="_blank" rel="noopener">Privacy policy</a></span></label>
   <button class="pri" id="rv-go" type="submit">Subscribe and get a life</button></form>
   <button class="ter" id="rv-no" type="button">No thanks, I will quit</button>
-  <p class="hint" id="rv-note">Free. Confirm by email to get the library.</p>`;
+  <p class="hint" id="rv-note">Free. One more click on Substack and the welcome email brings the library.</p>`;
   ov.classList.add('on');
   const form=document.getElementById('rv-form'),email=document.getElementById('rv-email'),note=document.getElementById('rv-note'),go=document.getElementById('rv-go');
   const noteText=note.textContent;
@@ -419,15 +419,11 @@ function showRevive(){
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){note.textContent='Please enter a valid email address.';note.style.setProperty('color','#c62828','important');email.focus();return}
     const ck=document.getElementById('rv-consent');
     if(!ck.checked){note.textContent='Please tick the box so I can send you the emails.';note.style.setProperty('color','#c62828','important');ck.parentNode.classList.add('err');ck.focus();return}
-    go.disabled=true;go.textContent='Sending...';
-    const body=new URLSearchParams({campaign_token:GR.token,thankyou_url:GR.thanks,start_day:'0',email:v});
-    let sent=true;
-    const finish=()=>{
-      track('lifeline-signup',{sent:sent});
-      card.innerHTML=`<div class="badge">Life restored</div><h2>Back in the game</h2><p>${sent?'Check your inbox (or Spam) and confirm your address to get the library.':'Preview mode: the signup is only sent from the live site.'}</p><button class="pri" id="rv-cont">Continue</button>`;
-      document.getElementById('rv-cont').onclick=revive;
-    };
-    try{fetch(GR.url,{method:'POST',mode:'no-cors',body:body}).then(finish,()=>{sent=false;finish()});}catch(err){sent=false;finish();}
+    // Substack subscribe page in a new tab with the email filled in; one click there finishes the signup
+    const w=window.open(SUBSCRIBE+'?email='+encodeURIComponent(v),'_blank'),sent=!!w;if(w)w.opener=null;
+    track('lifeline-signup',{sent:sent});
+    card.innerHTML=`<div class="badge">Life restored</div><h2>Back in the game</h2><p>${sent?'Press Subscribe in the Substack tab when you are done here. My welcome email brings the library.':'Your browser blocked the new tab. You can subscribe later at imstruzik.substack.com.'}</p><button class="pri" id="rv-cont">Continue</button>`;
+    document.getElementById('rv-cont').onclick=revive;
   };
 }
 function revive(){
