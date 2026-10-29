@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab: Free Tools for Video Creators | Marcin Struzik</title>
+<meta name="description" content="Small free tools Marcin Struzik built for people who make product videos: a hook prompt builder, a safe-zone checker, an email blur extension and an office game.">
+<link rel="canonical" href="https://imstruzik.com/lab/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<script src="/assets/analytics.js"></script>
+<meta name="author" content="Marcin Struzik">
+<meta name="theme-color" content="#08090a">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://imstruzik.com/lab/">
+<meta property="og:site_name" content="imstruzik.com">
+<meta property="og:title" content="Lab: Free Tools for Video Creators | Marcin Struzik">
+<meta property="og:description" content="Small free tools for people who make product videos. They run in your browser, nothing is uploaded.">
+<meta property="og:image" content="https://imstruzik.com/og.jpg?v=7">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preload" href="/assets/fonts/archivo-latin-1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  h1,h2,h3{text-wrap:balance}
+  p,li,label,small{text-wrap:pretty}
+  body{margin:0;background:#08090a;color:#f4f5f6;font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:#f4f5f6;text-decoration:none}
+  a:hover{color:#7c9dff}
+  a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #6b8afd;outline-offset:3px}
+  ::selection{background:#3b5bdb;color:#fff}
+  [hidden]{display:none!important}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{padding:28px 0 0}
+  .brand{display:inline-flex;align-items:center;font-weight:800;font-size:16px;letter-spacing:-.02em}
+  .brand span{color:#6b8afd}
+  .back{display:inline-flex;align-items:center;gap:8px;margin:56px 0 28px;font-size:13.5px;font-weight:600;color:#9aa0a8}
+  .back:hover{color:#f4f5f6}
+  .eyebrow{margin:0 0 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b8afd}
+  h1{margin:0 0 16px;font-size:clamp(34px,5.4vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:700}
+  .dek{margin:0 0 40px;font-size:18px;line-height:1.6;color:#9aa0a8;max-width:62ch}
+  .tool{margin:0 0 28px;padding:clamp(22px,4vw,36px);border-radius:22px;border:1px solid rgba(255,255,255,.09);background:#0e1013}
+  .tool h2{margin:0 0 8px;font-size:clamp(22px,3vw,28px);letter-spacing:-.025em}
+  .tool > p{margin:0 0 22px;max-width:62ch;font-size:15.5px;line-height:1.6;color:#9aa0a8}
+  .tag{display:inline-block;margin:0 0 12px;padding:4px 11px;border-radius:999px;border:1px solid rgba(107,138,253,.35);background:rgba(107,138,253,.1);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#a9bbff}
+  .tag.green{border-color:rgba(141,251,161,.3);background:rgba(141,251,161,.08);color:#8dfba1}
+  .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+  @media (max-width:760px){.cols{grid-template-columns:minmax(0,1fr)}}
+  label.f{display:block;margin:0 0 14px;font-size:13px;font-weight:600;color:#c9ced6}
+  label.f span{display:block;margin:0 0 6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#6d737b;font-weight:500}
+  input[type=text],select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#f4f5f7;font:inherit;font-size:15px}
+  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#9aa0a8 50%),linear-gradient(135deg,#9aa0a8 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px}
+  select option{background:#14161a;color:#f4f5f7}
+  input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:#6b8afd;background:rgba(107,138,253,.07)}
+  .out{position:relative}
+  .out textarea{min-height:330px;resize:vertical;line-height:1.55;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#d7dbe2}
+  .btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;padding:12px 22px;border-radius:999px;background:#f4f5f6;color:#0b0d10;font:inherit;font-size:14.5px;font-weight:600}
+  .btn:hover{opacity:.9}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.16);color:#f4f5f6;font-weight:500}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+  .hint{margin:12px 0 0;font-size:13px;line-height:1.55;color:#6d737b}
+  .hint.ok{color:#8dfba1}
+  /* safe zones */
+  .sz-stage{display:flex;justify-content:center}
+  .sz-frame{position:relative;width:min(100%,300px);aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#15181d;border:1px solid rgba(255,255,255,.14)}
+  .sz-frame img,.sz-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .sz-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-size:13.5px;line-height:1.5;color:#6d737b}
+  .sz-zone{position:absolute;background:rgba(255,90,90,.34);border:1px dashed rgba(255,150,150,.8);color:#fff;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+  .sz-safe{position:absolute;border:1.5px solid rgba(141,251,161,.85);pointer-events:none;border-radius:4px}
+  input[type=file]{width:100%;padding:12px;border-radius:12px;border:1px dashed rgba(255,255,255,.24);background:rgba(255,255,255,.03);color:#9aa0a8;font:inherit;font-size:14px}
+  /* more */
+  .more{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px;margin:0 0 56px}
+  .more .tool{margin:0}
+  footer{padding:36px 20px 52px;text-align:center;font-size:13px;color:#6d737b}
+  footer a{color:#9aa0a8;text-decoration:underline;text-underline-offset:3px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/" class="brand">imstruzik<span>.com</span></a></div></header>
+
+<main class="wrap">
+  <a class="back" href="/">&larr; Back to imstruzik.com</a>
+  <p class="eyebrow">Lab</p>
+  <h1>Small tools I built with AI</h1>
+  <p class="dek">Free, and they run in your browser. Nothing you type or drop here is uploaded anywhere.</p>
+
+  <section class="tool" id="prompt">
+    <span class="tag">Tool</span>
+    <h2>Hook prompt builder</h2>
+    <p>Fill in four fields and get the prompt I use to get hooks that don&rsquo;t sound like everyone else&rsquo;s. Paste it into your own ChatGPT, Claude or Gemini.</p>
+    <div class="cols">
+      <div>
+        <label class="f"><span>What is the video about</span><input type="text" id="pb-topic" value="a scheduling feature that books meetings automatically" maxlength="160"></label>
+        <label class="f"><span>Who watches</span><input type="text" id="pb-who" value="busy sales managers" maxlength="120"></label>
+        <label class="f"><span>Where it plays</span>
+          <select id="pb-platform">
+            <option value="LinkedIn feed (sound off, text on screen)">LinkedIn feed</option>
+            <option value="Instagram Reels or TikTok (vertical, fast)">Instagram Reels / TikTok</option>
+            <option value="a YouTube video or a product page (viewer chose to watch)">YouTube / product page</option>
+          </select></label>
+        <label class="f"><span>Tone</span>
+          <select id="pb-tone">
+            <option value="plain and confident">Plain and confident</option>
+            <option value="dry and a little funny">Dry and a little funny</option>
+            <option value="calm and expert">Calm and expert</option>
+            <option value="energetic">Energetic</option>
+          </select></label>
+      </div>
+      <div class="out">
+        <label class="sr-only" for="pb-out">Your prompt</label>
+        <textarea id="pb-out" readonly></textarea>
+        <div class="row">
+          <button class="btn" id="pb-copy" type="button">Copy prompt</button>
+          <span class="hint ok" id="pb-note" role="status" hidden>Copied. Paste it into your AI.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tool" id="safe">
+    <span class="tag">Tool</span>
+    <h2>Safe-zone checker</h2>
+    <p>Drop a frame or a short clip and see which parts the app interface will cover on Reels, TikTok and Shorts. The zones are approximate and platforms change them, so leave some extra room.</p>
+    <div class="cols">
+      <div>
+        <label class="f"><span>Your frame (image or video, 9:16 works best)</span><input type="file" id="sz-file" accept="image/*,video/*"></label>
+        <label class="f"><span>Platform</span>
+          <select id="sz-platform">
+            <option value="reels">Instagram Reels</option>
+            <option value="tiktok">TikTok</option>
+            <option value="shorts">YouTube Shorts</option>
+          </select></label>
+        <p class="hint">Red = covered by buttons, caption or the top bar. Green outline = safe for text. Nothing leaves your device.</p>
+      </div>
+      <div class="sz-stage">
+        <div class="sz-frame" id="sz-frame">
+          <div class="sz-empty" id="sz-empty">Drop a frame on the left to preview it here.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="more">
+    <section class="tool">
+      <span class="tag green">Extension</span>
+      <h2>Email Blur</h2>
+      <p>Blurs every email address on a page before you record your screen. Chrome and Firefox. Free with a newsletter signup.</p>
+      <a class="btn ghost" href="/downloads/">Get it &rarr;</a>
+    </section>
+    <section class="tool">
+      <span class="tag green">Game</span>
+      <h2>Friday 17:42</h2>
+      <p>A small office platformer I made with AI. Escape the open space before the weekend starts.</p>
+      <a class="btn ghost" href="/play/">Play &rarr;</a>
+    </section>
+  </div>
+</main>
+
+<footer>imstruzik.com &middot; Marcin Struzik &middot; <a href="/privacy/">Privacy</a></footer>
+
+<script>
+(function(){
+  /* ---------- hook prompt builder ---------- */
+  var f = {topic:'pb-topic', who:'pb-who', platform:'pb-platform', tone:'pb-tone'}, out = document.getElementById('pb-out');
+  function el(id){ return document.getElementById(id); }
+  function build(){
+    var topic = el(f.topic).value.trim() || 'my product';
+    var who = el(f.who).value.trim() || 'my audience';
+    var p = el(f.platform).value, tone = el(f.tone).value;
+    out.value =
+'You are a senior video scriptwriter for SaaS products.\n\n' +
+'Video: ' + topic + '.\n' +
+'Viewer: ' + who + '.\n' +
+'Where it plays: ' + p + '.\n' +
+'Tone: ' + tone + '.\n\n' +
+'Write 5 opening hooks for the first 3 seconds. Each one must use a different angle:\n' +
+'1. a question the viewer already asks themselves\n' +
+'2. a specific number or result\n' +
+'3. a claim that goes against common advice\n' +
+'4. the problem, shown as a short scene\n' +
+'5. the outcome, shown before the explanation\n\n' +
+'Rules: no buzzwords, no "in today\'s world", no "introducing". Under 12 words each. Write it the way a person would say it out loud.\n\n' +
+'Then pick the one you would keep and say why in one sentence. Do not rewrite it into a blend of all five.';
+  }
+  ['topic','who','platform','tone'].forEach(function(k){ el(f[k]).addEventListener('input', build); });
+  build();
+  el('pb-copy').addEventListener('click', function(){
+    var note = el('pb-note');
+    function ok(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2400); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(out.value).then(ok, function(){ out.select(); document.execCommand('copy'); ok(); });
+    } else { out.select(); document.execCommand('copy'); ok(); }
+  });
+
+  /* ---------- safe-zone checker (zones as % of a 1080x1920 frame, approximate) ---------- */
+  var Z = {
+    reels:  {top:13, bottom:22, left:5.5, right:12},
+    tiktok: {top:7,  bottom:25, left:6,   right:13},
+    shorts: {top:6,  bottom:20, left:5,   right:12}
+  };
+  var frame = el('sz-frame'), empty = el('sz-empty'), media = null, overlay = document.createElement('div');
+  overlay.style.cssText = 'position:absolute;inset:0;pointer-events:none';
+  frame.appendChild(overlay);
+  function zone(css, label){
+    var d = document.createElement('div'); d.className = 'sz-zone'; d.style.cssText = css; d.textContent = label || ''; overlay.appendChild(d);
+  }
+  function draw(){
+    overlay.innerHTML = '';
+    var z = Z[el('sz-platform').value];
+    zone('left:0;right:0;top:0;height:' + z.top + '%', 'top bar');
+    zone('left:0;right:0;bottom:0;height:' + z.bottom + '%', 'caption + buttons');
+    zone('top:' + z.top + '%;bottom:' + z.bottom + '%;right:0;width:' + z.right + '%', '');
+    zone('top:' + z.top + '%;bottom:' + z.bottom + '%;left:0;width:' + z.left + '%', '');
+    var s = document.createElement('div'); s.className = 'sz-safe';
+    s.style.cssText = 'left:' + z.left + '%;right:' + z.right + '%;top:' + z.top + '%;bottom:' + z.bottom + '%';
+    overlay.appendChild(s);
+  }
+  el('sz-platform').addEventListener('change', draw);
+  draw();
+  el('sz-file').addEventListener('change', function(){
+    var file = this.files && this.files[0]; if(!file) return;
+    if(media){ if(media.src) URL.revokeObjectURL(media.src); media.remove(); }
+    var url = URL.createObjectURL(file);
+    if(/^video\//.test(file.type)){
+      media = document.createElement('video'); media.muted = true; media.loop = true; media.autoplay = true; media.playsInline = true; media.controls = false;
+    } else { media = document.createElement('img'); media.alt = 'Your frame'; }
+    media.src = url;
+    frame.insertBefore(media, overlay);
+    empty.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

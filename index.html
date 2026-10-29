@@ -155,6 +155,34 @@
   .reel-more{margin:34px 0 0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.04em}
   .reel-more a{color:#a9bbff}
   .reel-more a:hover{color:#f4f5f6}
+  .lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
+  .lab-tile{position:relative;display:flex;flex-direction:column;gap:10px;padding:18px 18px 20px;border-radius:18px;border:1px solid rgba(255,255,255,.09);background:#0e1013;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+  .lab-tile:hover{border-color:rgba(107,138,253,.55);transform:translateY(-4px);color:inherit}
+  .lab-tile h3{margin:6px 0 0;font-size:19px;letter-spacing:-.025em}
+  .lab-tile p{margin:0;font-size:14px;line-height:1.55;color:#9aa0a8}
+  .lab-go{margin-top:auto;padding-top:6px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;color:#a9bbff}
+  .lab-tag{align-self:flex-start;padding:3px 10px;border-radius:999px;border:1px solid rgba(107,138,253,.35);background:rgba(107,138,253,.1);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a9bbff}
+  .lab-tag.green{border-color:rgba(141,251,161,.3);background:rgba(141,251,161,.08);color:#8dfba1}
+  .lab-art{position:relative;height:110px;border-radius:12px;overflow:hidden;background:#15181d;border:1px solid rgba(255,255,255,.06)}
+  .lab-art-prompt{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 18px}
+  .lab-art-prompt i{display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.14)}
+  .lab-art-prompt i:nth-child(2){width:72%}.lab-art-prompt i:nth-child(3){width:86%}
+  .lab-art-prompt i.s{width:46%;background:#6b8afd}
+  .lab-art-safe b{position:absolute;left:50%;top:10px;bottom:10px;width:56px;transform:translateX(-50%);border-radius:8px;border:1px solid rgba(255,255,255,.2);background:#0c0e11}
+  .lab-art-safe u{position:absolute;left:50%;top:22px;bottom:30px;width:44px;transform:translateX(-50%);border:1.5px solid rgba(141,251,161,.85);border-radius:4px;background:rgba(141,251,161,.06)}
+  .lab-art-blur{display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:15px;color:#c9ced6}
+  .lab-art-blur .bl{background:rgba(255,255,255,.5);filter:blur(5px);border-radius:3px;margin-left:2px}
+  .lab-art-game{display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a2a6c,#0c0e11 75%)}
+  .lab-art-game em{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:700;letter-spacing:.06em;color:#fff}
+  .reel-strip{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}
+  .reel-strip-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin:0 0 14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#6a7078}
+  .reel-strip-head a{color:#a9bbff;text-transform:none;letter-spacing:.04em}
+  .reel-strip-head a:hover{color:#f4f5f6}
+  .reel-row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+  .reel-chip{position:relative;flex:0 0 84px;aspect-ratio:9/16;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#101113;cursor:pointer;scroll-snap-align:start;transition:border-color .25s,transform .3s}
+  .reel-chip:hover{border-color:rgba(107,138,253,.6);transform:translateY(-3px)}
+  .reel-chip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+  .reel-chip-play{position:absolute;right:6px;bottom:6px;width:0;height:0;border-left:8px solid #f4f5f6;border-top:5px solid transparent;border-bottom:5px solid transparent;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7))}
   .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:18px}
   .work-group-label{margin:0 0 16px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#6b8afd}
   .work-group-label-hand{margin-top:48px}
@@ -330,7 +358,7 @@
     <a href="#top" class="brand">imstruzik<span>.com</span></a>
     <div id="nav-links">
       <a href="#notes">The AI Cut</a>
-      <a href="#work">Reels</a>
+      <a href="#work">Lab</a>
       <a href="#about">About</a>
       <a href="/downloads/">Free downloads</a>
       <a href="#contact">Contact</a>
@@ -347,7 +375,7 @@
 <div id="mobile-menu">
   <button id="menu-close" aria-label="Close menu">×</button>
   <a href="#notes">The AI Cut</a>
-  <a href="#work">Reels</a>
+  <a href="#work">Lab</a>
   <a href="#about">About</a>
   <a href="/downloads/">Free downloads</a>
   <a href="#contact">Contact</a>
@@ -448,68 +476,98 @@
   <div class="work-inner">
   <div class="section-head" data-r>
     <div>
-      <p class="eyebrow">02 &middot; Reels</p>
-      <h2 class="section-title">Quick tips</h2>
+      <p class="eyebrow">02 &middot; Lab</p>
+      <h2 class="section-title">Small tools I built with&nbsp;AI</h2>
     </div>
-    <p>Short, general tips on AI and video, the same ones I post on Instagram. Press play.</p>
+    <p>Free, and they run in your browser. Nothing you type or drop in is uploaded.</p>
   </div>
-  <div class="work-grid reel-grid" id="work-grid-ai">
-    <div data-r>
-      <div class="work-card-media" role="button" tabindex="0" aria-label="Play reel: Ask AI for 5 hooks. Keep 1." data-video-src="/assets/reels/reel16.mp4" data-video-title="Ask AI for 5 hooks. Keep 1." data-video-tag="Prompt trick">
-        <img src="/assets/reels/reel16.webp" alt="Ask AI for 5 hooks. Keep 1., reel by Marcin Struzik" loading="lazy" width="540" height="960">
-        <div class="work-card-scrim"></div>
-        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
-        <span class="work-tag">Prompt trick</span>
-      </div>
-      <div class="work-meta"><p class="work-title">Ask AI for 5 hooks. Keep 1.</p></div>
+  <div class="lab-grid" data-r>
+    <a class="lab-tile" href="/lab/#prompt">
+      <span class="lab-tag">Tool</span>
+      <div class="lab-art lab-art-prompt" aria-hidden="true"><i></i><i></i><i></i><i class="s"></i></div>
+      <h3>Hook prompt builder</h3>
+      <p>Four fields in, a prompt out. Paste it into your own AI and get 5 hooks, keep 1.</p>
+      <span class="lab-go">Open &rarr;</span>
+    </a>
+    <a class="lab-tile" href="/lab/#safe">
+      <span class="lab-tag">Tool</span>
+      <div class="lab-art lab-art-safe" aria-hidden="true"><b></b><u></u></div>
+      <h3>Safe-zone checker</h3>
+      <p>Drop a frame and see what Reels, TikTok and Shorts will cover.</p>
+      <span class="lab-go">Open &rarr;</span>
+    </a>
+    <a class="lab-tile" href="/downloads/">
+      <span class="lab-tag green">Extension</span>
+      <div class="lab-art lab-art-blur" aria-hidden="true"><span>anna@</span><span class="bl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      <h3>Email Blur</h3>
+      <p>Blurs every email on screen before you record. Chrome and Firefox.</p>
+      <span class="lab-go">Get it &rarr;</span>
+    </a>
+    <a class="lab-tile" href="/play/">
+      <span class="lab-tag green">Game</span>
+      <div class="lab-art lab-art-game" aria-hidden="true"><em>17:42</em></div>
+      <h3>Friday 17:42</h3>
+      <p>An office platformer. Escape the open space before the weekend starts.</p>
+      <span class="lab-go">Play &rarr;</span>
+    </a>
+  </div>
+
+  <div class="reel-strip" data-r>
+    <div class="reel-strip-head">
+      <span>Quick tips, as short reels</span>
+      <a href="https://www.instagram.com/imstruzik/" target="_blank" rel="noopener">@imstruzik &rarr;</a>
     </div>
-    <div data-r>
-      <div class="work-card-media" role="button" tabindex="0" aria-label="Play reel: Start 5 seconds before they press play" data-video-src="/assets/reels/reel26.mp4" data-video-title="Start 5 seconds before they press play" data-video-tag="Openings">
-        <img src="/assets/reels/reel26.webp" alt="Start 5 seconds before they press play, reel by Marcin Struzik" loading="lazy" width="540" height="960">
-        <div class="work-card-scrim"></div>
-        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
-        <span class="work-tag">Openings</span>
+    <div class="reel-row">
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: Ask AI for 5 hooks. Keep 1." data-video-src="/assets/reels/reel16.mp4" data-video-title="Ask AI for 5 hooks. Keep 1." data-video-tag="Prompt trick">
+        <img src="/assets/reels/reel16.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
       </div>
-      <div class="work-meta"><p class="work-title">Start 5 seconds before they press play</p></div>
-    </div>
-    <div data-r>
-      <div class="work-card-media" role="button" tabindex="0" aria-label="Play reel: The 90/10 test: automate it or keep it?" data-video-src="/assets/reels/reel21.mp4" data-video-title="The 90/10 test: automate it or keep it?" data-video-tag="The test">
-        <img src="/assets/reels/reel21.webp" alt="The 90/10 test: automate it or keep it?, reel by Marcin Struzik" loading="lazy" width="540" height="960">
-        <div class="work-card-scrim"></div>
-        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
-        <span class="work-tag">The test</span>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: Start 5 seconds before they press play" data-video-src="/assets/reels/reel26.mp4" data-video-title="Start 5 seconds before they press play" data-video-tag="Openings">
+        <img src="/assets/reels/reel26.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
       </div>
-      <div class="work-meta"><p class="work-title">The 90/10 test: automate it or keep it?</p></div>
-    </div>
-    <div data-r>
-      <div class="work-card-media" role="button" tabindex="0" aria-label="Play reel: The regeneration tax: why AI tools quietly die" data-video-src="/assets/reels/reel13.mp4" data-video-title="The regeneration tax: why AI tools quietly die" data-video-tag="AI tools">
-        <img src="/assets/reels/reel13.webp" alt="The regeneration tax: why AI tools quietly die, reel by Marcin Struzik" loading="lazy" width="540" height="960">
-        <div class="work-card-scrim"></div>
-        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
-        <span class="work-tag">AI tools</span>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: The 90/10 test: automate it or keep it?" data-video-src="/assets/reels/reel21.mp4" data-video-title="The 90/10 test: automate it or keep it?" data-video-tag="The test">
+        <img src="/assets/reels/reel21.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
       </div>
-      <div class="work-meta"><p class="work-title">The regeneration tax: why AI tools quietly die</p></div>
-    </div>
-    <div data-r>
-      <div class="work-card-media" role="button" tabindex="0" aria-label="Play reel: If I could pay for only one AI tool" data-video-src="/assets/reels/reel41.mp4" data-video-title="If I could pay for only one AI tool" data-video-tag="My pick">
-        <img src="/assets/reels/reel41.webp" alt="If I could pay for only one AI tool, reel by Marcin Struzik" loading="lazy" width="540" height="960">
-        <div class="work-card-scrim"></div>
-        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
-        <span class="work-tag">My pick</span>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: The regeneration tax: why AI tools quietly die" data-video-src="/assets/reels/reel13.mp4" data-video-title="The regeneration tax: why AI tools quietly die" data-video-tag="AI tools">
+        <img src="/assets/reels/reel13.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
       </div>
-      <div class="work-meta"><p class="work-title">If I could pay for only one AI tool</p></div>
-    </div>
-    <div data-r>
-      <div class="work-card-media" role="button" tabindex="0" aria-label="Play reel: Your text is under the Like button" data-video-src="/assets/reels/reel33.mp4" data-video-title="Your text is under the Like button" data-video-tag="Safe zones">
-        <img src="/assets/reels/reel33.webp" alt="Your text is under the Like button, reel by Marcin Struzik" loading="lazy" width="540" height="960">
-        <div class="work-card-scrim"></div>
-        <div class="work-play"><div class="work-play-btn"><div class="work-play-tri"></div></div></div>
-        <span class="work-tag">Safe zones</span>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: If I could pay for only one AI tool" data-video-src="/assets/reels/reel41.mp4" data-video-title="If I could pay for only one AI tool" data-video-tag="My pick">
+        <img src="/assets/reels/reel41.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
       </div>
-      <div class="work-meta"><p class="work-title">Your text is under the Like button</p></div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: Your text is under the Like button" data-video-src="/assets/reels/reel33.mp4" data-video-title="Your text is under the Like button" data-video-tag="Safe zones">
+        <img src="/assets/reels/reel33.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: 11 minutes of raw footage to a final cut" data-video-src="/assets/reels/reel01.mp4" data-video-title="11 minutes of raw footage to a final cut" data-video-tag="Editing">
+        <img src="/assets/reels/reel01.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: Which take wins?" data-video-src="/assets/reels/reel02.mp4" data-video-title="Which take wins?" data-video-tag="Editing">
+        <img src="/assets/reels/reel02.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: The screen is black" data-video-src="/assets/reels/reel06.mp4" data-video-title="The screen is black" data-video-tag="Scripts">
+        <img src="/assets/reels/reel06.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: 4 AI tools I kept after real projects" data-video-src="/assets/reels/reel12.mp4" data-video-title="4 AI tools I kept after real projects" data-video-tag="AI tools">
+        <img src="/assets/reels/reel12.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: “Link in bio” is not a CTA" data-video-src="/assets/reels/reel37.mp4" data-video-title="“Link in bio” is not a CTA" data-video-tag="Copy">
+        <img src="/assets/reels/reel37.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
+      <div class="reel-chip" role="button" tabindex="0" aria-label="Play reel: One sentence before any script" data-video-src="/assets/reels/reel44.mp4" data-video-title="One sentence before any script" data-video-tag="Scripts">
+        <img src="/assets/reels/reel44.webp" alt="" loading="lazy" width="270" height="480">
+        <span class="reel-chip-play"></span>
+      </div>
     </div>
   </div>
-  <p class="reel-more" data-r><a href="https://www.instagram.com/imstruzik/" target="_blank" rel="noopener">More on Instagram: @imstruzik &rarr;</a></p>
   </div>
 </section>
 
@@ -577,6 +635,7 @@
     <div class="links">
       <a href="#newsletter">Newsletter</a>
       <a href="/downloads/">Free downloads</a>
+      <a href="/lab/">Lab</a>
       <a href="/uses/">What I use</a>
       <a href="/play/">Play a game</a>
       <a href="https://www.linkedin.com/in/imstruzik/" target="_blank" rel="noopener">LinkedIn</a>
@@ -717,7 +776,7 @@
     frame.innerHTML = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.work-card-media').forEach(function(el){
+  document.querySelectorAll('.work-card-media, .reel-chip').forEach(function(el){
     function trigger(){ openLightbox(el.dataset.videoSrc, el.dataset.videoTitle, el.dataset.videoTag); }
     el.addEventListener('click', trigger);
     el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); trigger(); } });

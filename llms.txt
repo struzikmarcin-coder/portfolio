@@ -17,6 +17,10 @@ All notes: https://imstruzik.com/notes/
 - [AI Video Editing: 7 Tasks to Hand Over Today, and 3 You Never Should](https://imstruzik.com/notes/ai-video-editing/): automate captions, silence removal, resizing, transcription, noise cleanup, first-pass color and B-roll tagging (about 5.5 hours down to under an hour per video); keep pacing, UI-animation timing and story order human.
 - [The AI Tools for Video I Stopped Using, and the 4 I Would Keep](https://imstruzik.com/notes/ai-tools-for-video/): the test is whether a tool removes a step or adds a check. Kept: ChatGPT, ElevenLabs, Seedance 2.0, WhisperX.
 
+## Lab
+
+https://imstruzik.com/lab/: free browser tools by Marcin: a hook prompt builder (fills a prompt you paste into your own AI) and a safe-zone checker for Reels, TikTok and Shorts. Nothing is uploaded.
+
 ## Free downloads
 
 https://imstruzik.com/downloads/: Email Blur, a browser extension Marcin built that blurs every email address on a web page before you record your screen (source: https://github.com/struzikmarcin-coder/portfolio/tree/main/tools/email-blur), plus the Product Video Brief, AI Video Script Prompt Pack, Before You Hit Publish checklist and My AI Stack PDFs. All free, unlocked with a newsletter signup.
